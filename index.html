@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edwin Ferrer — Servicios Legales</title>
+<link rel="icon" href="logomark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --verde-noche:#001107;
+    --verde-botella:#0E2A1A;
+    --verde-botella-2:#123321;
+    --pergamino:#F3EEE1;
+    --pergamino-alt:#EAE2CE;
+    --oro:#B99A5B;
+    --oro-suave:#D8C08A;
+    --tinta:#1B1B14;
+    --tinta-suave:#4A4A3E;
+    --linea-oro: rgba(185,154,91,0.35);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--pergamino);
+    color:var(--tinta);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+
+  h1,h2,h3,.serif{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    letter-spacing:0.01em;
+  }
+
+  .eyebrow{
+    font-family:'Jost', sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    font-weight:500;
+  }
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  @media (max-width:640px){
+    .wrap{padding:0 22px;}
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:50;
+    background:rgba(0,17,7,0.86);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--linea-oro);
+  }
+  .nav-inner{
+    max-width:1080px;
+    margin:0 auto;
+    padding:16px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    color:var(--pergamino);
+  }
+  .nav-brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.15rem;
+    letter-spacing:0.04em;
+  }
+  .nav-brand img{height:26px; width:auto;}
+  nav.links{
+    display:flex; gap:22px;
+  }
+  nav.links a{
+    font-size:0.74rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--pergamino-alt);
+    opacity:0.85;
+    transition:opacity .2s, color .2s;
+    padding-bottom:3px;
+    border-bottom:1px solid transparent;
+  }
+  nav.links a:hover{ opacity:1; color:var(--oro-suave); border-color:var(--oro);}
+  @media (max-width:720px){
+    nav.links{display:none;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--verde-noche);
+    color:var(--pergamino);
+    padding:168px 32px 110px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      repeating-linear-gradient(0deg, transparent 0 39px, rgba(185,154,91,0.045) 40px),
+      repeating-linear-gradient(90deg, transparent 0 39px, rgba(185,154,91,0.045) 40px);
+    pointer-events:none;
+  }
+  .hero-content{ position:relative; z-index:1; }
+  .hero .eyebrow{ color:var(--oro-suave); margin-bottom:26px; }
+  .hero-mark{
+    width:210px;
+    margin:0 auto 8px;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 6vw, 4.2rem);
+    line-height:1.05;
+    margin-bottom:6px;
+  }
+  .hero .sub{
+    font-family:'Jost', sans-serif;
+    font-size:0.85rem;
+    letter-spacing:0.42em;
+    text-transform:uppercase;
+    color:var(--oro-suave);
+    margin-bottom:36px;
+  }
+  .hero p.tag{
+    max-width:560px;
+    margin:0 auto 46px;
+    font-size:1.08rem;
+    font-weight:300;
+    color:rgba(243,238,225,0.86);
+  }
+  .hero-cta{
+    display:flex;
+    gap:18px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-block;
+    padding:14px 30px;
+    font-size:0.75rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    border:1px solid var(--oro);
+    transition:background .25s, color .25s, border-color .25s;
+  }
+  .btn-solid{
+    background:var(--oro);
+    color:var(--verde-noche);
+  }
+  .btn-solid:hover{ background:var(--oro-suave); border-color:var(--oro-suave); }
+  .btn-outline{
+    color:var(--pergamino);
+    border-color:var(--linea-oro);
+  }
+  .btn-outline:hover{ border-color:var(--oro); color:var(--oro-suave); }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section{ padding:104px 0; }
+  .section-head{
+    max-width:640px;
+    margin-bottom:56px;
+  }
+  .section-head .eyebrow{ color:var(--oro); margin-bottom:16px; }
+  .section-head h2{
+    font-size:clamp(1.9rem, 3.4vw, 2.6rem);
+  }
+  .rule{
+    width:64px; height:1px;
+    background:var(--oro);
+    margin:22px 0 0;
+  }
+
+  /* ---------- PERFIL ---------- */
+  .perfil{ background:var(--pergamino); }
+  .perfil-grid{
+    display:grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap:64px;
+    align-items:start;
+  }
+  .perfil-grid .plate{
+    background:var(--verde-botella);
+    padding:0;
+    overflow:hidden;
+    border:none;
+    box-shadow:0 24px 48px -22px rgba(14,42,26,0.45);
+  }
+  .perfil-grid .plate img{ width:100%; display:block; }
+  .perfil-text p{ margin-bottom:20px; color:var(--tinta-suave); font-size:1.02rem; }
+  .perfil-text strong{ color:var(--tinta); font-weight:500; }
+  .locales{
+    margin-top:28px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .chip{
+    font-size:0.7rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    padding:8px 14px;
+    border:1px solid rgba(27,27,20,0.18);
+    color:var(--tinta-suave);
+  }
+  @media (max-width:800px){
+    .perfil-grid{ grid-template-columns:1fr; gap:40px; }
+    .perfil-grid .plate{ max-width:280px; margin:0 auto; }
+  }
+
+  /* ---------- AREAS (memorial) ---------- */
+  .areas{ background:var(--verde-noche); color:var(--pergamino); }
+  .areas .section-head .eyebrow{ color:var(--oro-suave); }
+  .areas .section-head p{ color:rgba(243,238,225,0.72); margin-top:14px; }
+  .memorial{
+    border-top:1px solid var(--linea-oro);
+  }
+  .item{
+    border-bottom:1px solid var(--linea-oro);
+    padding:30px 0;
+    display:grid;
+    grid-template-columns: 120px 1fr;
+    gap:28px;
+    align-items:start;
+  }
+  .item .code{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1rem;
+    color:var(--oro-suave);
+    letter-spacing:0.02em;
+    padding-top:4px;
+  }
+  .item h3{
+    font-size:1.5rem;
+    margin-bottom:8px;
+    color:var(--pergamino);
+  }
+  .item p{
+    color:rgba(243,238,225,0.68);
+    max-width:560px;
+    font-size:0.98rem;
+  }
+  @media (max-width:640px){
+    .item{ grid-template-columns:1fr; gap:6px; }
+  }
+
+  /* ---------- OPINION Y LOGROS ---------- */
+  .grid-3{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:28px;
+  }
+  @media (max-width:800px){
+    .grid-3{ grid-template-columns:1fr; }
+  }
+
+  .opinion{ background:var(--pergamino-alt); }
+  .op-card{
+    background:var(--pergamino);
+    border:1px solid rgba(27,27,20,0.1);
+    padding:30px 26px;
+    display:flex;
+    flex-direction:column;
+  }
+  .op-card .fecha{
+    font-size:0.68rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--oro);
+    margin-bottom:14px;
+  }
+  .op-card h3{
+    font-size:1.35rem;
+    margin-bottom:12px;
+    line-height:1.2;
+  }
+  .op-card p{
+    color:var(--tinta-suave);
+    font-size:0.95rem;
+    flex-grow:1;
+  }
+
+  .logros{ background:var(--verde-botella-2); color:var(--pergamino); }
+  .logros .section-head .eyebrow{ color:var(--oro-suave); }
+  .logros .section-head p{ color:rgba(243,238,225,0.72); margin-top:14px; }
+  .lg-card{
+    border:1px solid var(--linea-oro);
+    padding:30px 26px;
+  }
+  .lg-card .fecha{
+    font-size:0.68rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--oro-suave);
+    margin-bottom:14px;
+  }
+  .lg-card h3{
+    font-size:1.25rem;
+    margin-bottom:10px;
+    line-height:1.25;
+    color:var(--pergamino);
+  }
+  .lg-card p{
+    color:rgba(243,238,225,0.7);
+    font-size:0.94rem;
+  }
+
+
+  .cobertura{
+    background:var(--pergamino-alt);
+    text-align:center;
+    padding:90px 32px;
+  }
+  .cobertura .eyebrow{ color:var(--oro); margin-bottom:18px;}
+  .cobertura h2{ font-size:clamp(1.7rem,3vw,2.3rem); margin-bottom:22px;}
+  .cobertura .zonas{
+    display:flex;
+    justify-content:center;
+    gap:0;
+    flex-wrap:wrap;
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.3rem;
+    color:var(--tinta-suave);
+  }
+  .cobertura .zonas span{ padding:0 18px; }
+  .cobertura .zonas span:not(:last-child){ border-right:1px solid rgba(27,27,20,0.25); }
+  .cobertura .depto{
+    margin-top:16px;
+    font-size:0.75rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--tinta-suave);
+  }
+
+  /* ---------- CONTACTO ---------- */
+  .contacto{ background:var(--pergamino); }
+  .contacto-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+  }
+  .contact-card{
+    background:var(--verde-botella);
+    color:var(--pergamino);
+    padding:44px 40px;
+    position:relative;
+  }
+  .contact-card::before{
+    content:"";
+    position:absolute; inset:10px;
+    border:1px solid var(--linea-oro);
+    pointer-events:none;
+  }
+  .contact-card .eyebrow{ color:var(--oro-suave); margin-bottom:22px; }
+  .contact-row{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    margin-top:6px;
+  }
+  .contact-row div{ border-bottom:1px solid var(--linea-oro); padding-bottom:14px; }
+  .contact-row .label{
+    font-size:0.68rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--oro-suave);
+    margin-bottom:4px;
+  }
+  .contact-row .value{ font-size:1.02rem; }
+  .note-inline{
+    margin-top:20px;
+    font-size:0.72rem;
+    color:rgba(243,238,225,0.5);
+    font-style:italic;
+  }
+  .form input, .form textarea{
+    width:100%;
+    background:transparent;
+    border:none;
+    border-bottom:1px solid rgba(27,27,20,0.25);
+    padding:12px 4px;
+    font-family:'Jost', sans-serif;
+    font-size:0.98rem;
+    color:var(--tinta);
+    margin-bottom:24px;
+    outline:none;
+    transition:border-color .2s;
+  }
+  .form input::placeholder, .form textarea::placeholder{ color:rgba(27,27,20,0.4); }
+  .form input:focus, .form textarea:focus{ border-color:var(--oro); }
+  .form label{
+    display:block;
+    font-size:0.68rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--tinta-suave);
+    margin-bottom:6px;
+  }
+  .form textarea{ resize:vertical; min-height:90px; }
+  @media (max-width:800px){
+    .contacto-grid{ grid-template-columns:1fr; gap:44px; }
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--verde-noche);
+    color:rgba(243,238,225,0.55);
+    padding:46px 32px 34px;
+    text-align:center;
+  }
+  footer img{ height:30px; margin:0 auto 16px; opacity:0.9; }
+  footer .fine{ font-size:0.72rem; letter-spacing:0.06em; }
+
+  :focus-visible{ outline:2px solid var(--oro); outline-offset:3px; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <img src="logomark.png" alt="">
+      Dr. Edwin Ferrer
+    </div>
+    <nav class="links">
+      <a href="#perfil">Perfil</a>
+      <a href="#areas">Áreas</a>
+      <a href="#opinion">Opinión</a>
+      <a href="#logros">Logros</a>
+      <a href="#cobertura">Cobertura</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">Abogado · Tolima y Cundinamarca</div>
+    <img class="hero-mark" src="logomark.png" alt="Edwin Ferrer — Servicios Legales">
+    <p class="tag">Derecho penal, familia, público y acciones constitucionales. Su defensa, del lado correcto de la ley.</p>
+    <div class="hero-cta">
+      <a class="btn btn-solid" href="#contacto">Agendar una consulta</a>
+      <a class="btn btn-outline" href="#areas">Ver áreas de práctica</a>
+    </div>
+  </div>
+</section>
+
+<section class="section perfil" id="perfil">
+  <div class="wrap perfil-grid">
+    <div class="plate"><img src="fotoedwinverde.jpg" alt="Edwin Iván Ferrer Barreto"></div>
+    <div class="perfil-text">
+      <div class="section-head" style="margin-bottom:26px;">
+        <div class="eyebrow">Perfil profesional</div>
+        <h2>Abogado con más de 10 años de experiencia en el sector público y privado</h2>
+      </div>
+      <p><strong>Edwin Iván Ferrer Barreto</strong> es abogado egresado de la Universidad Cooperativa de Colombia, con ejercicio en Girardot, Ibagué y El Espinal para asuntos en Tolima y Cundinamarca. Cuenta con más de 10 años de experiencia en litigio de derecho penal y familia, y más de 9 años asesorando al sector público.</p>
+      <p>Ha acompañado a entidades como la <strong>Gobernación del Tolima</strong>, las alcaldías municipales de <strong>El Espinal</strong> y <strong>Girardot</strong>, y la <strong>Personería Municipal de Girardot</strong>, en procesos catastrales, saneamiento y titulación de predios, formulación y seguimiento de políticas públicas, y atención de derechos de petición y acciones de tutela.</p>
+      <p>Detrás de cada concepto y cada escrito hay un mismo compromiso: <strong>mantenerse siempre actualizado</strong>, para ofrecerle una defensa sólida, clara y confiable.</p>
+      <div class="locales">
+        <span class="chip">Girardot</span>
+        <span class="chip">Ibagué</span>
+        <span class="chip">El Espinal</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section areas" id="areas">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Áreas de práctica</div>
+      <h2>Memorial de servicios</h2>
+      <p>Seis frentes de trabajo, cada uno con su propio procedimiento y sus propios términos.</p>
+    </div>
+    <div class="memorial">
+      <div class="item">
+        <div class="code">Ram. Penal</div>
+        <div><h3>Derecho Penal</h3><p>Defensa técnica en todas las etapas del proceso penal, desde la indagación hasta el juicio, y representación de víctimas.</p></div>
+      </div>
+      <div class="item">
+        <div class="code">Ram. Familia</div>
+        <div><h3>Derecho de Familia</h3><p>Procesos administrativos y judiciales de custodia y cuidado personal, régimen de visitas y fijación de cuota alimentaria; sucesiones y régimen de apoyos para el ejercicio de la capacidad legal.</p></div>
+      </div>
+      <div class="item">
+        <div class="code">Ram. Público</div>
+        <div><h3>Derecho Público</h3><p>Representación y conceptos ante entidades del orden municipal, departamental y nacional.</p></div>
+      </div>
+      <div class="item">
+        <div class="code">Ram. Constitucional</div>
+        <div><h3>Acciones Constitucionales</h3><p>Acciones de tutela, populares y de cumplimiento para la protección de derechos fundamentales y colectivos.</p></div>
+      </div>
+      <div class="item">
+        <div class="code">Ram. Predial</div>
+        <div><h3>Saneamiento y Titulación de Predios</h3><p>Regularización, saneamiento y titulación de bienes inmuebles urbanos y rurales.</p></div>
+      </div>
+      <div class="item">
+        <div class="code">Ram. Políticas Públicas</div>
+        <div><h3>Formulación de Políticas Públicas</h3><p>Formulación, implementación y seguimiento de políticas públicas para entidades territoriales.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section opinion" id="opinion">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Análisis jurídico</div>
+      <h2>Columna de opinión</h2>
+      <p>Reflexiones periódicas sobre temas de actualidad jurídica. Se muestran las tres entradas más recientes.</p>
+    </div>
+    <div class="grid-3">
+      <div class="op-card">
+        <div class="fecha">Próximamente</div>
+        <h3>Título de la columna</h3>
+        <p>Este espacio está listo para tu primera reflexión jurídica — envíame el tema y el texto y lo publico aquí.</p>
+      </div>
+      <div class="op-card">
+        <div class="fecha">Próximamente</div>
+        <h3>Título de la columna</h3>
+        <p>Segundo espacio disponible para una nueva entrada de análisis o comentario jurídico.</p>
+      </div>
+      <div class="op-card">
+        <div class="fecha">Próximamente</div>
+        <h3>Título de la columna</h3>
+        <p>Tercer espacio disponible. Al publicar una cuarta entrada, la más antigua se reemplaza por la nueva.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section logros" id="logros">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Resultados</div>
+      <h2>Casos y gestiones destacadas</h2>
+      <p>Algunos resultados recientes en procesos y gestiones representativas.</p>
+    </div>
+    <div class="grid-3">
+      <div class="lg-card">
+        <div class="fecha">Gestión en curso · 2025–2026</div>
+        <h3>Política Pública de Prevención y Erradicación del Abuso Sexual Infantil del Tolima</h3>
+        <p>Liderazgo técnico en la formulación de esta política pública departamental para la Gobernación del Tolima: diagnóstico estadístico, marco jurídico y un hallazgo propio que amplía la focalización territorial a nueve municipios adicionales.</p>
+        <a href="gestion-politica-publica-abuso-sexual-infantil.html" style="display:inline-block; margin-top:16px; font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--oro-suave); border-bottom:1px solid var(--oro-suave); padding-bottom:2px;">Leer más →</a>
+      </div>
+      <div class="lg-card">
+        <div class="fecha">Próximamente</div>
+        <h3>Gestión destacada</h3>
+        <p>Espacio disponible para describir brevemente un caso o gestión reciente y su resultado.</p>
+      </div>
+      <div class="lg-card">
+        <div class="fecha">Próximamente</div>
+        <h3>Gestión destacada</h3>
+        <p>Espacio disponible para describir brevemente un caso o gestión reciente y su resultado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cobertura" id="cobertura">
+  <div class="eyebrow">Zona de cobertura</div>
+  <h2>Presencia en el centro de Colombia</h2>
+  <div class="zonas">
+    <span>Girardot</span><span>Ibagué</span><span>El Espinal</span>
+  </div>
+  <div class="depto">Cundinamarca — Tolima</div>
+</section>
+
+<section class="section contacto" id="contacto">
+  <div class="wrap contacto-grid">
+    <div class="contact-card">
+      <div class="eyebrow">Información de contacto</div>
+      <h2 style="font-size:1.9rem; margin-bottom:6px;">Hablemos de su caso</h2>
+      <div class="contact-row">
+        <div><div class="label">Teléfono / WhatsApp</div><div class="value">+57 310 573 2441</div></div>
+        <div><div class="label">Correo electrónico</div><div class="value">edwinferrer01@gmail.com</div></div>
+        <div><div class="label">Oficina</div><div class="value">El Espinal, Tolima</div></div>
+        <div><div class="label">Horario de atención</div><div class="value">Lunes a viernes, 8:00 a.m. – 5:00 p.m.</div></div>
+      </div>
+    </div>
+    <div class="form">
+      <div class="section-head" style="margin-bottom:26px;">
+        <div class="eyebrow">Escríbame</div>
+        <h2 style="font-size:1.9rem;">Cuénteme su situación</h2>
+      </div>
+      <label for="nombre">Nombre completo</label>
+      <input id="nombre" type="text" placeholder="Su nombre">
+      <label for="tel">Teléfono</label>
+      <input id="tel" type="tel" placeholder="Número de contacto">
+      <label for="msg">Mensaje</label>
+      <textarea id="msg" placeholder="Describa brevemente su caso"></textarea>
+      <button id="btn-enviar" class="btn btn-solid" type="button" style="background:var(--verde-noche); color:var(--pergamino); border-color:var(--verde-noche); cursor:pointer;">Enviar mensaje</button>
+      <div id="form-status" style="margin-top:14px; font-size:0.82rem; color:var(--tinta-suave);"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <img src="logomark.png" alt="Edwin Ferrer — Servicios Legales">
+  <div class="fine">© <span id="year"></span> Edwin Iván Ferrer Barreto · Abogado · Tolima y Cundinamarca</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  (function(){
+    emailjs.init({ publicKey: "1_ri1kOuKO3HhCDC6" });
+
+    var btn = document.getElementById('btn-enviar');
+    var status = document.getElementById('form-status');
+
+    btn.addEventListener('click', function(){
+      var nombre = document.getElementById('nombre').value.trim();
+      var tel = document.getElementById('tel').value.trim();
+      var msg = document.getElementById('msg').value.trim();
+
+      if(!nombre || !msg){
+        status.textContent = 'Por favor complete al menos su nombre y el mensaje.';
+        status.style.color = '#a33';
+        return;
+      }
+
+      btn.disabled = true;
+      var textoOriginal = btn.textContent;
+      btn.textContent = 'Enviando…';
+      status.textContent = '';
+
+      emailjs.send("service_j5pn6sp", "template_dnusa91", {
+        nombre: nombre,
+        tel: tel || 'No proporcionado',
+        msg: msg
+      }).then(function(){
+        status.textContent = 'Mensaje enviado. Le responderemos pronto.';
+        status.style.color = '#2f6b45';
+        document.getElementById('nombre').value = '';
+        document.getElementById('tel').value = '';
+        document.getElementById('msg').value = '';
+      }).catch(function(err){
+        status.textContent = 'No se pudo enviar el mensaje. Intente de nuevo o escríbanos directamente.';
+        status.style.color = '#a33';
+      }).finally(function(){
+        btn.disabled = false;
+        btn.textContent = textoOriginal;
+      });
+    });
+  })();
+</script>
+</body>
+</html>
