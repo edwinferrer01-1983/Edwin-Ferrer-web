@@ -279,6 +279,11 @@
     padding:30px 26px;
     display:flex;
     flex-direction:column;
+    transition:border-color .2s, box-shadow .2s;
+  }
+  a.op-card:hover{
+    border-color:var(--oro);
+    box-shadow:0 14px 30px -18px rgba(14,42,26,0.35);
   }
   .op-card .fecha{
     font-size:0.68rem;
@@ -304,6 +309,12 @@
   .lg-card{
     border:1px solid var(--linea-oro);
     padding:30px 26px;
+    display:block;
+    transition:border-color .2s, background .2s;
+  }
+  a.lg-card:hover{
+    border-color:var(--oro);
+    background:rgba(185,154,91,0.06);
   }
   .lg-card .fecha{
     font-size:0.68rem;
@@ -532,11 +543,11 @@
       <p>Reflexiones periódicas sobre temas de actualidad jurídica. Se muestran las tres entradas más recientes.</p>
     </div>
     <div class="grid-3">
-      <div class="op-card">
-        <div class="fecha">Próximamente</div>
-        <h3>Título de la columna</h3>
-        <p>Este espacio está listo para tu primera reflexión jurídica — envíame el tema y el texto y lo publico aquí.</p>
-      </div>
+      <a class="op-card" href="columna-que-concejales-necesita-el-espinal.html" style="cursor:pointer;">
+        <div class="fecha">9 de agosto de 2026</div>
+        <h3>¿Qué concejales necesita El Espinal?</h3>
+        <p>El problema de fondo no es solo de honestidad — es de preparación. Un concejal no ejecuta obras: aprueba el presupuesto, hace control político y representa a la comunidad. Es un trabajo técnico, y así debería elegirse.</p>
+      </a>
       <div class="op-card">
         <div class="fecha">Próximamente</div>
         <h3>Título de la columna</h3>
@@ -559,11 +570,11 @@
       <p>Algunos resultados recientes en procesos y gestiones representativas.</p>
     </div>
     <div class="grid-3">
-      <div class="lg-card">
-        <div class="fecha">Próximamente</div>
-        <h3>Gestión destacada</h3>
-        <p>Espacio disponible para describir brevemente un caso o gestión reciente y su resultado.</p>
-      </div>
+      <a class="lg-card" href="gestion-politica-publica-abuso-sexual-infantil.html" style="cursor:pointer;">
+        <div class="fecha">Gestión en curso · 2025–2026</div>
+        <h3>Política Pública de Prevención y Erradicación del Abuso Sexual Infantil del Tolima</h3>
+        <p>Liderazgo técnico en la formulación de la política pública departamental para la Gobernación del Tolima, con un hallazgo propio sobre focalización territorial.</p>
+      </a>
       <div class="lg-card">
         <div class="fecha">Próximamente</div>
         <h3>Gestión destacada</h3>
