@@ -268,6 +268,10 @@
     grid-template-columns:repeat(3, 1fr);
     gap:28px;
   }
+  .grid-3.single{
+    grid-template-columns:minmax(280px, 420px);
+    justify-content:center;
+  }
   @media (max-width:800px){
     .grid-3{ grid-template-columns:1fr; }
   }
@@ -542,22 +546,12 @@
       <h2>Columna de opinión</h2>
       <p>Reflexiones periódicas sobre temas de actualidad jurídica. Se muestran las tres entradas más recientes.</p>
     </div>
-    <div class="grid-3">
+    <div class="grid-3 single">
       <a class="op-card" href="columna-que-concejales-necesita-el-espinal.html" style="cursor:pointer;">
         <div class="fecha">9 de agosto de 2026</div>
         <h3>¿Qué concejales necesita El Espinal?</h3>
         <p>El problema de fondo no es solo de honestidad — es de preparación. Un concejal no ejecuta obras: aprueba el presupuesto, hace control político y representa a la comunidad. Es un trabajo técnico, y así debería elegirse.</p>
       </a>
-      <div class="op-card">
-        <div class="fecha">Próximamente</div>
-        <h3>Título de la columna</h3>
-        <p>Segundo espacio disponible para una nueva entrada de análisis o comentario jurídico.</p>
-      </div>
-      <div class="op-card">
-        <div class="fecha">Próximamente</div>
-        <h3>Título de la columna</h3>
-        <p>Tercer espacio disponible. Al publicar una cuarta entrada, la más antigua se reemplaza por la nueva.</p>
-      </div>
     </div>
   </div>
 </section>
@@ -569,22 +563,12 @@
       <h2>Casos y gestiones destacadas</h2>
       <p>Algunos resultados recientes en procesos y gestiones representativas.</p>
     </div>
-    <div class="grid-3">
+    <div class="grid-3 single">
       <a class="lg-card" href="gestion-politica-publica-abuso-sexual-infantil.html" style="cursor:pointer;">
         <div class="fecha">Gestión en curso · 2025–2026</div>
         <h3>Política Pública de Prevención y Erradicación del Abuso Sexual Infantil del Tolima</h3>
         <p>Liderazgo técnico en la formulación de la política pública departamental para la Gobernación del Tolima, con un hallazgo propio sobre focalización territorial.</p>
       </a>
-      <div class="lg-card">
-        <div class="fecha">Próximamente</div>
-        <h3>Gestión destacada</h3>
-        <p>Espacio disponible para describir brevemente un caso o gestión reciente y su resultado.</p>
-      </div>
-      <div class="lg-card">
-        <div class="fecha">Próximamente</div>
-        <h3>Gestión destacada</h3>
-        <p>Espacio disponible para describir brevemente un caso o gestión reciente y su resultado.</p>
-      </div>
     </div>
   </div>
 </section>
