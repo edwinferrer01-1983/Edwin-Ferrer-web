@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de Privacidad — Edwin Ferrer, Servicios Legales</title>
+<link rel="icon" href="logo-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --verde-noche:#001107;
+    --verde-botella:#0E2A1A;
+    --verde-botella-2:#123321;
+    --pergamino:#F3EEE1;
+    --pergamino-alt:#EAE2CE;
+    --oro:#B99A5B;
+    --oro-suave:#D8C08A;
+    --tinta:#1B1B14;
+    --tinta-suave:#4A4A3E;
+    --linea-oro: rgba(185,154,91,0.35);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--pergamino);
+    color:var(--tinta);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit;}
+
+  h1,h2,h3,.serif{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    letter-spacing:0.01em;
+  }
+
+  .eyebrow{
+    font-family:'Jost', sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    font-weight:500;
+  }
+
+  .wrap{
+    max-width:820px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+  @media (max-width:640px){ .wrap{padding:0 22px;} }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    background:rgba(0,17,7,0.9);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--linea-oro);
+  }
+  .nav-inner{
+    max-width:1080px; margin:0 auto; padding:16px 32px;
+    display:flex; align-items:center; justify-content:space-between;
+    color:var(--pergamino);
+  }
+  .nav-brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Cormorant Garamond', serif; font-size:1.15rem; letter-spacing:0.04em;
+  }
+  .nav-brand img{ height:26px; width:auto; }
+  .nav-back{
+    font-size:0.74rem; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--oro-suave); text-decoration:none; opacity:0.9;
+    border-bottom:1px solid transparent; padding-bottom:3px;
+    transition:opacity .2s, border-color .2s;
+  }
+  .nav-back:hover{ opacity:1; border-color:var(--oro); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--verde-noche); color:var(--pergamino);
+    padding:158px 32px 74px; text-align:center; position:relative; overflow:hidden;
+  }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background:
+      repeating-linear-gradient(0deg, transparent 0 39px, rgba(185,154,91,0.045) 40px),
+      repeating-linear-gradient(90deg, transparent 0 39px, rgba(185,154,91,0.045) 40px);
+    pointer-events:none;
+  }
+  .hero-content{ position:relative; z-index:1; max-width:640px; margin:0 auto; }
+  .hero .eyebrow{ color:var(--oro-suave); margin-bottom:22px; }
+  .hero h1{ font-size:clamp(2rem, 4.6vw, 3rem); line-height:1.1; margin-bottom:14px; }
+  .hero .fecha{
+    font-size:0.8rem; letter-spacing:0.08em; color:rgba(243,238,225,0.6);
+  }
+
+  /* ---------- CONTENIDO ---------- */
+  .contenido{ padding:76px 0 110px; }
+  .bloque{ margin-bottom:56px; }
+  .bloque .num{
+    font-family:'Cormorant Garamond', serif; font-style:italic;
+    color:var(--oro); font-size:1.05rem; margin-bottom:6px; display:block;
+  }
+  .bloque h2{
+    font-size:1.5rem; margin-bottom:16px; color:var(--tinta);
+    border-bottom:1px solid var(--linea-oro); padding-bottom:14px;
+  }
+  .bloque p{ color:var(--tinta-suave); margin-bottom:14px; font-size:1rem; }
+  .bloque p:last-child{ margin-bottom:0; }
+  .bloque strong{ color:var(--tinta); font-weight:500; }
+  .bloque ul{ margin:0 0 14px 20px; color:var(--tinta-suave); }
+  .bloque ul li{ margin-bottom:8px; }
+  .bloque ul li::marker{ color:var(--oro); }
+
+  .aviso{
+    background:var(--pergamino-alt);
+    border-left:2px solid var(--oro);
+    padding:22px 26px;
+    margin-bottom:56px;
+  }
+  .aviso p{ color:var(--tinta-suave); font-size:0.96rem; margin:0; }
+
+  .contact-box{
+    background:var(--verde-botella); color:var(--pergamino);
+    padding:38px 36px; position:relative; margin-top:8px;
+  }
+  .contact-box::before{
+    content:""; position:absolute; inset:9px; border:1px solid var(--linea-oro); pointer-events:none;
+  }
+  .contact-box .eyebrow{ color:var(--oro-suave); margin-bottom:16px; }
+  .contact-box p{ color:rgba(243,238,225,0.78); margin-bottom:16px; font-size:0.98rem; }
+  .contact-box .datos{ display:flex; flex-direction:column; gap:10px; }
+  .contact-box .datos div{ font-size:0.98rem; }
+  .contact-box .datos .label{
+    font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--oro-suave);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--verde-noche); color:rgba(243,238,225,0.55);
+    padding:46px 32px 34px; text-align:center;
+  }
+  footer img{ height:30px; margin:0 auto 16px; opacity:0.9; }
+  footer .fine{ font-size:0.72rem; letter-spacing:0.06em; }
+  footer a.volver{
+    display:inline-block; margin-top:14px; color:var(--oro-suave);
+    font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; text-decoration:none;
+    border-bottom:1px solid transparent;
+  }
+  footer a.volver:hover{ border-color:var(--oro-suave); }
+
+  :focus-visible{ outline:2px solid var(--oro); outline-offset:3px; }
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } *{ transition:none !important; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <img src="logo-mark.png" alt="">
+      Dr. Edwin Ferrer
+    </div>
+    <a class="nav-back" href="index.html">← Volver al inicio</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">Tratamiento de datos personales</div>
+    <h1>Política de Privacidad</h1>
+    <div class="fecha">Última actualización: 9 de agosto de 2026</div>
+  </div>
+</section>
+
+<section class="contenido">
+  <div class="wrap">
+
+    <div class="aviso">
+      <p>Esta política aplica al sitio web <strong>edwinferrerabogado.com</strong> y describe cómo se recolecta, usa y protege la información personal de quienes lo visitan o utilizan el formulario de contacto, en cumplimiento de la <strong>Ley 1581 de 2012</strong> y el <strong>Decreto 1377 de 2013</strong> de la República de Colombia sobre protección de datos personales.</p>
+    </div>
+
+    <div class="bloque">
+      <span class="num">I.</span>
+      <h2>Responsable del tratamiento</h2>
+      <p><strong>Edwin Iván Ferrer Barreto</strong>, abogado, identificado con domicilio profesional en El Espinal, Tolima, Colombia, es el responsable del tratamiento de los datos personales recolectados a través de este sitio web.</p>
+    </div>
+
+    <div class="bloque">
+      <span class="num">II.</span>
+      <h2>Datos que se recolectan</h2>
+      <p>A través del sitio se recolectan dos tipos de información:</p>
+      <ul>
+        <li><strong>Datos que usted proporciona voluntariamente</strong> al usar el formulario de contacto: nombre completo, número de teléfono y el contenido del mensaje que escriba.</li>
+        <li><strong>Datos de navegación</strong> recolectados automáticamente mediante Google Analytics: páginas visitadas, tiempo de permanencia, tipo de dispositivo y ubicación aproximada. Esta información es estadística y no identifica a la persona por sí sola.</li>
+      </ul>
+    </div>
+
+    <div class="bloque">
+      <span class="num">III.</span>
+      <h2>Finalidad del tratamiento</h2>
+      <p>Los datos recolectados a través del formulario de contacto se usan exclusivamente para:</p>
+      <ul>
+        <li>Responder a su solicitud de consulta o información sobre servicios legales.</li>
+        <li>Establecer comunicación telefónica o por correo electrónico cuando usted lo autorice al enviar el formulario.</li>
+      </ul>
+      <p>Los datos de navegación recolectados por Google Analytics se usan únicamente para entender el uso general del sitio (por ejemplo, qué páginas se visitan más) y mejorar su contenido.</p>
+      <p>En ningún caso los datos personales recolectados se venden, alquilan o comparten con terceros para fines comerciales o publicitarios distintos a los aquí descritos.</p>
+    </div>
+
+    <div class="bloque">
+      <span class="num">IV.</span>
+      <h2>Terceros que procesan datos en su nombre</h2>
+      <p>Para el funcionamiento del sitio se utilizan los siguientes proveedores, que actúan como encargados del tratamiento bajo sus propias políticas de privacidad:</p>
+      <ul>
+        <li><strong>EmailJS</strong>, para el envío del formulario de contacto directamente a nuestro correo electrónico.</li>
+        <li><strong>Google Analytics</strong>, para las estadísticas de navegación del sitio.</li>
+        <li><strong>Netlify</strong>, como proveedor de alojamiento web (hosting).</li>
+      </ul>
+    </div>
+
+    <div class="bloque">
+      <span class="num">V.</span>
+      <h2>Derechos del titular de los datos</h2>
+      <p>Conforme a la Ley 1581 de 2012, usted tiene derecho a:</p>
+      <ul>
+        <li>Conocer, actualizar y rectificar sus datos personales.</li>
+        <li>Solicitar prueba de la autorización otorgada para el tratamiento de sus datos.</li>
+        <li>Ser informado sobre el uso que se ha dado a sus datos.</li>
+        <li>Revocar la autorización y/o solicitar la supresión de sus datos, cuando no exista un deber legal o contractual que impida eliminarlos.</li>
+        <li>Acceder de forma gratuita a sus datos personales que hayan sido objeto de tratamiento.</li>
+        <li>Presentar quejas ante la Superintendencia de Industria y Comercio (SIC) por infracciones a la ley de protección de datos.</li>
+      </ul>
+    </div>
+
+    <div class="bloque">
+      <span class="num">VI.</span>
+      <h2>Cómo ejercer sus derechos</h2>
+      <p>Para conocer, actualizar, rectificar o solicitar la eliminación de sus datos personales, puede escribir directamente al correo electrónico o número de contacto indicados al final de esta página. Las solicitudes se atenderán dentro de los términos establecidos por la ley colombiana.</p>
+    </div>
+
+    <div class="bloque">
+      <span class="num">VII.</span>
+      <h2>Seguridad de la información</h2>
+      <p>Se adoptan medidas técnicas y administrativas razonables para proteger los datos personales recolectados contra pérdida, uso indebido, acceso no autorizado o alteración, incluyendo el uso de conexión segura (HTTPS) en todo el sitio.</p>
+    </div>
+
+    <div class="bloque">
+      <span class="num">VIII.</span>
+      <h2>Vigencia y modificaciones</h2>
+      <p>Esta política rige a partir de su fecha de publicación y podrá ser modificada en cualquier momento para reflejar cambios en las prácticas de tratamiento de datos o en la normativa aplicable. La versión vigente siempre estará disponible en esta misma página.</p>
+    </div>
+
+    <div class="contact-box">
+      <div class="eyebrow">Contacto para asuntos de datos personales</div>
+      <p>Si tiene preguntas sobre esta política o desea ejercer alguno de sus derechos como titular de datos personales, puede contactarme directamente:</p>
+      <div class="datos">
+        <div><span class="label">Correo electrónico</span><br>edwinferrer01@gmail.com</div>
+        <div><span class="label">Teléfono / WhatsApp</span><br>+57 310 573 2441</div>
+        <div><span class="label">Oficina</span><br>El Espinal, Tolima, Colombia</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <img src="logo-mark.png" alt="Edwin Ferrer — Servicios Legales">
+  <div class="fine">© <span id="year"></span> Edwin Iván Ferrer Barreto · Abogado · Tolima y Cundinamarca</div>
+  <a class="volver" href="index.html">Volver al inicio</a>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
