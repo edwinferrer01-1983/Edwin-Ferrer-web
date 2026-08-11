@@ -354,6 +354,46 @@
   }
 
 
+  /* ---------- COMUNIDAD ---------- */
+  .comunidad{ background:var(--verde-noche); color:var(--pergamino); }
+  .comunidad .section-head .eyebrow{ color:var(--oro-suave); }
+  .comunidad .section-head p{ color:rgba(243,238,225,0.72); margin-top:14px; }
+  .comunicado-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:28px;
+  }
+  .comunicado-grid.single{
+    grid-template-columns:minmax(260px, 340px);
+    justify-content:center;
+  }
+  .comunicado-grid.two{
+    grid-template-columns:repeat(2, minmax(240px, 340px));
+    justify-content:center;
+  }
+  @media (max-width:800px){
+    .comunicado-grid, .comunicado-grid.single, .comunicado-grid.two{ grid-template-columns:1fr; }
+  }
+  .comunicado-card{
+    border:1px solid var(--linea-oro);
+    overflow:hidden;
+    transition:border-color .2s;
+  }
+  .comunicado-card img{ width:100%; display:block; }
+  .comunicado-card .comunicado-text{ padding:22px 24px; }
+  .comunicado-card .fecha{
+    font-size:0.68rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--oro-suave);
+    margin-bottom:10px;
+  }
+  .comunicado-card p{
+    color:rgba(243,238,225,0.78);
+    font-size:0.94rem;
+    margin-bottom:0;
+  }
+
   .cobertura{
     background:var(--pergamino-alt);
     text-align:center;
@@ -476,6 +516,7 @@
       Dr. Edwin Ferrer
     </div>
     <nav class="links">
+      <a href="#comunidad">Comunidad</a>
       <a href="#perfil">Perfil</a>
       <a href="#areas">Áreas</a>
       <a href="#opinion">Opinión</a>
@@ -494,6 +535,25 @@
     <div class="hero-cta">
       <a class="btn btn-solid" href="#contacto">Agendar una consulta</a>
       <a class="btn btn-outline" href="#areas">Ver áreas de práctica</a>
+    </div>
+  </div>
+</section>
+
+<section class="section comunidad" id="comunidad">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Comunicado</div>
+      <h2>Con nuestra comunidad</h2>
+      <p>Mensajes de solidaridad y acompañamiento ante hechos que afectan a nuestra región, al país o al mundo.</p>
+    </div>
+    <div class="comunicado-grid single">
+      <div class="comunicado-card">
+        <img src="solidaridad-terremoto-colombia-agosto-2026.png" alt="El Espinal está con Colombia">
+        <div class="comunicado-text">
+          <div class="fecha">11 de agosto de 2026</div>
+          <p>Elevo una oración por las víctimas del terremoto y sus familias, y le pido a la Virgen Santísima que acompañe a quienes hoy sufren y a quienes trabajan sin descanso para ayudarlos. El Espinal reza con Colombia.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -561,7 +621,12 @@
       <h2>Columna de opinión</h2>
       <p>Reflexiones periódicas sobre temas de actualidad jurídica.</p>
     </div>
-    <div class="grid-3 single">
+    <div class="grid-3 two">
+      <a class="op-card" href="columna-fiestas-sin-toros.html" style="cursor:pointer;">
+        <div class="fecha">11 de agosto de 2026</div>
+        <h3>¿Fiestas sin toros?</h3>
+        <p>La Ley No Más Olé y la Sentencia C-374 de 2025 sellaron el fin de las corralejas en Colombia. El Espinal tiene el sabor, la música y la memoria para construir una nueva identidad festiva antes de 2028 — si actúa a tiempo.</p>
+      </a>
       <a class="op-card" href="columna-que-concejales-necesita-el-espinal.html" style="cursor:pointer;">
         <div class="fecha">9 de agosto de 2026</div>
         <h3>¿Qué concejales necesita El Espinal?</h3>
