@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Edwin Ferrer — Servicios Legales</title>
 <link rel="icon" href="logomark.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Edwin Ferrer — Servicios Legales">
+<meta property="og:description" content="Abogado con más de 10 años de experiencia en derecho penal, familia, público y acciones constitucionales, en Girardot, Ibagué y El Espinal.">
+<meta property="og:image" content="https://edwinferrerabogado.com/logoplate.png">
+<meta property="og:url" content="https://edwinferrerabogado.com/">
+<meta property="og:site_name" content="Edwin Ferrer — Servicios Legales">
+<meta property="og:locale" content="es_CO">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Edwin Ferrer — Servicios Legales">
+<meta name="twitter:description" content="Abogado con más de 10 años de experiencia en derecho penal, familia, público y acciones constitucionales, en Girardot, Ibagué y El Espinal.">
+<meta name="twitter:image" content="https://edwinferrerabogado.com/logoplate.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -272,8 +283,12 @@
     grid-template-columns:minmax(280px, 420px);
     justify-content:center;
   }
+  .grid-3.two{
+    grid-template-columns:repeat(2, minmax(260px, 420px));
+    justify-content:center;
+  }
   @media (max-width:800px){
-    .grid-3{ grid-template-columns:1fr; }
+    .grid-3, .grid-3.single, .grid-3.two{ grid-template-columns:1fr; }
   }
 
   .opinion{ background:var(--pergamino-alt); }
@@ -563,11 +578,16 @@
       <h2>Casos y gestiones destacadas</h2>
       <p>Algunos resultados recientes en procesos y gestiones representativas.</p>
     </div>
-    <div class="grid-3 single">
+    <div class="grid-3 two">
       <a class="lg-card" href="gestion-politica-publica-abuso-sexual-infantil.html" style="cursor:pointer;">
         <div class="fecha">Gestión en curso · 2025–2026</div>
         <h3>Política Pública de Prevención y Erradicación del Abuso Sexual Infantil del Tolima</h3>
         <p>Liderazgo técnico en la formulación de la política pública departamental para la Gobernación del Tolima, con un hallazgo propio sobre focalización territorial.</p>
+      </a>
+      <a class="lg-card" href="gestion-actualizacion-politica-publica-indigena-tolima.html" style="cursor:pointer;">
+        <div class="fecha">Gestión en curso · 2026</div>
+        <h3>Actualización de la Política Pública Indígena del Tolima</h3>
+        <p>Coordinación general del proceso de actualización, en convenio con FICAT, con elaboración del plan metodológico y sesiones de concertación con las comunidades indígenas del departamento.</p>
       </a>
     </div>
   </div>
