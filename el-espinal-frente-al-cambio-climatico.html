@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Espinal frente al cambio climático — Edwin Ferrer</title>
+<link rel="icon" href="logomark.png">
+<meta property="og:type" content="article">
+<meta property="og:title" content="El Espinal frente al cambio climático: cuatro propuestas que no requieren inventar nada">
+<meta property="og:description" content="El Tolima es hoy el epicentro nacional de los incendios forestales. Una columna de opinión de Edwin Ferrer sobre el marco normativo ya existente y la ambición que falta en El Espinal.">
+<meta property="og:image" content="https://edwinferrerabogado.com/logoplate.png">
+<meta property="og:url" content="https://edwinferrerabogado.com/el-espinal-frente-al-cambio-climatico.html">
+<meta property="og:site_name" content="Edwin Ferrer — Servicios Legales">
+<meta property="og:locale" content="es_CO">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="El Espinal frente al cambio climático">
+<meta name="twitter:description" content="El Tolima es hoy el epicentro nacional de los incendios forestales. Una columna de opinión de Edwin Ferrer.">
+<meta name="twitter:image" content="https://edwinferrerabogado.com/logoplate.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --verde-noche:#001107;
+    --verde-botella:#0E2A1A;
+    --verde-botella-2:#123321;
+    --pergamino:#F3EEE1;
+    --pergamino-alt:#EAE2CE;
+    --oro:#B99A5B;
+    --oro-suave:#D8C08A;
+    --tinta:#1B1B14;
+    --tinta-suave:#4A4A3E;
+    --linea-oro: rgba(185,154,91,0.35);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--pergamino);
+    color:var(--tinta);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+
+  h1,h2,h3,.serif{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    letter-spacing:0.01em;
+  }
+
+  .eyebrow{
+    font-family:'Jost', sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    font-weight:500;
+  }
+
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  @media (max-width:640px){
+    .wrap{padding:0 22px;}
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:50;
+    background:rgba(0,17,7,0.86);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--linea-oro);
+  }
+  .nav-inner{
+    max-width:1080px;
+    margin:0 auto;
+    padding:16px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    color:var(--pergamino);
+  }
+  .nav-brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.15rem;
+    letter-spacing:0.04em;
+  }
+  .nav-brand img{height:26px; width:auto;}
+  .volver{
+    font-size:0.74rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--pergamino-alt);
+    opacity:0.85;
+    transition:opacity .2s, color .2s;
+    border-bottom:1px solid transparent;
+    padding-bottom:3px;
+  }
+  .volver:hover{ opacity:1; color:var(--oro-suave); border-color:var(--oro); }
+
+  /* ---------- ARTICLE HERO ---------- */
+  .art-hero{
+    background:var(--verde-noche);
+    color:var(--pergamino);
+    padding:168px 32px 80px;
+    position:relative;
+    overflow:hidden;
+  }
+  .art-hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      repeating-linear-gradient(0deg, transparent 0 39px, rgba(185,154,91,0.045) 40px),
+      repeating-linear-gradient(90deg, transparent 0 39px, rgba(185,154,91,0.045) 40px);
+    pointer-events:none;
+  }
+  .art-hero-inner{ position:relative; z-index:1; max-width:760px; margin:0 auto; padding:0 32px; }
+  .art-hero .eyebrow{ color:var(--oro-suave); margin-bottom:20px; }
+  .art-hero h1{
+    font-size:clamp(1.7rem, 4vw, 2.5rem);
+    line-height:1.18;
+    margin-bottom:22px;
+  }
+  .art-meta{
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+    font-size:0.78rem;
+    letter-spacing:0.06em;
+    color:rgba(243,238,225,0.72);
+    padding-top:18px;
+    border-top:1px solid var(--linea-oro);
+  }
+  .art-meta strong{ color:var(--oro-suave); font-weight:500; }
+
+  /* ---------- ARTICLE BODY ---------- */
+  .art-body{ padding:70px 0 40px; }
+  .art-body h2{
+    font-size:1.5rem;
+    margin:44px 0 14px;
+    color:var(--tinta);
+  }
+  .art-body h2:first-child{ margin-top:0; }
+  .art-body p{
+    color:var(--tinta-suave);
+    font-size:1.02rem;
+    margin-bottom:18px;
+  }
+  .art-body strong{ color:var(--tinta); font-weight:500; }
+  .lead{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.28rem;
+    font-style:italic;
+    color:var(--tinta);
+    padding-left:20px;
+    border-left:2px solid var(--oro);
+    margin-bottom:34px;
+  }
+  .art-body ol{
+    margin:0 0 24px 22px;
+    color:var(--tinta-suave);
+    font-size:1.02rem;
+  }
+  .art-body ol li{ margin-bottom:16px; }
+  .art-body ol li strong{ color:var(--tinta); }
+
+  .art-cta{
+    text-align:center;
+    padding:50px 32px 90px;
+  }
+  .btn{
+    display:inline-block;
+    padding:14px 30px;
+    font-size:0.75rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    border:1px solid var(--oro);
+    transition:background .25s, color .25s, border-color .25s;
+  }
+  .btn-solid{
+    background:var(--oro);
+    color:var(--verde-noche);
+  }
+  .btn-solid:hover{ background:var(--oro-suave); border-color:var(--oro-suave); }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--verde-noche);
+    color:rgba(243,238,225,0.55);
+    padding:46px 32px 34px;
+    text-align:center;
+  }
+  footer img{ height:30px; margin:0 auto 16px; opacity:0.9; }
+  footer .fine{ font-size:0.72rem; letter-spacing:0.06em; }
+
+  :focus-visible{ outline:2px solid var(--oro); outline-offset:3px; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <img src="logomark.png" alt="">
+      Dr. Edwin Ferrer
+    </div>
+    <a class="volver" href="index.html#opinion">← Volver al sitio</a>
+  </div>
+</header>
+
+<section class="art-hero">
+  <div class="art-hero-inner">
+    <div class="eyebrow">Columna de opinión · Derecho público y medioambiente</div>
+    <h1>El Espinal frente al cambio climático: cuatro propuestas que no requieren inventar nada</h1>
+    <div class="art-meta">
+      <span><strong>Por:</strong> Edwin Iván Ferrer Barreto</span>
+      <span><strong>Publicado:</strong> 25 de agosto de 2026</span>
+    </div>
+  </div>
+</section>
+
+<section class="art-body">
+  <div class="wrap">
+
+    <p class="lead">El conocimiento técnico y el marco legal ya existen. Lo que falta es la voluntad política de exigir que las metas estén a la altura de lo que estamos viviendo.</p>
+
+    <p>El termómetro no está mintiendo. El IDEAM confirmó, en su Comunicado Especial No. 084 del 9 de agosto de 2026, que 61 de las 119 estaciones meteorológicas del país registraron temperaturas máximas sostenidamente por encima de los valores climatológicos de referencia (1991-2020), en condiciones compatibles con una ola de calor meteorológica. Tolima estuvo entre los departamentos señalados desde ese primer reporte. Las semanas siguientes confirmaron que la alerta no era exagerada: para el 23 de agosto, el IDEAM había declarado alerta crítica en 158 municipios del país por riesgo de incendios de cobertura vegetal, y Tolima concentraba, sola, 22 de los 43 municipios en alerta roja del país —más de la mitad de la emergencia nacional—, consolidándose como el epicentro de la crisis de incendios forestales en Colombia. No es casualidad que, en ese mismo periodo, la Gobernación declarara calamidad pública por los más de 36 incendios forestales activos que llegaron hasta la zona rural de El Espinal y de Chicoral.</p>
+
+    <p>Esto no es un fenómeno pasajero ni algo que le ocurre a "otros municipios". Es nuestra realidad de 2026, y conviene mirar qué tan preparados estamos, con la evidencia en la mano.</p>
+
+    <h2>El marco normativo ya existe</h2>
+    <p>La Ley 1931 de 2018 establece las directrices nacionales para la gestión del cambio climático, y la Ley 2169 de 2021 fija metas de carbono neutralidad y resiliencia climática para el país. El Tolima, por su parte, adoptó desde 2019 su propia hoja de ruta departamental, la Política Pública de Gestión de Cambio Climático "Ruta Dulima", con horizonte a 2031. Y el propio Plan de Desarrollo de El Espinal 2024-2027 reconoce, en su Eje V, que nuestros suelos agrícolas tienen un potencial real de mitigación por almacenamiento de carbono, y alinea sus metas con los Objetivos de Desarrollo Sostenible y con las siete líneas ambientales que el Departamento Nacional de Planeación definió para todo el país.</p>
+
+    <h2>El problema no es la falta de marco. Es el tamaño de la ambición</h2>
+    <p>Revisando las metas concretas del cuatrienio para nuestro municipio, encontramos: 2 hectáreas de reforestación en cuatro años, 2 hectáreas más bajo esquemas de pago por servicios ambientales, 40 estufas ecoeficientes, y un único documento de planeación climática a entregar antes de que termine la administración. Son metas razonables para un punto de partida, pero completamente insuficientes frente a una emergencia que ya está tocando la puerta de nuestras veredas.</p>
+
+    <p><strong>Una propuesta técnica y realizable, no un saludo a la bandera:</strong></p>
+
+    <ol>
+      <li><strong>Convertir el documento único de planeación climática en un verdadero Plan Local de Adaptación</strong>, con metas medibles año a año, no un informe que se entrega y se archiva al final del cuatrienio, sujeto a seguimiento público por parte del Concejo.</li>
+      <li><strong>Ampliar sustancialmente la meta de reforestación y arbolado urbano</strong>, priorizando los corredores de los ríos Magdalena y Coello y las zonas del casco urbano más expuestas a la isla de calor, en articulación con CORTOLIMA.</li>
+      <li><strong>Crear un protocolo municipal de alerta temprana y prevención de incendios rurales</strong>, coordinado con Cortolima, los bomberos y las Juntas de Acción Comunal de nuestros seis corregimientos, para no depender únicamente de la reacción de emergencia cuando el fuego ya está activo.</li>
+      <li><strong>Escalar el uso eficiente del agua</strong> aprovechando un activo técnico que ya tenemos y que pocos conocen: el Centro de Gestión del Recurso Hídrico de Fedearroz, único en toda Latinoamérica, con sede aquí mismo en El Espinal.</li>
+    </ol>
+
+    <p>Nada de esto requiere inventar la rueda. El conocimiento técnico y el marco legal ya existen; lo que falta es la voluntad política de exigir que las metas estén a la altura de lo que estamos viviendo, y un ejercicio de control político serio que haga seguimiento real a estos compromisos, año tras año, no solo en el papel.</p>
+
+  </div>
+</section>
+
+<section class="art-cta">
+  <a class="btn btn-solid" href="index.html#contacto">Conversemos sobre su caso</a>
+</section>
+
+<footer>
+  <img src="logomark.png" alt="Edwin Ferrer — Servicios Legales">
+  <div class="fine">© <span id="year"></span> Edwin Iván Ferrer Barreto · Abogado · Tolima y Cundinamarca</div>
+  <div class="fine" style="margin-top:10px;"><a href="privacidad.html" style="color:var(--oro-suave); text-decoration:none; border-bottom:1px solid transparent;">Política de Privacidad</a></div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
