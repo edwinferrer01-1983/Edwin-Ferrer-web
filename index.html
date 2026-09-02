@@ -287,8 +287,12 @@
     grid-template-columns:repeat(2, minmax(260px, 420px));
     justify-content:center;
   }
+  .grid-3.four{
+    grid-template-columns:repeat(2, minmax(280px, 380px));
+    justify-content:center;
+  }
   @media (max-width:800px){
-    .grid-3, .grid-3.single, .grid-3.two{ grid-template-columns:1fr; }
+    .grid-3, .grid-3.single, .grid-3.two, .grid-3.four{ grid-template-columns:1fr; }
   }
 
   .opinion{ background:var(--pergamino-alt); }
@@ -621,7 +625,12 @@
       <h2>Columna de opinión</h2>
       <p>Reflexiones periódicas sobre temas de actualidad jurídica.</p>
     </div>
-    <div class="grid-3">
+    <div class="grid-3 four">
+      <a class="op-card" href="seguridad-el-espinal-alcalde-concejo.html" style="cursor:pointer;">
+        <div class="fecha">1 de septiembre de 2026</div>
+        <h3>Seguridad en El Espinal: lo que le corresponde al alcalde y lo que le corresponde al Concejo</h3>
+        <p>Con la norma en la mano: qué le toca ejecutar al alcalde y qué le toca fiscalizar al Concejo en materia de seguridad — y una propuesta de política pública que vincule a la comunidad organizada.</p>
+      </a>
       <a class="op-card" href="el-espinal-frente-al-cambio-climatico.html" style="cursor:pointer;">
         <div class="fecha">25 de agosto de 2026</div>
         <h3>El Espinal frente al cambio climático: cuatro propuestas que no requieren inventar nada</h3>
