@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Todas las columnas de opinión — Edwin Ferrer</title>
+<link rel="icon" href="logomark.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Todas las columnas de opinión — Edwin Ferrer">
+<meta property="og:description" content="Archivo completo de columnas de opinión de Edwin Ferrer sobre temas de actualidad jurídica y social en Tolima y Cundinamarca.">
+<meta property="og:image" content="https://edwinferrerabogado.com/logoplate.png">
+<meta property="og:url" content="https://edwinferrerabogado.com/columnas.html">
+<meta property="og:site_name" content="Edwin Ferrer — Servicios Legales">
+<meta property="og:locale" content="es_CO">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --verde-noche:#001107;
+    --verde-botella:#0E2A1A;
+    --verde-botella-2:#123321;
+    --pergamino:#F3EEE1;
+    --pergamino-alt:#EAE2CE;
+    --oro:#B99A5B;
+    --oro-suave:#D8C08A;
+    --tinta:#1B1B14;
+    --tinta-suave:#4A4A3E;
+    --linea-oro: rgba(185,154,91,0.35);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--pergamino);
+    color:var(--tinta);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  h1,h2,h3,.serif{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    letter-spacing:0.01em;
+  }
+  .eyebrow{
+    font-family:'Jost', sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    font-weight:500;
+  }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 32px; }
+  @media (max-width:640px){ .wrap{padding:0 22px;} }
+
+  header.nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    background:rgba(0,17,7,0.86);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--linea-oro);
+  }
+  .nav-inner{
+    max-width:1080px; margin:0 auto; padding:16px 32px;
+    display:flex; align-items:center; justify-content:space-between;
+    color:var(--pergamino);
+  }
+  .nav-brand{ display:flex; align-items:center; gap:10px; font-family:'Cormorant Garamond', serif; font-size:1.15rem; letter-spacing:0.04em; }
+  .nav-brand img{height:26px; width:auto;}
+  .volver{
+    font-size:0.74rem; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--pergamino-alt); opacity:0.85; transition:opacity .2s, color .2s;
+    border-bottom:1px solid transparent; padding-bottom:3px;
+  }
+  .volver:hover{ opacity:1; color:var(--oro-suave); border-color:var(--oro); }
+
+  .archive-hero{
+    background:var(--verde-noche); color:var(--pergamino);
+    padding:168px 32px 70px; position:relative; overflow:hidden;
+  }
+  .archive-hero::before{
+    content:""; position:absolute; inset:0;
+    background:
+      repeating-linear-gradient(0deg, transparent 0 39px, rgba(185,154,91,0.045) 40px),
+      repeating-linear-gradient(90deg, transparent 0 39px, rgba(185,154,91,0.045) 40px);
+    pointer-events:none;
+  }
+  .archive-hero-inner{ position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:0 32px; }
+  .archive-hero .eyebrow{ color:var(--oro-suave); margin-bottom:16px; }
+  .archive-hero h1{ font-size:clamp(2rem, 4.4vw, 2.8rem); margin-bottom:14px; }
+  .archive-hero p{ color:rgba(243,238,225,0.72); max-width:560px; }
+
+  .section{ padding:70px 0 100px; }
+  .grid-3{ display:flex; flex-wrap:wrap; justify-content:center; gap:28px; }
+  .grid-3 > a{ flex:1 1 300px; max-width:360px; }
+  @media (max-width:800px){ .grid-3 > a{ flex:1 1 100%; max-width:100%; } }
+
+  .op-card{
+    background:var(--pergamino-alt);
+    border:1px solid rgba(27,27,20,0.1);
+    padding:30px 26px;
+    display:flex;
+    flex-direction:column;
+    transition:border-color .2s, box-shadow .2s;
+  }
+  .op-card:hover{ border-color:var(--oro); box-shadow:0 14px 30px -18px rgba(14,42,26,0.35); }
+  .op-card .fecha{
+    font-size:0.68rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--oro); margin-bottom:14px;
+  }
+  .op-card h3{ font-size:1.35rem; margin-bottom:12px; line-height:1.2; }
+  .op-card p{ color:var(--tinta-suave); font-size:0.95rem; flex-grow:1; }
+
+  footer{
+    background:var(--verde-noche); color:rgba(243,238,225,0.55);
+    padding:46px 32px 34px; text-align:center;
+  }
+  footer img{ height:30px; margin:0 auto 16px; opacity:0.9; }
+  footer .fine{ font-size:0.72rem; letter-spacing:0.06em; }
+  :focus-visible{ outline:2px solid var(--oro); outline-offset:3px; }
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } *{ transition:none !important; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <img src="logomark.png" alt="">
+      Dr. Edwin Ferrer
+    </div>
+    <a class="volver" href="index.html#opinion">← Volver al sitio</a>
+  </div>
+</header>
+
+<section class="archive-hero">
+  <div class="archive-hero-inner">
+    <div class="eyebrow">Análisis jurídico</div>
+    <h1>Todas las columnas de opinión</h1>
+    <p>El archivo completo, ordenado de la más reciente a la más antigua.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="grid-3">
+
+      <a class="op-card" href="calor-el-nino-el-espinal.html">
+        <div class="fecha">3 de septiembre de 2026</div>
+        <h3>El calor que nadie está midiendo: El Espinal frente a El Niño 2026-2027</h3>
+        <p>El IDEAM advierte hasta un 63% de probabilidad de un fenómeno de El Niño "muy fuerte" — de los más intensos desde 1950. Una propuesta concreta para el transporte, el trabajo y el espacio público, con la norma ya existente en la mano.</p>
+      </a>
+
+      <a class="op-card" href="seguridad-el-espinal-alcalde-concejo.html">
+        <div class="fecha">1 de septiembre de 2026</div>
+        <h3>Seguridad en El Espinal: lo que le corresponde al alcalde y lo que le corresponde al Concejo</h3>
+        <p>Con la norma en la mano: qué le toca ejecutar al alcalde y qué le toca fiscalizar al Concejo en materia de seguridad — y una propuesta de política pública que vincule a la comunidad organizada.</p>
+      </a>
+
+      <a class="op-card" href="el-espinal-frente-al-cambio-climatico.html">
+        <div class="fecha">25 de agosto de 2026</div>
+        <h3>El Espinal frente al cambio climático: cuatro propuestas que no requieren inventar nada</h3>
+        <p>Tolima es hoy el epicentro nacional de los incendios forestales, con más de la mitad de los municipios del país en alerta roja. El marco normativo ya existe — lo que falta es la ambición.</p>
+      </a>
+
+      <a class="op-card" href="columna-fiestas-sin-toros.html">
+        <div class="fecha">11 de agosto de 2026</div>
+        <h3>¿Fiestas sin toros?</h3>
+        <p>La Ley No Más Olé y la Sentencia C-374 de 2025 sellaron el fin de las corralejas en Colombia. El Espinal tiene el sabor, la música y la memoria para construir una nueva identidad festiva antes de 2028 — si actúa a tiempo.</p>
+      </a>
+
+      <a class="op-card" href="columna-que-concejales-necesita-el-espinal.html">
+        <div class="fecha">9 de agosto de 2026</div>
+        <h3>¿Qué concejales necesita El Espinal?</h3>
+        <p>El problema de fondo no es solo de honestidad — es de preparación. Un concejal no ejecuta obras: aprueba el presupuesto, hace control político y representa a la comunidad. Es un trabajo técnico, y así debería elegirse.</p>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <img src="logomark.png" alt="Edwin Ferrer — Servicios Legales">
+  <div class="fine">© <span id="year"></span> Edwin Iván Ferrer Barreto · Abogado · Tolima y Cundinamarca</div>
+  <div class="fine" style="margin-top:10px;"><a href="privacidad.html" style="color:var(--oro-suave); text-decoration:none; border-bottom:1px solid transparent;">Política de Privacidad</a></div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
