@@ -275,24 +275,17 @@
 
   /* ---------- OPINION Y LOGROS ---------- */
   .grid-3{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
     gap:28px;
   }
-  .grid-3.single{
-    grid-template-columns:minmax(280px, 420px);
-    justify-content:center;
-  }
-  .grid-3.two{
-    grid-template-columns:repeat(2, minmax(260px, 420px));
-    justify-content:center;
-  }
-  .grid-3.four{
-    grid-template-columns:repeat(2, minmax(280px, 380px));
-    justify-content:center;
+  .grid-3 > a, .grid-3 > div{
+    flex:1 1 300px;
+    max-width:360px;
   }
   @media (max-width:800px){
-    .grid-3, .grid-3.single, .grid-3.two, .grid-3.four{ grid-template-columns:1fr; }
+    .grid-3 > a, .grid-3 > div{ flex:1 1 100%; max-width:100%; }
   }
 
   .opinion{ background:var(--pergamino-alt); }
@@ -625,7 +618,12 @@
       <h2>Columna de opinión</h2>
       <p>Reflexiones periódicas sobre temas de actualidad jurídica.</p>
     </div>
-    <div class="grid-3 four">
+    <div class="grid-3">
+      <a class="op-card" href="calor-el-nino-el-espinal.html" style="cursor:pointer;">
+        <div class="fecha">3 de septiembre de 2026</div>
+        <h3>El calor que nadie está midiendo: El Espinal frente a El Niño 2026-2027</h3>
+        <p>El IDEAM advierte hasta un 63% de probabilidad de un fenómeno de El Niño "muy fuerte" — de los más intensos desde 1950. Una propuesta concreta para el transporte, el trabajo y el espacio público, con la norma ya existente en la mano.</p>
+      </a>
       <a class="op-card" href="seguridad-el-espinal-alcalde-concejo.html" style="cursor:pointer;">
         <div class="fecha">1 de septiembre de 2026</div>
         <h3>Seguridad en El Espinal: lo que le corresponde al alcalde y lo que le corresponde al Concejo</h3>
