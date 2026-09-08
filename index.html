@@ -223,6 +223,30 @@
     gap:10px;
     flex-wrap:wrap;
   }
+  .stats-row{
+    margin-top:36px;
+    padding-top:30px;
+    border-top:1px solid rgba(27,27,20,0.14);
+    display:flex;
+    gap:40px;
+    flex-wrap:wrap;
+  }
+  .stat-num{
+    display:block;
+    font-family:'Cormorant Garamond', serif;
+    font-size:2.4rem;
+    font-weight:600;
+    color:var(--verde-botella);
+    line-height:1;
+  }
+  .stat-label{
+    display:block;
+    margin-top:6px;
+    font-size:0.7rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--tinta-suave);
+  }
   .chip{
     font-size:0.7rem;
     letter-spacing:0.14em;
@@ -502,6 +526,8 @@
     html{ scroll-behavior:auto; }
     *{ transition:none !important; }
   }
+  body{ animation:fadeIn .45s ease; }
+  @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
 </style>
 </head>
 <body>
@@ -561,15 +587,20 @@
     <div class="perfil-text">
       <div class="section-head" style="margin-bottom:26px;">
         <div class="eyebrow">Perfil profesional</div>
-        <h2>Abogado con más de 10 años de experiencia en el sector público y privado</h2>
+        <h2>Abogado con más de 14 años de experiencia en el sector público y privado</h2>
       </div>
-      <p><strong>Edwin Iván Ferrer Barreto</strong> es abogado egresado de la Universidad Cooperativa de Colombia, con ejercicio en Girardot, Ibagué y El Espinal para asuntos en Tolima y Cundinamarca. Cuenta con más de 10 años de experiencia en litigio de derecho penal y familia, y más de 9 años asesorando al sector público.</p>
+      <p><strong>Edwin Iván Ferrer Barreto</strong> es abogado egresado de la Universidad Cooperativa de Colombia, con ejercicio en Girardot, Ibagué y El Espinal para asuntos en Tolima y Cundinamarca. Cuenta con más de 14 años de experiencia en litigio de derecho penal y familia, y más de 9 años asesorando al sector público.</p>
       <p>Ha acompañado a entidades como la <strong>Gobernación del Tolima</strong>, las alcaldías municipales de <strong>El Espinal</strong> y <strong>Girardot</strong>, y la <strong>Personería Municipal de Girardot</strong>, en procesos catastrales, saneamiento y titulación de predios, formulación y seguimiento de políticas públicas, y atención de derechos de petición y acciones de tutela.</p>
       <p>Detrás de cada concepto y cada escrito hay un mismo compromiso: <strong>mantenerse siempre actualizado</strong>, para ofrecerle una defensa sólida, clara y confiable.</p>
       <div class="locales">
         <span class="chip">Girardot</span>
         <span class="chip">Ibagué</span>
         <span class="chip">El Espinal</span>
+      </div>
+      <div class="stats-row" id="stats-row">
+        <div class="stat"><span class="stat-num" data-target="14">0</span><span class="stat-label">Años de experiencia</span></div>
+        <div class="stat"><span class="stat-num" data-target="6">0</span><span class="stat-label">Áreas de práctica</span></div>
+        <div class="stat"><span class="stat-num" data-target="5">0</span><span class="stat-label">Columnas publicadas</span></div>
       </div>
     </div>
   </div>
@@ -718,6 +749,36 @@
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  (function(){
+    var animated = false;
+    var statsRow = document.getElementById('stats-row');
+    if(!statsRow) return;
+    var nums = statsRow.querySelectorAll('.stat-num');
+    function countUp(){
+      if(animated) return;
+      animated = true;
+      nums.forEach(function(el){
+        var target = parseInt(el.getAttribute('data-target'), 10);
+        var current = 0;
+        var duration = 1200;
+        var stepTime = Math.max(20, Math.floor(duration / target));
+        var timer = setInterval(function(){
+          current++;
+          el.textContent = current;
+          if(current >= target){ clearInterval(timer); el.textContent = target; }
+        }, stepTime);
+      });
+    }
+    if('IntersectionObserver' in window){
+      var obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){ if(entry.isIntersecting) countUp(); });
+      }, { threshold: 0.4 });
+      obs.observe(statsRow);
+    } else {
+      countUp();
+    }
+  })();
 
   (function(){
     emailjs.init({ publicKey: "1_ri1kOuKO3HhCDC6" });
