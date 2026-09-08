@@ -119,6 +119,8 @@
   footer .fine{ font-size:0.72rem; letter-spacing:0.06em; }
   :focus-visible{ outline:2px solid var(--oro); outline-offset:3px; }
   @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } *{ transition:none !important; } }
+  body{ animation:fadeIn .45s ease; }
+  @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
 </style>
 </head>
 <body>

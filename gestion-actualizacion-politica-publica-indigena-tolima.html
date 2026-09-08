@@ -258,9 +258,38 @@
     html{ scroll-behavior:auto; }
     *{ transition:none !important; }
   }
+
+  /* ---------- MEJORAS: progreso, compartir, imprimir, fade-in ---------- */
+  body{ animation:fadeIn .45s ease; }
+  @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
+  .progreso-lectura{
+    position:fixed; top:0; left:0; height:3px; background:var(--oro);
+    z-index:100; width:0%; transition:width .1s linear;
+  }
+  .compartir{
+    display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
+    margin:40px 0 6px; padding-top:30px; border-top:1px solid rgba(27,27,20,0.12);
+  }
+  .compartir a, .compartir button{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:'Jost', sans-serif; font-size:0.7rem; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--tinta-suave);
+    border:1px solid rgba(27,27,20,0.2); padding:9px 16px; background:none; cursor:pointer;
+    transition:border-color .2s, color .2s;
+  }
+  .compartir a:hover, .compartir button:hover{ border-color:var(--oro); color:var(--tinta); }
+  @media print{
+    header.nav, .art-cta, footer, .compartir, .progreso-lectura{ display:none !important; }
+    body{ background:#fff; animation:none; }
+    .art-hero{ background:#fff !important; color:#000 !important; padding:10px 0 30px; }
+    .art-hero::before{ display:none; }
+    .art-hero .eyebrow, .art-meta, .art-meta strong{ color:#333 !important; }
+    .art-body p{ color:#111 !important; }
+  }
 </style>
 </head>
 <body>
+<div class="progreso-lectura" id="progreso"></div>
 
 <header class="nav">
   <div class="nav-inner">
@@ -318,6 +347,14 @@
       <p>Esta es una gestión técnica en curso, no concluida. A la fecha se encuentra consolidado el plan metodológico definitivo, resultado de las sucesivas versiones elaboradas y de las sesiones de concertación con las comunidades. El proceso se encuentra próximo a iniciar su fase de ejecución, correspondiente a la realización de los seis nodos territoriales en los municipios definidos, de la cual se derivará la información base para la construcción del documento final de política pública. Quedan por desarrollar la ejecución de los nodos, la sistematización de la información recolectada y la redacción del documento definitivo de política pública actualizada, el cual deberá surtir su correspondiente trámite ante las instancias competentes. La política pública, en consecuencia, aún no ha sido adoptada.</p>
     </div>
 
+
+    <div class="compartir">
+      <a href="https://wa.me/?text=Actualizacion%20de%20la%20Politica%20Publica%20Indigena%20del%20Tolima%20https://edwinferrerabogado.com/gestion-actualizacion-politica-publica-indigena-tolima.html" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://edwinferrerabogado.com/gestion-actualizacion-politica-publica-indigena-tolima.html" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://edwinferrerabogado.com/gestion-actualizacion-politica-publica-indigena-tolima.html" target="_blank" rel="noopener">LinkedIn</a>
+      <button onclick="navigator.clipboard.writeText('https://edwinferrerabogado.com/gestion-actualizacion-politica-publica-indigena-tolima.html');this.textContent='¡Enlace copiado!';">Copiar enlace</button>
+      <button onclick="window.print()">Descargar PDF</button>
+    </div>
   </div>
 </section>
 
@@ -332,6 +369,12 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+  window.addEventListener('scroll', function(){
+    var h = document.documentElement;
+    var pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    var bar = document.getElementById('progreso');
+    if(bar) bar.style.width = Math.min(100, Math.max(0, pct)) + '%';
+  });
 </script>
 </body>
 </html>
