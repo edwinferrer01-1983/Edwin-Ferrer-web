@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal de Clientes — Edwin Ferrer</title>
+<link rel="icon" href="logomark.png">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<style>
+  :root{
+    --verde-noche:#001107;
+    --verde-botella:#0E2A1A;
+    --verde-botella-2:#123321;
+    --pergamino:#F3EEE1;
+    --pergamino-alt:#EAE2CE;
+    --oro:#B99A5B;
+    --oro-suave:#D8C08A;
+    --tinta:#1B1B14;
+    --tinta-suave:#4A4A3E;
+    --linea-oro: rgba(185,154,91,0.35);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--pergamino);
+    color:var(--tinta);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  h1,h2,h3,.serif{ font-family:'Cormorant Garamond', serif; font-weight:500; letter-spacing:0.01em; }
+  .eyebrow{ font-family:'Jost', sans-serif; font-size:0.72rem; letter-spacing:0.28em; text-transform:uppercase; font-weight:500; }
+  .wrap{ max-width:760px; margin:0 auto; padding:0 32px; }
+  @media (max-width:640px){ .wrap{padding:0 22px;} }
+
+  header.nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    background:rgba(0,17,7,0.86); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--linea-oro);
+  }
+  .nav-inner{ max-width:1080px; margin:0 auto; padding:16px 32px; display:flex; align-items:center; justify-content:space-between; color:var(--pergamino); }
+  .nav-brand{ display:flex; align-items:center; gap:10px; font-family:'Cormorant Garamond', serif; font-size:1.15rem; letter-spacing:0.04em; }
+  .nav-brand img{height:26px; width:auto;}
+  .volver{ font-size:0.74rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--pergamino-alt); opacity:0.85; border-bottom:1px solid transparent; padding-bottom:3px; }
+  .volver:hover{ opacity:1; color:var(--oro-suave); border-color:var(--oro); }
+
+  .portal-hero{
+    background:var(--verde-noche); color:var(--pergamino);
+    padding:168px 32px 70px; position:relative; overflow:hidden;
+  }
+  .portal-hero::before{
+    content:""; position:absolute; inset:0;
+    background:
+      repeating-linear-gradient(0deg, transparent 0 39px, rgba(185,154,91,0.045) 40px),
+      repeating-linear-gradient(90deg, transparent 0 39px, rgba(185,154,91,0.045) 40px);
+    pointer-events:none;
+  }
+  .portal-hero-inner{ position:relative; z-index:1; max-width:760px; margin:0 auto; padding:0 32px; }
+  .portal-hero .eyebrow{ color:var(--oro-suave); margin-bottom:16px; }
+  .portal-hero h1{ font-size:clamp(1.8rem, 4vw, 2.4rem); margin-bottom:14px; }
+  .portal-hero p{ color:rgba(243,238,225,0.72); max-width:560px; }
+
+  .section{ padding:60px 0 100px; }
+
+  .card{
+    background:var(--pergamino-alt);
+    border:1px solid rgba(27,27,20,0.1);
+    padding:34px 30px;
+    margin-bottom:22px;
+  }
+  .card .fecha{ font-size:0.68rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--oro); margin-bottom:12px; }
+  .card h3{ font-size:1.3rem; margin-bottom:10px; }
+  .card .campo{ margin-top:14px; }
+  .card .campo-label{ font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--tinta-suave); margin-bottom:4px; }
+  .card .campo-valor{ color:var(--tinta); font-size:0.98rem; }
+  .estado-pill{
+    display:inline-block; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase;
+    padding:5px 14px; border:1px solid var(--oro); color:var(--verde-noche); background:var(--oro-suave);
+  }
+
+  .login-box{ text-align:center; padding:50px 30px; background:var(--pergamino-alt); border:1px solid rgba(27,27,20,0.1); }
+  .login-box p{ color:var(--tinta-suave); margin-bottom:26px; }
+
+  .btn{
+    display:inline-block; padding:14px 30px; font-size:0.75rem; letter-spacing:0.16em;
+    text-transform:uppercase; border:1px solid var(--oro); transition:background .25s, color .25s, border-color .25s;
+    cursor:pointer; background:none; font-family:'Jost', sans-serif; color:var(--tinta);
+  }
+  .btn-solid{ background:var(--oro); color:var(--verde-noche); border-color:var(--oro); }
+  .btn-solid:hover{ background:var(--oro-suave); border-color:var(--oro-suave); }
+  .btn-outline:hover{ border-color:var(--tinta); }
+
+  .userbar{
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px;
+    margin-bottom:34px; padding-bottom:20px; border-bottom:1px solid rgba(27,27,20,0.12);
+  }
+  .userbar .quien{ font-size:0.95rem; color:var(--tinta-suave); }
+  .userbar .quien strong{ color:var(--tinta); font-weight:500; }
+
+  .estado-carga, .estado-vacio, .estado-error{
+    text-align:center; padding:40px 20px; color:var(--tinta-suave); font-size:0.95rem;
+  }
+
+  footer{ background:var(--verde-noche); color:rgba(243,238,225,0.55); padding:46px 32px 34px; text-align:center; }
+  footer img{ height:30px; margin:0 auto 16px; opacity:0.9; }
+  footer .fine{ font-size:0.72rem; letter-spacing:0.06em; }
+
+  :focus-visible{ outline:2px solid var(--oro); outline-offset:3px; }
+  [hidden]{ display:none !important; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <img src="logomark.png" alt="">
+      Dr. Edwin Ferrer
+    </div>
+    <a class="volver" href="index.html">← Volver al sitio</a>
+  </div>
+</header>
+
+<section class="portal-hero">
+  <div class="portal-hero-inner">
+    <div class="eyebrow">Acceso privado</div>
+    <h1>Portal de Clientes</h1>
+    <p>Consulte aquí, de forma privada y segura, el estado de su proceso.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+
+    <div id="vista-no-autenticado">
+      <div class="login-box">
+        <p>Este espacio es privado. Ingrese con el correo y la contraseña que le fueron asignados para consultar el estado de su caso.</p>
+        <button class="btn btn-solid" id="btn-login">Iniciar sesión</button>
+      </div>
+    </div>
+
+    <div id="vista-autenticado" hidden>
+      <div class="userbar">
+        <div class="quien">Sesión de: <strong id="nombre-usuario"></strong></div>
+        <button class="btn btn-outline" id="btn-logout">Cerrar sesión</button>
+      </div>
+      <div id="contenido-casos">
+        <div class="estado-carga">Consultando la información de su caso…</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <img src="logomark.png" alt="Edwin Ferrer — Servicios Legales">
+  <div class="fine">© <span id="year"></span> Edwin Iván Ferrer Barreto · Abogado · Tolima y Cundinamarca</div>
+  <div class="fine" style="margin-top:10px;"><a href="privacidad.html" style="color:var(--oro-suave); text-decoration:none;">Política de Privacidad</a></div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  var vistaNo = document.getElementById('vista-no-autenticado');
+  var vistaSi = document.getElementById('vista-autenticado');
+  var nombreUsuario = document.getElementById('nombre-usuario');
+  var contenidoCasos = document.getElementById('contenido-casos');
+
+  function escapeHtml(str){
+    var d = document.createElement('div');
+    d.textContent = String(str == null ? '' : str);
+    return d.innerHTML;
+  }
+
+  function mostrarAutenticado(user){
+    vistaNo.hidden = true;
+    vistaSi.hidden = false;
+    nombreUsuario.textContent = (user.user_metadata && user.user_metadata.full_name) || user.email;
+    cargarCasos(user);
+  }
+
+  function mostrarNoAutenticado(){
+    vistaSi.hidden = true;
+    vistaNo.hidden = false;
+  }
+
+  function cargarCasos(user){
+    contenidoCasos.innerHTML = '<div class="estado-carga">Consultando la información de su caso…</div>';
+    user.jwt().then(function(token){
+      return fetch('/.netlify/functions/estado-caso', {
+        headers: { Authorization: 'Bearer ' + token }
+      });
+    }).then(function(res){
+      if(!res.ok){ throw new Error('bad_status'); }
+      return res.json();
+    }).then(function(data){
+      var casos = data.casos || [];
+      if(casos.length === 0){
+        contenidoCasos.innerHTML = '<div class="estado-vacio">Todavía no hay información cargada para su usuario. Si esto no es lo esperado, comuníquese directamente con la oficina.</div>';
+        return;
+      }
+      contenidoCasos.innerHTML = casos.map(function(c){
+        return '' +
+          '<div class="card">' +
+            '<div class="fecha">Actualizado: ' + escapeHtml(c.actualizado || 'sin fecha') + '</div>' +
+            '<h3>' + escapeHtml(c.caso || 'Su proceso') + '</h3>' +
+            '<span class="estado-pill">' + escapeHtml(c.estado || 'Sin estado registrado') + '</span>' +
+            (c.proximaActuacion ? '<div class="campo"><div class="campo-label">Próxima actuación</div><div class="campo-valor">' + escapeHtml(c.proximaActuacion) + '</div></div>' : '') +
+            (c.notas ? '<div class="campo"><div class="campo-label">Notas para usted</div><div class="campo-valor">' + escapeHtml(c.notas) + '</div></div>' : '') +
+          '</div>';
+      }).join('');
+    }).catch(function(){
+      contenidoCasos.innerHTML = '<div class="estado-error">No fue posible consultar la información en este momento. Intente nuevamente en unos minutos, o comuníquese con la oficina.</div>';
+    });
+  }
+
+  document.getElementById('btn-login').addEventListener('click', function(){
+    netlifyIdentity.open('login');
+  });
+  document.getElementById('btn-logout').addEventListener('click', function(){
+    netlifyIdentity.logout();
+  });
+
+  netlifyIdentity.on('init', function(user){
+    if(user){ mostrarAutenticado(user); } else { mostrarNoAutenticado(); }
+  });
+  netlifyIdentity.on('login', function(user){
+    mostrarAutenticado(user);
+    netlifyIdentity.close();
+  });
+  netlifyIdentity.on('logout', function(){
+    mostrarNoAutenticado();
+  });
+
+  netlifyIdentity.init();
+</script>
+</body>
+</html>
