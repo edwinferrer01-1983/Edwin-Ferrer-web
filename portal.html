@@ -201,7 +201,7 @@
         <div id="form-ingresar">
           <input type="text" inputmode="numeric" class="campo-input" id="ced-cedula-in" placeholder="Número de cédula">
           <div class="campo-password">
-            <input type="password" class="campo-input" id="ced-password-in" placeholder="Contraseña">
+            <input type="password" inputmode="numeric" maxlength="6" class="campo-input" id="ced-password-in" placeholder="Clave de 6 números">
             <button type="button" class="btn-ver-pass" data-target="ced-password-in" aria-label="Mostrar contraseña">Ver</button>
           </div>
           <button class="btn btn-solid" id="btn-ced-ingresar" style="width:100%;">Ingresar</button>
@@ -212,11 +212,11 @@
           <p class="cedula-nota">Solo puede activar su acceso si su abogado ya cargó su caso en el sistema con su número de cédula.</p>
           <input type="text" inputmode="numeric" class="campo-input" id="ced-cedula-act" placeholder="Número de cédula">
           <div class="campo-password">
-            <input type="password" class="campo-input" id="ced-password-act" placeholder="Cree una contraseña (mínimo 6 caracteres)">
+            <input type="password" inputmode="numeric" maxlength="6" class="campo-input" id="ced-password-act" placeholder="Cree una clave de 6 números">
             <button type="button" class="btn-ver-pass" data-target="ced-password-act" aria-label="Mostrar contraseña">Ver</button>
           </div>
           <div class="campo-password">
-            <input type="password" class="campo-input" id="ced-password-act2" placeholder="Confirme la contraseña">
+            <input type="password" inputmode="numeric" maxlength="6" class="campo-input" id="ced-password-act2" placeholder="Confirme la clave">
             <button type="button" class="btn-ver-pass" data-target="ced-password-act2" aria-label="Mostrar contraseña">Ver</button>
           </div>
           <button class="btn btn-solid" id="btn-ced-activar" style="width:100%;">Activar mi acceso</button>
@@ -346,6 +346,13 @@
     formIngresar.hidden = true;
   });
 
+  ['ced-password-in', 'ced-password-act', 'ced-password-act2'].forEach(function(id){
+    var input = document.getElementById(id);
+    input.addEventListener('input', function(){
+      this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6);
+    });
+  });
+
   var botonesVerPass = document.querySelectorAll('.btn-ver-pass');
   for(var i = 0; i < botonesVerPass.length; i++){
     botonesVerPass[i].addEventListener('click', function(){
@@ -390,8 +397,8 @@
       mostrarMensaje('msg-activar', 'Ingrese su número de cédula.', 'error');
       return;
     }
-    if(password.length < 6){
-      mostrarMensaje('msg-activar', 'La contraseña debe tener al menos 6 caracteres.', 'error');
+    if(!/^[0-9]{6}$/.test(password)){
+      mostrarMensaje('msg-activar', 'La clave debe ser de 6 números.', 'error');
       return;
     }
     if(password !== password2){
