@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel Administrativo — Edwin Ferrer</title>
+<link rel="icon" href="logomark.png">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<style>
+  :root{
+    --verde-noche:#001107;
+    --verde-botella:#0E2A1A;
+    --pergamino:#F3EEE1;
+    --pergamino-alt:#EAE2CE;
+    --oro:#B99A5B;
+    --oro-suave:#D8C08A;
+    --tinta:#1B1B14;
+    --tinta-suave:#4A4A3E;
+    --linea-oro: rgba(185,154,91,0.35);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--pergamino); color:var(--tinta);
+    font-family:'Jost', sans-serif; font-weight:300; line-height:1.6;
+    min-height:100vh;
+  }
+  a{color:inherit; text-decoration:none;}
+  h1,h2,h3{ font-family:'Cormorant Garamond', serif; font-weight:500; }
+  .eyebrow{ font-size:0.72rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--oro); font-weight:500; }
+
+  header.nav{
+    background:var(--verde-noche); color:var(--pergamino);
+    padding:16px 32px; border-bottom:1px solid var(--linea-oro);
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+  header.nav .marca{ font-family:'Cormorant Garamond', serif; font-size:1.1rem; }
+  header.nav a{ font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--oro-suave); }
+
+  .wrap{ max-width:560px; margin:0 auto; padding:60px 24px 80px; }
+
+  .card{ background:var(--pergamino-alt); border:1px solid rgba(27,27,20,0.1); padding:32px 28px; margin-bottom:24px; }
+  .card h2{ font-size:1.2rem; margin-bottom:16px; }
+  .campo{ margin-bottom:16px; }
+  .campo label{ display:block; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--tinta-suave); margin-bottom:6px; }
+  .campo input{
+    width:100%; padding:12px 13px; font-size:0.95rem; font-family:'Jost', sans-serif;
+    border:1px solid rgba(27,27,20,0.25); background:var(--pergamino); color:var(--tinta);
+  }
+  .campo input:focus{ outline:none; border-color:var(--oro); }
+
+  .btn{
+    display:inline-block; padding:12px 26px; font-size:0.72rem; letter-spacing:0.14em;
+    text-transform:uppercase; border:1px solid var(--oro); cursor:pointer;
+    background:var(--oro); color:var(--verde-noche); font-family:'Jost', sans-serif;
+    transition:background .2s;
+  }
+  .btn:hover{ background:var(--oro-suave); }
+  .btn[disabled]{ opacity:0.5; cursor:default; }
+
+  .resultado{ margin-top:16px; font-size:0.9rem; }
+  .resultado.error{ color:#8a2e2e; }
+  .resultado.ok{ color:#2e6b3e; }
+  .resultado .caso-nombre{ color:var(--tinta); font-weight:500; }
+
+  .login-box{ text-align:center; padding:60px 30px; }
+  .login-box p{ color:var(--tinta-suave); margin-bottom:24px; }
+
+  [hidden]{ display:none !important; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="marca">Panel Administrativo · Edwin Ferrer</div>
+  <a href="index.html">← Volver al sitio</a>
+</header>
+
+<div class="wrap">
+
+  <div id="vista-login" class="login-box">
+    <div class="eyebrow" style="margin-bottom:14px;">Acceso restringido</div>
+    <p>Esta sección es solo para el administrador del sitio. Inicie sesión con su correo.</p>
+    <button class="btn" id="btn-login">Iniciar sesión</button>
+  </div>
+
+  <div id="vista-panel" hidden>
+
+    <div class="card">
+      <h2>Buscar cliente por cédula</h2>
+      <div class="campo">
+        <label for="cedula-buscar">Número de cédula</label>
+        <input type="text" id="cedula-buscar" inputmode="numeric" placeholder="Sin puntos ni espacios">
+      </div>
+      <button class="btn" id="btn-buscar">Buscar</button>
+      <div class="resultado" id="resultado-buscar"></div>
+    </div>
+
+    <div class="card" id="card-resetear" hidden>
+      <h2>Restablecer clave de acceso</h2>
+      <div class="campo">
+        <label for="clave-nueva">Nueva clave (6 números)</label>
+        <input type="password" inputmode="numeric" maxlength="6" id="clave-nueva" placeholder="Nueva clave de 6 números">
+      </div>
+      <button class="btn" id="btn-resetear">Restablecer clave</button>
+      <div class="resultado" id="resultado-resetear"></div>
+    </div>
+
+    <div style="margin-top:30px; text-align:center;">
+      <a href="#" id="btn-logout" style="font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--tinta-suave); border-bottom:1px solid transparent;">Cerrar sesión</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  var vistaLogin = document.getElementById('vista-login');
+  var vistaPanel = document.getElementById('vista-panel');
+  var cedulaActual = '';
+
+  function limpiarCedula(v){ return String(v || '').trim().replace(/[^0-9A-Za-z]/g, ''); }
+
+  function mostrarPanel(){ vistaLogin.hidden = true; vistaPanel.hidden = false; }
+  function mostrarLogin(){ vistaPanel.hidden = true; vistaLogin.hidden = false; }
+
+  document.getElementById('btn-login').addEventListener('click', function(){
+    netlifyIdentity.open('login');
+  });
+  document.getElementById('btn-logout').addEventListener('click', function(e){
+    e.preventDefault();
+    netlifyIdentity.logout();
+  });
+
+  netlifyIdentity.on('init', function(user){ if(user){ mostrarPanel(); } else { mostrarLogin(); } });
+  netlifyIdentity.on('login', function(){ netlifyIdentity.close(); mostrarPanel(); });
+  netlifyIdentity.on('logout', function(){ mostrarLogin(); });
+  netlifyIdentity.init();
+
+  function llamarAdmin(accion, extra){
+    var user = netlifyIdentity.currentUser();
+    if(!user){ return Promise.reject(new Error('No hay sesión activa')); }
+    return user.jwt().then(function(token){
+      return fetch('/.netlify/functions/admin-clientes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+        body: JSON.stringify(Object.assign({ accion: accion }, extra))
+      });
+    }).then(function(res){
+      return res.json().then(function(data){ return { ok: res.ok, data: data }; });
+    });
+  }
+
+  document.getElementById('btn-buscar').addEventListener('click', function(){
+    cedulaActual = limpiarCedula(document.getElementById('cedula-buscar').value);
+    var resultado = document.getElementById('resultado-buscar');
+    var cardResetear = document.getElementById('card-resetear');
+    cardResetear.hidden = true;
+    if(!cedulaActual){
+      resultado.className = 'resultado error';
+      resultado.textContent = 'Ingrese un número de cédula.';
+      return;
+    }
+    resultado.className = 'resultado';
+    resultado.textContent = 'Buscando...';
+
+    llamarAdmin('buscar', { cedula: cedulaActual }).then(function(r){
+      if(!r.ok){
+        resultado.className = 'resultado error';
+        resultado.textContent = (r.data && r.data.error) || 'No se encontró información.';
+        return;
+      }
+      var texto = '';
+      if(r.data.caso){ texto += 'Caso: <span class="caso-nombre">' + r.data.caso.replace(/</g,'&lt;') + '</span><br>'; }
+      texto += r.data.existeCuenta ? 'Esta cédula ya tiene una cuenta activada.' : 'Esta cédula todavía no ha activado ninguna cuenta.';
+      resultado.className = 'resultado ok';
+      resultado.innerHTML = texto;
+      cardResetear.hidden = !r.data.existeCuenta;
+    }).catch(function(){
+      resultado.className = 'resultado error';
+      resultado.textContent = 'No fue posible completar la búsqueda.';
+    });
+  });
+
+  document.getElementById('btn-resetear').addEventListener('click', function(){
+    var clave = document.getElementById('clave-nueva').value;
+    var resultado = document.getElementById('resultado-resetear');
+    if(!/^[0-9]{6}$/.test(clave)){
+      resultado.className = 'resultado error';
+      resultado.textContent = 'La nueva clave debe tener exactamente 6 números.';
+      return;
+    }
+    resultado.className = 'resultado';
+    resultado.textContent = 'Restableciendo...';
+
+    llamarAdmin('resetear', { cedula: cedulaActual, nuevaClave: clave }).then(function(r){
+      if(!r.ok){
+        resultado.className = 'resultado error';
+        resultado.textContent = (r.data && r.data.error) || 'No fue posible restablecer la clave.';
+        return;
+      }
+      resultado.className = 'resultado ok';
+      resultado.textContent = 'Clave restablecida. Ya puede indicarle al cliente su nueva clave.';
+      document.getElementById('clave-nueva').value = '';
+    }).catch(function(){
+      resultado.className = 'resultado error';
+      resultado.textContent = 'No fue posible restablecer la clave.';
+    });
+  });
+</script>
+</body>
+</html>
