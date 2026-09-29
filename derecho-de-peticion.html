@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generador de Derecho de Petición — Edwin Ferrer</title>
+<link rel="icon" href="logomark.png">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Generador de Derecho de Petición — Edwin Ferrer">
+<meta property="og:description" content="Complete un formulario y genere, gratis y en su propio navegador, un derecho de petición conforme al artículo 23 de la Constitución y la Ley 1755 de 2015.">
+<meta property="og:image" content="https://edwinferrerabogado.com/logoplate.png">
+<meta property="og:url" content="https://edwinferrerabogado.com/derecho-de-peticion.html">
+<meta property="og:site_name" content="Edwin Ferrer — Servicios Legales">
+<meta property="og:locale" content="es_CO">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500,600;1,400&family=Jost:wght@300;400;500;600&family=Arial&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --verde-noche:#001107;
+    --verde-botella:#0E2A1A;
+    --verde-botella-2:#123321;
+    --pergamino:#F3EEE1;
+    --pergamino-alt:#EAE2CE;
+    --oro:#B99A5B;
+    --oro-suave:#D8C08A;
+    --tinta:#1B1B14;
+    --tinta-suave:#4A4A3E;
+    --linea-oro: rgba(185,154,91,0.35);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--pergamino);
+    color:var(--tinta);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  h1,h2,h3,.serif{ font-family:'Cormorant Garamond', serif; font-weight:500; letter-spacing:0.01em; }
+  .eyebrow{ font-family:'Jost', sans-serif; font-size:0.72rem; letter-spacing:0.28em; text-transform:uppercase; font-weight:500; }
+  .wrap{ max-width:760px; margin:0 auto; padding:0 32px; }
+  @media (max-width:640px){ .wrap{padding:0 22px;} }
+
+  header.nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    background:rgba(0,17,7,0.86); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--linea-oro);
+  }
+  .nav-inner{ max-width:1080px; margin:0 auto; padding:16px 32px; display:flex; align-items:center; justify-content:space-between; color:var(--pergamino); }
+  .nav-brand{ display:flex; align-items:center; gap:10px; font-family:'Cormorant Garamond', serif; font-size:1.15rem; letter-spacing:0.04em; }
+  .nav-brand img{height:26px; width:auto;}
+  .volver{ font-size:0.74rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--pergamino-alt); opacity:0.85; border-bottom:1px solid transparent; padding-bottom:3px; }
+  .volver:hover{ opacity:1; color:var(--oro-suave); border-color:var(--oro); }
+
+  .art-hero{
+    background:var(--verde-noche); color:var(--pergamino);
+    padding:168px 32px 70px; position:relative; overflow:hidden;
+  }
+  .art-hero::before{
+    content:""; position:absolute; inset:0;
+    background:
+      repeating-linear-gradient(0deg, transparent 0 39px, rgba(185,154,91,0.045) 40px),
+      repeating-linear-gradient(90deg, transparent 0 39px, rgba(185,154,91,0.045) 40px);
+    pointer-events:none;
+  }
+  .art-hero-inner{ position:relative; z-index:1; max-width:760px; margin:0 auto; padding:0 32px; }
+  .art-hero .eyebrow{ color:var(--oro-suave); margin-bottom:20px; }
+  .art-hero h1{ font-size:clamp(1.7rem, 3.8vw, 2.4rem); line-height:1.2; margin-bottom:18px; }
+  .art-hero p{ color:rgba(243,238,225,0.78); max-width:560px; font-size:1rem; }
+
+  .aviso{
+    background:var(--pergamino-alt); border:1px solid rgba(27,27,20,0.14); border-left:3px solid var(--oro);
+    padding:20px 24px; margin:40px 0 44px; font-size:0.9rem; color:var(--tinta-suave);
+  }
+  .aviso strong{ color:var(--tinta); }
+
+  .section{ padding:10px 0 90px; }
+
+  .form-card{ background:var(--pergamino-alt); border:1px solid rgba(27,27,20,0.1); padding:34px 30px; margin-bottom:30px; }
+  .form-card h2{ font-size:1.3rem; margin-bottom:20px; }
+  .campo{ margin-bottom:18px; }
+  .campo label{ display:block; font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--tinta-suave); margin-bottom:6px; }
+  .campo input, .campo textarea{
+    width:100%; padding:12px 13px; font-size:0.95rem; font-family:'Jost', sans-serif;
+    border:1px solid rgba(27,27,20,0.25); background:var(--pergamino); color:var(--tinta);
+  }
+  .campo input:focus, .campo textarea:focus{ outline:none; border-color:var(--oro); }
+  .campo textarea{ resize:vertical; min-height:100px; }
+  .campo .ayuda{ font-size:0.76rem; color:var(--tinta-suave); margin-top:4px; }
+  .fila-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media (max-width:640px){ .fila-2{ grid-template-columns:1fr; } }
+
+  .btn{
+    display:inline-block; padding:14px 30px; font-size:0.75rem; letter-spacing:0.16em;
+    text-transform:uppercase; border:1px solid var(--oro); transition:background .25s, color .25s, border-color .25s;
+    cursor:pointer; background:none; font-family:'Jost', sans-serif; color:var(--tinta);
+  }
+  .btn-solid{ background:var(--oro); color:var(--verde-noche); border-color:var(--oro); }
+  .btn-solid:hover{ background:var(--oro-suave); border-color:var(--oro-suave); }
+  .btn-outline:hover{ border-color:var(--tinta); }
+  .acciones{ display:flex; gap:12px; flex-wrap:wrap; margin-top:6px; }
+
+  .mensaje-error{ margin-top:14px; font-size:0.85rem; color:#8a2e2e; }
+
+  /* ---------- VISTA PREVIA DEL DOCUMENTO ---------- */
+  #vista-previa{ margin-top:10px; }
+  .hoja{
+    background:#ffffff; color:#000000;
+    padding:50px 46px;
+    border:1px solid rgba(27,27,20,0.15);
+    box-shadow:0 20px 40px -22px rgba(14,42,26,0.3);
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:12pt;
+    line-height:1.5;
+    text-align:justify;
+  }
+  .hoja .fecha-doc{ margin-bottom:24px; text-align:left; }
+  .hoja .destinatario{ margin-bottom:22px; }
+  .hoja .asunto{ font-weight:bold; margin-bottom:22px; }
+  .hoja p{ margin-bottom:14px; }
+  .hoja .titulo-parrafo{ font-weight:bold; }
+  .hoja .firma-bloque{ margin-top:44px; }
+  .hoja .firma-bloque p{ margin-bottom:2px; }
+
+  footer{ background:var(--verde-noche); color:rgba(243,238,225,0.55); padding:46px 32px 34px; text-align:center; }
+  footer img{ height:30px; margin:0 auto 16px; opacity:0.9; }
+  footer .fine{ font-size:0.72rem; letter-spacing:0.06em; }
+
+  :focus-visible{ outline:2px solid var(--oro); outline-offset:3px; }
+  [hidden]{ display:none !important; }
+
+  @media print{
+    header.nav, .form-card, .aviso, .art-hero, footer, .acciones{ display:none !important; }
+    body{ background:#fff; }
+    #vista-previa{ margin-top:0; }
+    .hoja{ box-shadow:none; border:none; padding:0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <img src="logomark.png" alt="">
+      Dr. Edwin Ferrer
+    </div>
+    <a class="volver" href="index.html">← Volver al sitio</a>
+  </div>
+</header>
+
+<section class="art-hero">
+  <div class="art-hero-inner">
+    <div class="eyebrow">Herramienta gratuita</div>
+    <h1>Generador de Derecho de Petición</h1>
+    <p>Complete el formulario y genere su documento en este mismo navegador, listo para descargar o copiar. No se guarda ni se envía ninguna información a ningún servidor.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+
+    <div class="aviso">
+      <strong>Antes de usar esta herramienta:</strong> este generador produce un modelo general de derecho de petición, con base en el artículo 23 de la Constitución Política y la Ley 1755 de 2015. Es un punto de partida útil para peticiones sencillas, pero no reemplaza una asesoría jurídica para casos complejos, urgentes o con requisitos especiales (por ejemplo, peticiones en salud, o dirigidas a entidades con procedimientos propios). Todo lo que escriba aquí permanece únicamente en su navegador — nada se envía a Edwin Ferrer ni a ningún tercero.
+    </div>
+
+    <div class="form-card">
+      <h2>1. Datos del documento</h2>
+      <form id="form-peticion">
+        <div class="fila-2">
+          <div class="campo">
+            <label for="ciudad">Ciudad desde donde escribe</label>
+            <input type="text" id="ciudad" placeholder="Ej: El Espinal">
+          </div>
+          <div class="campo">
+            <label for="fecha">Fecha</label>
+            <input type="date" id="fecha">
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="entidad">Entidad o autoridad destinataria</label>
+          <input type="text" id="entidad" placeholder="Ej: Alcaldía Municipal de El Espinal — Secretaría de Planeación">
+        </div>
+
+        <div class="campo">
+          <label for="asunto">Asunto (resumen breve de lo que solicita)</label>
+          <input type="text" id="asunto" placeholder="Ej: Solicitud de información sobre trámite catastral">
+        </div>
+
+        <h2 style="margin-top:34px;">2. Sus datos</h2>
+        <div class="fila-2">
+          <div class="campo">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" placeholder="Su nombre completo">
+          </div>
+          <div class="campo">
+            <label for="cedula">Número de cédula</label>
+            <input type="text" id="cedula" inputmode="numeric" placeholder="Sin puntos ni espacios">
+          </div>
+        </div>
+        <div class="campo">
+          <label for="direccion">Dirección de notificación</label>
+          <input type="text" id="direccion" placeholder="Dirección física para recibir respuesta">
+        </div>
+        <div class="campo">
+          <label for="correo">Correo electrónico de notificación (opcional)</label>
+          <input type="email" id="correo" placeholder="su.correo@ejemplo.com">
+        </div>
+
+        <h2 style="margin-top:34px;">3. Su petición</h2>
+        <div class="campo">
+          <label for="hechos">Hechos (qué ha pasado, en orden, con fechas si las recuerda)</label>
+          <textarea id="hechos" placeholder="Describa brevemente la situación que da lugar a su petición"></textarea>
+        </div>
+        <div class="campo">
+          <label for="peticion">Petición concreta (qué le está solicitando exactamente a la entidad)</label>
+          <textarea id="peticion" placeholder="Ej: Solicito respetuosamente se me informe el estado actual del trámite N.° ..."></textarea>
+          <div class="ayuda">Sea lo más concreto posible: entre más clara sea la petición, más fácil es exigir una respuesta de fondo.</div>
+        </div>
+
+        <div class="acciones">
+          <button type="button" class="btn btn-solid" id="btn-generar">Generar mi documento</button>
+        </div>
+        <div class="mensaje-error" id="mensaje-error"></div>
+      </form>
+    </div>
+
+    <div id="vista-previa" hidden>
+      <div class="form-card" style="background:none; border:none; padding:0 0 16px;">
+        <h2 style="margin-bottom:6px;">Vista previa de su documento</h2>
+        <p style="color:var(--tinta-suave); font-size:0.9rem; margin-bottom:18px;">Revise que todo esté correcto antes de descargarlo. Puede volver a los campos de arriba y generar de nuevo cuantas veces quiera.</p>
+        <div class="acciones" style="margin-bottom:26px;">
+          <button type="button" class="btn btn-solid" id="btn-pdf">Descargar / Imprimir como PDF</button>
+          <button type="button" class="btn btn-outline" id="btn-copiar">Copiar texto</button>
+        </div>
+      </div>
+      <div class="hoja" id="hoja-documento"></div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <img src="logomark.png" alt="Edwin Ferrer — Servicios Legales">
+  <div class="fine">© <span id="year"></span> Edwin Iván Ferrer Barreto · Abogado · Tolima y Cundinamarca</div>
+  <div class="fine" style="margin-top:10px;"><a href="privacidad.html" style="color:var(--oro-suave); text-decoration:none;">Política de Privacidad</a></div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  function escapeHtml(str){
+    var d = document.createElement('div');
+    d.textContent = String(str == null ? '' : str);
+    return d.innerHTML;
+  }
+
+  function formatearFecha(valor){
+    if(!valor) return '';
+    var partes = valor.split('-');
+    if(partes.length !== 3) return valor;
+    var meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+    var dia = parseInt(partes[2], 10);
+    var mes = meses[parseInt(partes[1], 10) - 1] || '';
+    var anio = partes[0];
+    return dia + ' de ' + mes + ' de ' + anio;
+  }
+
+  function textoPlano(datos){
+    var lineas = [];
+    lineas.push((datos.ciudad || '[Ciudad]') + ', ' + (datos.fechaTexto || '[fecha]'));
+    lineas.push('');
+    lineas.push('Señores');
+    lineas.push(datos.entidad || '[Entidad destinataria]');
+    lineas.push('');
+    lineas.push('Asunto: Derecho de petición' + (datos.asunto ? ' — ' + datos.asunto : ''));
+    lineas.push('');
+    lineas.push('Respetados señores:');
+    lineas.push('');
+    lineas.push((datos.nombre || '[Nombre completo]') + ', mayor de edad, identificado(a) con cédula de ciudadanía N.° ' + (datos.cedula || '[cédula]') + ', con domicilio de notificaciones en ' + (datos.direccion || '[dirección]') + (datos.correo ? ' y correo electrónico ' + datos.correo : '') + ', en ejercicio del derecho fundamental de petición consagrado en el artículo 23 de la Constitución Política de Colombia y reglamentado por la Ley 1755 de 2015, respetuosamente formulo la siguiente petición.');
+    lineas.push('');
+    lineas.push('HECHOS');
+    lineas.push(datos.hechos || '[Describa aquí los hechos]');
+    lineas.push('');
+    lineas.push('PETICIÓN');
+    lineas.push(datos.peticion || '[Describa aquí su petición concreta]');
+    lineas.push('');
+    lineas.push('FUNDAMENTO LEGAL');
+    lineas.push('Artículo 23 de la Constitución Política de Colombia y Ley 1755 de 2015, que reglamenta el derecho fundamental de petición y establece un término general de quince (15) días hábiles para resolver de fondo esta solicitud, salvo que la ley disponga un término especial para el asunto de que se trata.');
+    lineas.push('');
+    lineas.push('Agradezco su atención y quedo atento(a) a su respuesta dentro del término legal.');
+    lineas.push('');
+    lineas.push('Atentamente,');
+    lineas.push('');
+    lineas.push(datos.nombre || '[Nombre completo]');
+    lineas.push('C.C. N.° ' + (datos.cedula || '[cédula]'));
+    return lineas.join('\n');
+  }
+
+  function htmlDocumento(datos){
+    var h = '';
+    h += '<div class="fecha-doc">' + escapeHtml(datos.ciudad || '[Ciudad]') + ', ' + escapeHtml(datos.fechaTexto || '[fecha]') + '</div>';
+    h += '<div class="destinatario">Señores<br>' + escapeHtml(datos.entidad || '[Entidad destinataria]') + '</div>';
+    h += '<div class="asunto">Asunto: Derecho de petición' + (datos.asunto ? ' — ' + escapeHtml(datos.asunto) : '') + '</div>';
+    h += '<p>Respetados señores:</p>';
+    h += '<p>' + escapeHtml(datos.nombre || '[Nombre completo]') + ', mayor de edad, identificado(a) con cédula de ciudadanía N.° ' + escapeHtml(datos.cedula || '[cédula]') + ', con domicilio de notificaciones en ' + escapeHtml(datos.direccion || '[dirección]') + (datos.correo ? ' y correo electrónico ' + escapeHtml(datos.correo) : '') + ', en ejercicio del derecho fundamental de petición consagrado en el artículo 23 de la Constitución Política de Colombia y reglamentado por la Ley 1755 de 2015, respetuosamente formulo la siguiente petición.</p>';
+    h += '<p class="titulo-parrafo">HECHOS</p>';
+    h += '<p>' + escapeHtml(datos.hechos || '[Describa aquí los hechos]').replace(/\n/g, '<br>') + '</p>';
+    h += '<p class="titulo-parrafo">PETICIÓN</p>';
+    h += '<p>' + escapeHtml(datos.peticion || '[Describa aquí su petición concreta]').replace(/\n/g, '<br>') + '</p>';
+    h += '<p class="titulo-parrafo">FUNDAMENTO LEGAL</p>';
+    h += '<p>Artículo 23 de la Constitución Política de Colombia y Ley 1755 de 2015, que reglamenta el derecho fundamental de petición y establece un término general de quince (15) días hábiles para resolver de fondo esta solicitud, salvo que la ley disponga un término especial para el asunto de que se trata.</p>';
+    h += '<p>Agradezco su atención y quedo atento(a) a su respuesta dentro del término legal.</p>';
+    h += '<div class="firma-bloque"><p>Atentamente,</p><p style="margin-top:34px;">' + escapeHtml(datos.nombre || '[Nombre completo]') + '</p><p>C.C. N.° ' + escapeHtml(datos.cedula || '[cédula]') + '</p></div>';
+    return h;
+  }
+
+  var textoGenerado = '';
+
+  document.getElementById('btn-generar').addEventListener('click', function(){
+    var datos = {
+      ciudad: document.getElementById('ciudad').value.trim(),
+      fechaTexto: formatearFecha(document.getElementById('fecha').value),
+      entidad: document.getElementById('entidad').value.trim(),
+      asunto: document.getElementById('asunto').value.trim(),
+      nombre: document.getElementById('nombre').value.trim(),
+      cedula: document.getElementById('cedula').value.trim(),
+      direccion: document.getElementById('direccion').value.trim(),
+      correo: document.getElementById('correo').value.trim(),
+      hechos: document.getElementById('hechos').value.trim(),
+      peticion: document.getElementById('peticion').value.trim()
+    };
+
+    var errores = [];
+    if(!datos.entidad) errores.push('la entidad destinataria');
+    if(!datos.nombre) errores.push('su nombre completo');
+    if(!datos.cedula) errores.push('su número de cédula');
+    if(!datos.direccion) errores.push('su dirección de notificación');
+    if(!datos.hechos) errores.push('los hechos');
+    if(!datos.peticion) errores.push('la petición concreta');
+
+    var msg = document.getElementById('mensaje-error');
+    if(errores.length){
+      msg.textContent = 'Por favor complete al menos: ' + errores.join(', ') + '.';
+      return;
+    }
+    msg.textContent = '';
+
+    document.getElementById('hoja-documento').innerHTML = htmlDocumento(datos);
+    textoGenerado = textoPlano(datos);
+    var vista = document.getElementById('vista-previa');
+    vista.hidden = false;
+    vista.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  document.getElementById('btn-pdf').addEventListener('click', function(){
+    window.print();
+  });
+
+  document.getElementById('btn-copiar').addEventListener('click', function(){
+    var boton = this;
+    navigator.clipboard.writeText(textoGenerado).then(function(){
+      var original = boton.textContent;
+      boton.textContent = '¡Copiado!';
+      setTimeout(function(){ boton.textContent = original; }, 1800);
+    });
+  });
+</script>
+</body>
+</html>
