@@ -420,9 +420,13 @@
       mostrarMensaje('msg-activar', 'Acceso activado. Ingresando...', 'ok');
       return netlifyIdentity.gotrue.login(cedula + CEDULA_DOMAIN, password, true).then(function(user){
         mostrarAutenticado(user);
+      }).catch(function(err){
+        var detalle = (err && (err.description || err.msg || err.message)) || 'motivo desconocido';
+        mostrarMensaje('msg-activar', 'Su acceso quedó creado, pero no fue posible iniciar sesión automáticamente (' + detalle + '). Intente con "Ingresar" usando la misma cédula y clave.', 'error');
       });
-    }).catch(function(){
-      mostrarMensaje('msg-activar', 'No fue posible activar el acceso. Intente nuevamente.', 'error');
+    }).catch(function(err){
+      var detalle = (err && err.message) || '';
+      mostrarMensaje('msg-activar', 'No fue posible activar el acceso. Intente nuevamente.' + (detalle ? ' (' + detalle + ')' : ''), 'error');
     });
   });
 
