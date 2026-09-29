@@ -24,8 +24,18 @@ exports.handler = async function (event, context) {
     };
   }
 
+  // Los clientes que se activaron con cédula (sin correo real) tienen un
+  // correo interno del tipo "<cedula>@clientes.edwinferrerabogado.com".
+  // En ese caso buscamos por la columna Cédula en vez de Email.
+  const CEDULA_DOMAIN = "@clientes.edwinferrerabogado.com";
   const email = user.email.toLowerCase().replace(/'/g, "\\'");
-  const formula = `LOWER({Email})='${email}'`;
+  let formula;
+  if (email.endsWith(CEDULA_DOMAIN)) {
+    const cedula = email.slice(0, -CEDULA_DOMAIN.length);
+    formula = `{Cedula}='${cedula}'`;
+  } else {
+    formula = `LOWER({Email})='${email}'`;
+  }
   const url =
     "https://api.airtable.com/v0/" +
     AIRTABLE_BASE_ID +
