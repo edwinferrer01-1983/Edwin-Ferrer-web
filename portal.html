@@ -123,6 +123,16 @@
   .cedula-msg.ok{ color:#2e6b3e; }
   .cedula-nota{ font-size:0.78rem; color:var(--tinta-suave); margin-bottom:16px; }
 
+  .campo-password{ position:relative; margin-bottom:12px; }
+  .campo-password .campo-input{ margin-bottom:0; padding-right:46px; }
+  .btn-ver-pass{
+    position:absolute; right:6px; top:50%; transform:translateY(-50%);
+    background:none; border:none; cursor:pointer; padding:6px;
+    color:var(--tinta-suave); font-size:0.95rem; line-height:1;
+    font-family:'Jost', sans-serif;
+  }
+  .btn-ver-pass:hover{ color:var(--tinta); }
+
   .btn{
     display:inline-block; padding:14px 30px; font-size:0.75rem; letter-spacing:0.16em;
     text-transform:uppercase; border:1px solid var(--oro); transition:background .25s, color .25s, border-color .25s;
@@ -190,7 +200,10 @@
 
         <div id="form-ingresar">
           <input type="text" inputmode="numeric" class="campo-input" id="ced-cedula-in" placeholder="Número de cédula">
-          <input type="password" class="campo-input" id="ced-password-in" placeholder="Contraseña">
+          <div class="campo-password">
+            <input type="password" class="campo-input" id="ced-password-in" placeholder="Contraseña">
+            <button type="button" class="btn-ver-pass" data-target="ced-password-in" aria-label="Mostrar contraseña">Ver</button>
+          </div>
           <button class="btn btn-solid" id="btn-ced-ingresar" style="width:100%;">Ingresar</button>
           <div class="cedula-msg" id="msg-ingresar"></div>
         </div>
@@ -198,8 +211,14 @@
         <div id="form-activar" hidden>
           <p class="cedula-nota">Solo puede activar su acceso si su abogado ya cargó su caso en el sistema con su número de cédula.</p>
           <input type="text" inputmode="numeric" class="campo-input" id="ced-cedula-act" placeholder="Número de cédula">
-          <input type="password" class="campo-input" id="ced-password-act" placeholder="Cree una contraseña (mínimo 6 caracteres)">
-          <input type="password" class="campo-input" id="ced-password-act2" placeholder="Confirme la contraseña">
+          <div class="campo-password">
+            <input type="password" class="campo-input" id="ced-password-act" placeholder="Cree una contraseña (mínimo 6 caracteres)">
+            <button type="button" class="btn-ver-pass" data-target="ced-password-act" aria-label="Mostrar contraseña">Ver</button>
+          </div>
+          <div class="campo-password">
+            <input type="password" class="campo-input" id="ced-password-act2" placeholder="Confirme la contraseña">
+            <button type="button" class="btn-ver-pass" data-target="ced-password-act2" aria-label="Mostrar contraseña">Ver</button>
+          </div>
           <button class="btn btn-solid" id="btn-ced-activar" style="width:100%;">Activar mi acceso</button>
           <div class="cedula-msg" id="msg-activar"></div>
         </div>
@@ -326,6 +345,20 @@
     formActivar.hidden = false;
     formIngresar.hidden = true;
   });
+
+  var botonesVerPass = document.querySelectorAll('.btn-ver-pass');
+  for(var i = 0; i < botonesVerPass.length; i++){
+    botonesVerPass[i].addEventListener('click', function(){
+      var input = document.getElementById(this.getAttribute('data-target'));
+      if(input.type === 'password'){
+        input.type = 'text';
+        this.textContent = 'Ocultar';
+      } else {
+        input.type = 'password';
+        this.textContent = 'Ver';
+      }
+    });
+  }
 
   function mostrarMensaje(elId, texto, tipo){
     var el = document.getElementById(elId);
