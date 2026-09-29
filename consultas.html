@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consultas públicas — Edwin Ferrer</title>
+<link rel="icon" href="logomark.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Consultas públicas — Edwin Ferrer">
+<meta property="og:description" content="Envíe su pregunta jurídica y consulte las preguntas ya respondidas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --verde-noche:#001107; --verde-botella:#0E2A1A;
+    --pergamino:#F3EEE1; --pergamino-alt:#EAE2CE;
+    --oro:#B99A5B; --oro-suave:#D8C08A;
+    --tinta:#1B1B14; --tinta-suave:#4A4A3E;
+    --linea-oro: rgba(185,154,91,0.35);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ background:var(--pergamino); color:var(--tinta); font-family:'Jost', sans-serif; font-weight:300; line-height:1.65; }
+  a{color:inherit; text-decoration:none;}
+  h1,h2,h3{ font-family:'Cormorant Garamond', serif; font-weight:500; }
+  .eyebrow{ font-size:0.72rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--oro); font-weight:500; }
+
+  header.nav{
+    background:var(--verde-noche); color:var(--pergamino);
+    padding:18px 32px; border-bottom:1px solid var(--linea-oro);
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+  header.nav .marca{ display:flex; align-items:center; gap:10px; font-family:'Cormorant Garamond', serif; font-size:1.1rem; }
+  header.nav .marca img{ height:26px; }
+  header.nav a.volver{ font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--oro-suave); }
+
+  .hero-h{ background:var(--verde-noche); color:var(--pergamino); padding:60px 32px 50px; text-align:center; }
+  .hero-h .eyebrow{ color:var(--oro-suave); margin-bottom:16px; }
+  .hero-h h1{ font-size:clamp(1.9rem, 4vw, 2.7rem); max-width:760px; margin:0 auto 18px; }
+  .hero-h p{ max-width:640px; margin:0 auto; color:rgba(243,238,225,0.78); font-size:1rem; }
+
+  .wrap{ max-width:760px; margin:0 auto; padding:70px 24px 90px; }
+
+  .aviso{
+    background:var(--pergamino-alt); border-left:3px solid var(--oro);
+    padding:20px 22px; margin-bottom:40px; font-size:0.9rem; color:var(--tinta-suave);
+  }
+  .aviso strong{ color:var(--tinta); }
+
+  .form-card{ background:var(--pergamino-alt); padding:32px 28px; margin-bottom:64px; }
+  .form-card h2{ font-size:1.4rem; margin-bottom:20px; }
+  .campo{ margin-bottom:18px; }
+  .campo label{ display:block; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--tinta-suave); margin-bottom:6px; }
+  .campo input, .campo textarea{
+    width:100%; padding:12px 13px; font-size:0.95rem; font-family:'Jost', sans-serif;
+    border:1px solid rgba(27,27,20,0.25); background:var(--pergamino); color:var(--tinta);
+  }
+  .campo textarea{ min-height:110px; resize:vertical; }
+  .campo input:focus, .campo textarea:focus{ outline:none; border-color:var(--oro); }
+  .campo-trampa{ position:absolute; left:-9999px; top:-9999px; }
+
+  .btn{
+    display:inline-block; padding:13px 28px; font-size:0.75rem; letter-spacing:0.16em;
+    text-transform:uppercase; border:1px solid var(--oro); background:var(--oro); color:var(--verde-noche);
+    cursor:pointer; font-family:'Jost', sans-serif;
+  }
+  .btn:hover{ background:var(--oro-suave); }
+  .btn[disabled]{ opacity:0.55; cursor:default; }
+
+  .estado-envio{ margin-top:14px; font-size:0.88rem; }
+  .estado-envio.ok{ color:#2e6b3e; }
+  .estado-envio.error{ color:#8a2e2e; }
+
+  .lista-titulo{ margin-bottom:28px; }
+  .lista-titulo h2{ font-size:1.6rem; }
+
+  .qa-item{
+    border-top:1px solid rgba(27,27,20,0.14);
+    padding:26px 0;
+  }
+  .qa-item .pregunta{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.25rem;
+    color:var(--verde-botella);
+    margin-bottom:10px;
+  }
+  .qa-item .respuesta{ color:var(--tinta-suave); font-size:0.97rem; }
+  .qa-item .quien{
+    margin-top:10px; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--oro);
+  }
+  .vacio{ color:var(--tinta-suave); font-style:italic; padding:20px 0; }
+
+  footer{ background:var(--verde-noche); color:rgba(243,238,225,0.55); padding:36px 32px; text-align:center; font-size:0.75rem; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="marca"><img src="logomark.png" alt="">Dr. Edwin Ferrer</div>
+  <a class="volver" href="index.html">← Volver al sitio</a>
+</header>
+
+<section class="hero-h">
+  <div class="eyebrow">Participe</div>
+  <h1>Consultas públicas</h1>
+  <p>Envíe su pregunta jurídica general. La revisamos, la respondemos y, una vez verificada, queda publicada aquí para que le sirva a otras personas en su misma situación.</p>
+</section>
+
+<div class="wrap">
+
+  <div class="form-card">
+    <h2>Envíenos su pregunta</h2>
+    <div class="aviso">
+      <strong>Importante:</strong> esta pregunta y su respuesta se publicarán aquí, visibles para cualquier persona, una vez verificadas. Por su propia seguridad, <strong>no incluya nombres propios de terceros, números de cédula, radicados de proceso ni otros datos que lo identifiquen a usted o a otros</strong>. Formule su pregunta de manera general. Esto no reemplaza una asesoría sobre su caso particular.
+    </div>
+    <div class="campo">
+      <label for="nombre">Su nombre (opcional; puede dejarlo en blanco para publicarse como anónimo)</label>
+      <input type="text" id="nombre" placeholder="Nombre o iniciales">
+    </div>
+    <div class="campo">
+      <label for="pregunta">Su pregunta</label>
+      <textarea id="pregunta" placeholder="Escriba su pregunta de forma general, sin datos que lo identifiquen"></textarea>
+    </div>
+    <input type="text" id="trampa" class="campo-trampa" tabindex="-1" autocomplete="off">
+    <button class="btn" id="btn-enviar-consulta">Enviar pregunta</button>
+    <div class="estado-envio" id="estado-consulta"></div>
+  </div>
+
+  <div class="lista-titulo">
+    <div class="eyebrow">Ya respondidas</div>
+    <h2>Preguntas y respuestas publicadas</h2>
+  </div>
+  <div id="lista-consultas">
+    <div class="vacio">Cargando…</div>
+  </div>
+
+</div>
+
+<footer>© <span id="year"></span> Edwin Iván Ferrer Barreto · Abogado · Cobertura Nacional</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  function escapar(t){
+    return String(t || '').replace(/[&<>"']/g, function(c){
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  }
+
+  function cargarConsultas(){
+    var cont = document.getElementById('lista-consultas');
+    fetch('/.netlify/functions/consultas-listar')
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        var lista = data.consultas || [];
+        if(lista.length === 0){
+          cont.innerHTML = '<div class="vacio">Aún no hay preguntas publicadas. ¡Sea el primero en preguntar!</div>';
+          return;
+        }
+        cont.innerHTML = lista.map(function(q){
+          return '<div class="qa-item">' +
+            '<div class="pregunta">¿' + escapar(q.pregunta) + '?</div>' +
+            '<div class="respuesta">' + escapar(q.respuesta) + '</div>' +
+            '<div class="quien">' + escapar(q.nombre) + '</div>' +
+          '</div>';
+        }).join('');
+      })
+      .catch(function(){
+        cont.innerHTML = '<div class="vacio">No fue posible cargar las preguntas en este momento.</div>';
+      });
+  }
+  cargarConsultas();
+
+  document.getElementById('btn-enviar-consulta').addEventListener('click', function(){
+    var nombre = document.getElementById('nombre').value.trim();
+    var pregunta = document.getElementById('pregunta').value.trim();
+    var trampa = document.getElementById('trampa').value;
+    var estado = document.getElementById('estado-consulta');
+    var btn = this;
+
+    if(pregunta.length < 8){
+      estado.className = 'estado-envio error';
+      estado.textContent = 'Por favor escriba su pregunta con un poco más de detalle.';
+      return;
+    }
+
+    btn.disabled = true;
+    estado.className = 'estado-envio';
+    estado.textContent = 'Enviando…';
+
+    fetch('/.netlify/functions/consulta-nueva', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nombre: nombre, pregunta: pregunta, trampa: trampa })
+    }).then(function(r){ return r.json().then(function(d){ return {ok:r.ok, data:d}; }); })
+      .then(function(res){
+        if(!res.ok){
+          estado.className = 'estado-envio error';
+          estado.textContent = (res.data && res.data.error) || 'No fue posible enviar su pregunta.';
+          return;
+        }
+        estado.className = 'estado-envio ok';
+        estado.textContent = res.data.mensaje || 'Pregunta enviada.';
+        document.getElementById('nombre').value = '';
+        document.getElementById('pregunta').value = '';
+      })
+      .catch(function(){
+        estado.className = 'estado-envio error';
+        estado.textContent = 'No fue posible enviar su pregunta. Intente de nuevo.';
+      })
+      .finally(function(){ btn.disabled = false; });
+  });
+</script>
+</body>
+</html>

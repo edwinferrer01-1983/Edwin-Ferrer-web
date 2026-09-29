@@ -69,6 +69,23 @@
   .login-box{ text-align:center; padding:60px 30px; }
   .login-box p{ color:var(--tinta-suave); margin-bottom:24px; }
 
+  .pend-item{ border-top:1px solid rgba(27,27,20,0.14); padding:16px 0; }
+  .pend-item:first-child{ border-top:none; }
+  .pend-item .quien{ font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--oro); margin-bottom:6px; }
+  .pend-item .cual{ font-size:0.7rem; color:var(--tinta-suave); margin-bottom:6px; }
+  .pend-item .texto{ font-size:0.92rem; margin-bottom:12px; }
+  .pend-item textarea{
+    width:100%; min-height:70px; margin-bottom:10px; padding:10px; font-family:'Jost', sans-serif;
+    border:1px solid rgba(27,27,20,0.25); background:var(--pergamino); color:var(--tinta); resize:vertical;
+  }
+  .pend-acciones{ display:flex; gap:10px; flex-wrap:wrap; }
+  .btn-mini{
+    display:inline-block; padding:8px 16px; font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase;
+    border:1px solid var(--oro); background:var(--oro); color:var(--verde-noche); cursor:pointer; font-family:'Jost', sans-serif;
+  }
+  .btn-mini.rechazar{ background:transparent; color:#8a2e2e; border-color:#8a2e2e; }
+  .pend-vacio{ color:var(--tinta-suave); font-style:italic; font-size:0.9rem; }
+
   [hidden]{ display:none !important; }
 </style>
 </head>
@@ -109,6 +126,16 @@
       <div class="resultado" id="resultado-resetear"></div>
     </div>
 
+    <div class="card">
+      <h2>Comentarios pendientes</h2>
+      <div id="lista-pend-comentarios"><div class="pend-vacio">Cargando…</div></div>
+    </div>
+
+    <div class="card">
+      <h2>Consultas pendientes por responder</h2>
+      <div id="lista-pend-consultas"><div class="pend-vacio">Cargando…</div></div>
+    </div>
+
     <div style="margin-top:30px; text-align:center;">
       <a href="#" id="btn-logout" style="font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--tinta-suave); border-bottom:1px solid transparent;">Cerrar sesión</a>
     </div>
@@ -134,8 +161,14 @@
     netlifyIdentity.logout();
   });
 
-  netlifyIdentity.on('init', function(user){ if(user){ mostrarPanel(); } else { mostrarLogin(); } });
-  netlifyIdentity.on('login', function(){ netlifyIdentity.close(); mostrarPanel(); });
+  function escapar(t){
+    return String(t || '').replace(/[&<>"']/g, function(c){
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  }
+
+  netlifyIdentity.on('init', function(user){ if(user){ mostrarPanel(); cargarPendientes(); } else { mostrarLogin(); } });
+  netlifyIdentity.on('login', function(){ netlifyIdentity.close(); mostrarPanel(); cargarPendientes(); });
   netlifyIdentity.on('logout', function(){ mostrarLogin(); });
   netlifyIdentity.init();
 
@@ -209,6 +242,91 @@
       resultado.textContent = 'No fue posible restablecer la clave.';
     });
   });
+
+  // ---------- Comentarios pendientes ----------
+  function llamarFuncion(nombre, accion, extra){
+    var user = netlifyIdentity.currentUser();
+    if(!user){ return Promise.reject(new Error('No hay sesión activa')); }
+    return user.jwt().then(function(token){
+      return fetch('/.netlify/functions/' + nombre, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+        body: JSON.stringify(Object.assign({ accion: accion }, extra))
+      });
+    }).then(function(res){ return res.json().then(function(data){ return { ok: res.ok, data: data }; }); });
+  }
+
+  function cargarComentariosPendientes(){
+    var cont = document.getElementById('lista-pend-comentarios');
+    llamarFuncion('admin-comentarios', 'pendientes', {}).then(function(r){
+      if(!r.ok){ cont.innerHTML = '<div class="pend-vacio">No fue posible cargar los comentarios.</div>'; return; }
+      var lista = r.data.pendientes || [];
+      if(lista.length === 0){ cont.innerHTML = '<div class="pend-vacio">No hay comentarios pendientes.</div>'; return; }
+      cont.innerHTML = lista.map(function(c){
+        return '<div class="pend-item" data-id="' + c.id + '">' +
+          '<div class="cual">Artículo: ' + escapar(c.articulo) + '</div>' +
+          '<div class="quien">' + escapar(c.nombre) + '</div>' +
+          '<div class="texto">' + escapar(c.comentario) + '</div>' +
+          '<div class="pend-acciones">' +
+            '<button class="btn-mini" data-accion="aprobar">Aprobar</button>' +
+            '<button class="btn-mini rechazar" data-accion="rechazar">Rechazar</button>' +
+          '</div></div>';
+      }).join('');
+      cont.querySelectorAll('.btn-mini').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.pend-item');
+          var id = item.getAttribute('data-id');
+          var accion = btn.getAttribute('data-accion');
+          btn.disabled = true;
+          llamarFuncion('admin-comentarios', accion, { id: id }).then(function(r){
+            if(r.ok){ item.remove(); } else { btn.disabled = false; }
+          }).catch(function(){ btn.disabled = false; });
+        });
+      });
+    }).catch(function(){ cont.innerHTML = '<div class="pend-vacio">No fue posible cargar los comentarios.</div>'; });
+  }
+
+  // ---------- Consultas pendientes ----------
+  function cargarConsultasPendientes(){
+    var cont = document.getElementById('lista-pend-consultas');
+    llamarFuncion('admin-consultas', 'pendientes', {}).then(function(r){
+      if(!r.ok){ cont.innerHTML = '<div class="pend-vacio">No fue posible cargar las consultas.</div>'; return; }
+      var lista = r.data.pendientes || [];
+      if(lista.length === 0){ cont.innerHTML = '<div class="pend-vacio">No hay consultas pendientes.</div>'; return; }
+      cont.innerHTML = lista.map(function(q){
+        return '<div class="pend-item" data-id="' + q.id + '">' +
+          '<div class="quien">' + escapar(q.nombre) + '</div>' +
+          '<div class="texto"><strong>¿' + escapar(q.pregunta) + '?</strong></div>' +
+          '<textarea placeholder="Escriba la respuesta que se publicará"></textarea>' +
+          '<div class="pend-acciones">' +
+            '<button class="btn-mini" data-accion="responder">Responder y publicar</button>' +
+            '<button class="btn-mini rechazar" data-accion="rechazar">Rechazar</button>' +
+          '</div></div>';
+      }).join('');
+      cont.querySelectorAll('.btn-mini').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.pend-item');
+          var id = item.getAttribute('data-id');
+          var accion = btn.getAttribute('data-accion');
+          var extra = { id: id };
+          if(accion === 'responder'){
+            var respuesta = item.querySelector('textarea').value.trim();
+            if(!respuesta){ alert('Escriba una respuesta antes de publicar.'); return; }
+            extra.respuesta = respuesta;
+          }
+          btn.disabled = true;
+          llamarFuncion('admin-consultas', accion, extra).then(function(r){
+            if(r.ok){ item.remove(); } else { btn.disabled = false; }
+          }).catch(function(){ btn.disabled = false; });
+        });
+      });
+    }).catch(function(){ cont.innerHTML = '<div class="pend-vacio">No fue posible cargar las consultas.</div>'; });
+  }
+
+  function cargarPendientes(){
+    cargarComentariosPendientes();
+    cargarConsultasPendientes();
+  }
 </script>
 </body>
 </html>
