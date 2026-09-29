@@ -31,10 +31,10 @@ exports.handler = async function (event, context) {
   if (!cedula) {
     return { statusCode: 400, body: JSON.stringify({ error: "Ingrese su número de cédula" }) };
   }
-  if (!password || password.length < 6) {
+  if (!/^[0-9]{6}$/.test(password)) {
     return {
       statusCode: 400,
-      body: JSON.stringify({ error: "La contraseña debe tener al menos 6 caracteres" }),
+      body: JSON.stringify({ error: "La clave debe ser de 6 números" }),
     };
   }
 
