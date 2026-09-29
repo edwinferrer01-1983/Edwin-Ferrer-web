@@ -113,6 +113,71 @@
     nav.links{display:none;}
   }
 
+  /* ---------- NAV MÓVIL (menú hamburguesa) ---------- */
+  .nav-toggle{
+    display:none;
+    background:none;
+    border:none;
+    cursor:pointer;
+    width:32px; height:32px;
+    position:relative;
+    padding:0;
+  }
+  .nav-toggle span{
+    display:block;
+    position:absolute;
+    left:5px; right:5px;
+    height:1.5px;
+    background:var(--oro-suave);
+    transition:transform .25s ease, opacity .2s ease;
+  }
+  .nav-toggle span:nth-child(1){ top:10px; }
+  .nav-toggle span:nth-child(2){ top:16px; }
+  .nav-toggle span:nth-child(3){ top:22px; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1){ transform:translateY(6px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
+  @media (max-width:720px){
+    .nav-toggle{ display:block; }
+  }
+
+  .nav-mobile{
+    max-height:0;
+    overflow:hidden;
+    background:rgba(0,17,7,0.97);
+    border-top:0 solid var(--linea-oro);
+    transition:max-height .3s ease;
+  }
+  .nav-mobile.open{
+    max-height:80vh;
+    overflow-y:auto;
+    border-top:1px solid var(--linea-oro);
+  }
+  .nav-mobile-inner{
+    display:flex; flex-direction:column;
+    padding:6px 22px 22px;
+  }
+  .nav-mobile a{
+    padding:15px 0;
+    font-size:0.78rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--pergamino-alt);
+    border-bottom:1px solid var(--linea-oro);
+  }
+  .nav-mobile a:last-child{ border-bottom:none; }
+  .nav-mobile a:active{ color:var(--oro-suave); }
+  .nav-mobile a.destacado{
+    margin-top:14px;
+    text-align:center;
+    border:1px solid var(--oro) !important;
+    background:var(--oro);
+    color:var(--verde-noche);
+  }
+  @media (min-width:721px){
+    .nav-mobile{ display:none; }
+  }
+
   /* ---------- HERO ---------- */
   .hero{
     background:var(--verde-noche);
@@ -375,6 +440,40 @@
   }
 
 
+  /* ---------- TENDENCIAS JURÍDICAS ---------- */
+  .tendencias{ background:var(--pergamino); }
+  .tj-card{
+    background:var(--pergamino-alt);
+    border:1px solid rgba(27,27,20,0.1);
+    border-left:3px solid var(--oro);
+    padding:30px 26px;
+    display:flex;
+    flex-direction:column;
+    transition:border-color .2s, box-shadow .2s;
+  }
+  a.tj-card:hover{
+    border-color:var(--oro);
+    border-left-color:var(--oro);
+    box-shadow:0 14px 30px -18px rgba(14,42,26,0.35);
+  }
+  .tj-card .fecha{
+    font-size:0.68rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--oro);
+    margin-bottom:14px;
+  }
+  .tj-card h3{
+    font-size:1.3rem;
+    margin-bottom:12px;
+    line-height:1.2;
+  }
+  .tj-card p{
+    color:var(--tinta-suave);
+    font-size:0.95rem;
+    flex-grow:1;
+  }
+
   /* ---------- COMUNIDAD ---------- */
   .comunidad{ background:var(--verde-noche); color:var(--pergamino); }
   .comunidad .section-head .eyebrow{ color:var(--oro-suave); }
@@ -544,10 +643,27 @@
       <a href="#areas">Áreas</a>
       <a href="#opinion">Opinión</a>
       <a href="#logros">Logros</a>
+      <a href="#tendencias">Tendencias</a>
       <a href="#cobertura">Cobertura</a>
       <a href="#contacto">Contacto</a>
       <a href="portal.html">Portal de Clientes</a>
     </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-mobile" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile" id="nav-mobile">
+    <div class="nav-mobile-inner">
+      <a href="#comunidad">Comunidad</a>
+      <a href="#perfil">Perfil</a>
+      <a href="#areas">Áreas</a>
+      <a href="#opinion">Opinión</a>
+      <a href="#logros">Logros</a>
+      <a href="#tendencias">Tendencias</a>
+      <a href="#cobertura">Cobertura</a>
+      <a href="#contacto">Contacto</a>
+      <a class="destacado" href="portal.html">Portal de Clientes</a>
+    </div>
   </div>
 </header>
 
@@ -703,6 +819,23 @@
   </div>
 </section>
 
+<section class="section tendencias" id="tendencias">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Jurisprudencia y normativa</div>
+      <h2>Tendencias Jurídicas</h2>
+      <p>Sentencias y normas recientes que marcan un cambio de precedente o crean un derecho o mecanismo nuevo, explicadas en lenguaje claro.</p>
+    </div>
+    <div class="grid-3">
+      <a class="tj-card" href="violencia-intrafamiliar-concurso-delitos-sp505-2026.html" style="cursor:pointer;">
+        <div class="fecha">Derecho Penal · SP505-2026</div>
+        <h3>Violencia intrafamiliar repetida: cada agresión puede ser un delito distinto</h3>
+        <p>La Corte Suprema admite que, cuando cada episodio de maltrato es autónomo y probado de forma independiente, puede configurarse un concurso de delitos en vez de una sola conducta continuada.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
 <section class="cobertura" id="cobertura">
   <div class="eyebrow">Zona de cobertura</div>
   <h2>Presencia en el centro de Colombia</h2>
@@ -750,6 +883,29 @@
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  (function(){
+    var toggle = document.getElementById('nav-toggle');
+    var menu = document.getElementById('nav-mobile');
+    if(!toggle || !menu) return;
+
+    function cerrarMenu(){
+      menu.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+    function alternarMenu(){
+      var abierto = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+    }
+
+    toggle.addEventListener('click', alternarMenu);
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', cerrarMenu);
+    });
+    window.addEventListener('resize', function(){
+      if(window.innerWidth > 720){ cerrarMenu(); }
+    });
+  })();
 
   (function(){
     var animated = false;

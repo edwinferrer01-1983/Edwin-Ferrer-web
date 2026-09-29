@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Violencia intrafamiliar repetida: cada agresión puede ser un delito distinto — Edwin Ferrer</title>
+<link rel="icon" href="logomark.png">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Violencia intrafamiliar repetida: la Corte Suprema admite que cada agresión puede ser un delito distinto">
+<meta property="og:description" content="Análisis técnico de la sentencia SP505-2026 de la Sala de Casación Penal: cuándo varios episodios de violencia intrafamiliar pueden juzgarse como delitos independientes.">
+<meta property="og:image" content="https://edwinferrerabogado.com/logoplate.png">
+<meta property="og:url" content="https://edwinferrerabogado.com/violencia-intrafamiliar-concurso-delitos-sp505-2026.html">
+<meta property="og:site_name" content="Edwin Ferrer — Servicios Legales">
+<meta property="og:locale" content="es_CO">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Violencia intrafamiliar repetida: cada agresión puede ser un delito distinto">
+<meta name="twitter:description" content="Análisis de la sentencia SP505-2026 de la Corte Suprema sobre concurso de delitos en violencia intrafamiliar.">
+<meta name="twitter:image" content="https://edwinferrerabogado.com/logoplate.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --verde-noche:#001107;
+    --verde-botella:#0E2A1A;
+    --verde-botella-2:#123321;
+    --pergamino:#F3EEE1;
+    --pergamino-alt:#EAE2CE;
+    --oro:#B99A5B;
+    --oro-suave:#D8C08A;
+    --tinta:#1B1B14;
+    --tinta-suave:#4A4A3E;
+    --linea-oro: rgba(185,154,91,0.35);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--pergamino);
+    color:var(--tinta);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+
+  h1,h2,h3,.serif{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    letter-spacing:0.01em;
+  }
+
+  .eyebrow{
+    font-family:'Jost', sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    font-weight:500;
+  }
+
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  @media (max-width:640px){
+    .wrap{padding:0 22px;}
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:50;
+    background:rgba(0,17,7,0.86);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--linea-oro);
+  }
+  .nav-inner{
+    max-width:1080px;
+    margin:0 auto;
+    padding:16px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    color:var(--pergamino);
+  }
+  .nav-brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.15rem;
+    letter-spacing:0.04em;
+  }
+  .nav-brand img{height:26px; width:auto;}
+  .volver{
+    font-size:0.74rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--pergamino-alt);
+    opacity:0.85;
+    transition:opacity .2s, color .2s;
+    border-bottom:1px solid transparent;
+    padding-bottom:3px;
+  }
+  .volver:hover{ opacity:1; color:var(--oro-suave); border-color:var(--oro); }
+
+  /* ---------- ARTICLE HERO ---------- */
+  .art-hero{
+    background:var(--verde-noche);
+    color:var(--pergamino);
+    padding:168px 32px 80px;
+    position:relative;
+    overflow:hidden;
+  }
+  .art-hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      repeating-linear-gradient(0deg, transparent 0 39px, rgba(185,154,91,0.045) 40px),
+      repeating-linear-gradient(90deg, transparent 0 39px, rgba(185,154,91,0.045) 40px);
+    pointer-events:none;
+  }
+  .art-hero-inner{ position:relative; z-index:1; max-width:760px; margin:0 auto; padding:0 32px; }
+  .art-hero .eyebrow{ color:var(--oro-suave); margin-bottom:20px; }
+  .art-hero h1{
+    font-size:clamp(1.6rem, 3.8vw, 2.3rem);
+    line-height:1.2;
+    margin-bottom:22px;
+  }
+  .art-meta{
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+    font-size:0.78rem;
+    letter-spacing:0.06em;
+    color:rgba(243,238,225,0.72);
+    padding-top:18px;
+    border-top:1px solid var(--linea-oro);
+  }
+  .art-meta strong{ color:var(--oro-suave); font-weight:500; }
+
+  /* ---------- ARTICLE BODY ---------- */
+  .art-body{ padding:70px 0 40px; }
+  .art-body h2{
+    font-size:1.5rem;
+    margin:44px 0 14px;
+    color:var(--tinta);
+  }
+  .art-body h2:first-child{ margin-top:0; }
+  .art-body p{
+    color:var(--tinta-suave);
+    font-size:1.02rem;
+    margin-bottom:18px;
+  }
+  .art-body strong{ color:var(--tinta); font-weight:500; }
+  .lead{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.28rem;
+    font-style:italic;
+    color:var(--tinta);
+    padding-left:20px;
+    border-left:2px solid var(--oro);
+    margin-bottom:34px;
+  }
+  .ficha{
+    background:var(--pergamino-alt);
+    border:1px solid rgba(27,27,20,0.12);
+    padding:22px 26px;
+    margin:8px 0 34px;
+  }
+  .ficha .eyebrow{ color:var(--oro); margin-bottom:10px; }
+  .ficha p{ margin-bottom:6px; font-size:0.92rem; }
+  .ficha p:last-child{ margin-bottom:0; }
+  .ficha strong{ color:var(--tinta); }
+
+  .art-cta{
+    text-align:center;
+    padding:50px 32px 90px;
+  }
+  .btn{
+    display:inline-block;
+    padding:14px 30px;
+    font-size:0.75rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    border:1px solid var(--oro);
+    transition:background .25s, color .25s, border-color .25s;
+  }
+  .btn-solid{
+    background:var(--oro);
+    color:var(--verde-noche);
+  }
+  .btn-solid:hover{ background:var(--oro-suave); border-color:var(--oro-suave); }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--verde-noche);
+    color:rgba(243,238,225,0.55);
+    padding:46px 32px 34px;
+    text-align:center;
+  }
+  footer img{ height:30px; margin:0 auto 16px; opacity:0.9; }
+  footer .fine{ font-size:0.72rem; letter-spacing:0.06em; }
+
+  :focus-visible{ outline:2px solid var(--oro); outline-offset:3px; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ transition:none !important; }
+  }
+
+  /* ---------- MEJORAS: progreso, compartir, imprimir, fade-in ---------- */
+  body{ animation:fadeIn .45s ease; }
+  @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
+  .progreso-lectura{
+    position:fixed; top:0; left:0; height:3px; background:var(--oro);
+    z-index:100; width:0%; transition:width .1s linear;
+  }
+  .compartir{
+    display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
+    margin:40px 0 6px; padding-top:30px; border-top:1px solid rgba(27,27,20,0.12);
+  }
+  .compartir a, .compartir button{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:'Jost', sans-serif; font-size:0.7rem; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--tinta-suave);
+    border:1px solid rgba(27,27,20,0.2); padding:9px 16px; background:none; cursor:pointer;
+    transition:border-color .2s, color .2s;
+  }
+  .compartir a:hover, .compartir button:hover{ border-color:var(--oro); color:var(--tinta); }
+  @media print{
+    header.nav, .art-cta, footer, .compartir, .progreso-lectura{ display:none !important; }
+    body{ background:#fff; animation:none; }
+    .art-hero{ background:#fff !important; color:#000 !important; padding:10px 0 30px; }
+    .art-hero::before{ display:none; }
+    .art-hero .eyebrow, .art-meta, .art-meta strong{ color:#333 !important; }
+    .art-body p{ color:#111 !important; }
+  }
+</style>
+</head>
+<body>
+<div class="progreso-lectura" id="progreso"></div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <img src="logomark.png" alt="">
+      Dr. Edwin Ferrer
+    </div>
+    <a class="volver" href="index.html#tendencias">← Volver al sitio</a>
+  </div>
+</header>
+
+<section class="art-hero">
+  <div class="art-hero-inner">
+    <div class="eyebrow">Tendencias Jurídicas · Derecho Penal</div>
+    <h1>Violencia intrafamiliar repetida: la Corte Suprema admite que cada agresión puede ser un delito distinto</h1>
+    <div class="art-meta">
+      <span><strong>Por:</strong> Edwin Iván Ferrer Barreto</span>
+      <span><strong>Sentencia:</strong> SP505-2026</span>
+      <span>3 min de lectura</span>
+    </div>
+  </div>
+</section>
+
+<section class="art-body">
+  <div class="wrap">
+
+    <p class="lead">Durante años, la regla general fue que varios episodios de maltrato dentro de una misma relación se juzgaban como un solo delito continuado. La Sala de Casación Penal de la Corte Suprema de Justicia acaba de admitir una excepción importante a esa regla.</p>
+
+    <div class="ficha">
+      <div class="eyebrow">Ficha técnica</div>
+      <p><strong>Sentencia:</strong> SP505-2026</p>
+      <p><strong>Radicado:</strong> 61519</p>
+      <p><strong>Fecha:</strong> 3 de junio de 2026</p>
+      <p><strong>Sala:</strong> Casación Penal, Corte Suprema de Justicia</p>
+      <p><strong>Norma interpretada:</strong> Artículo 229 del Código Penal (violencia intrafamiliar)</p>
+    </div>
+
+    <h2>Los hechos</h2>
+    <p>El caso partió de agresiones físicas y verbales de un hombre contra su pareja y, luego, su expareja, ocurridas en distintos momentos entre 2018 y 2019. La Fiscalía imputó varios delitos de violencia intrafamiliar agravada en concurso, más lesiones personales por el episodio más reciente. La discusión que llegó a la Corte era, en el fondo, una sola: ¿esos episodios, separados en el tiempo, constituyen un solo delito continuado o pueden juzgarse como delitos independientes entre sí?</p>
+
+    <h2>Qué decidió la Corte</h2>
+    <p>La Sala estableció que, de forma excepcional, sí puede configurarse un <strong>concurso homogéneo y sucesivo de delitos</strong> cuando cada episodio de maltrato es <strong>autónomo, escindible y probado de manera independiente</strong> —es decir, cuando cada agresión tiene su propio momento, lugar y motivación, y así quedó demostrado en el proceso—. En ese supuesto, cada episodio puede dar lugar a una condena separada, en lugar de subsumirse todos en un único delito continuado.</p>
+
+    <p>En cuanto a la pena, la Corte corrigió un error aritmético en la dosificación y una falta de motivación en el aumento aplicado, ajustando la condena de 86 a 85 meses de prisión. No pudo recalificar el último episodio —tipificado como lesiones personales y no como violencia intrafamiliar— por la prohibición constitucional de reforma en peor (no se puede empeorar la situación del condenado cuando es él quien recurre la decisión).</p>
+
+    <h2>El cambio frente al criterio anterior</h2>
+    <p>El criterio previo tendía a tratar la repetición de maltratos dentro de una misma relación como una sola conducta continuada, evitando el concurso de delitos. La Corte no elimina esa regla general, pero reconoce ahora una vía distinta cuando la prueba permite individualizar cada episodio: en esos casos, la repetición de la violencia ya no diluye la responsabilidad en un solo delito, sino que cada acto violento puede pesar por sí mismo en la condena final.</p>
+
+    <h2>Por qué le importa esto a quien no es abogado</h2>
+    <p>Para las víctimas de violencia intrafamiliar, esta distinción no es un tecnicismo: incide directamente en qué tan proporcional resulta la condena frente a un patrón de maltrato sostenido en el tiempo. Y para quien enfrenta un proceso por estos hechos, aclara qué debe probarse —y qué puede refutarse— para que cada episodio se juzgue de forma independiente o, por el contrario, se mantenga como una sola conducta continuada.</p>
+
+    <p><strong>La violencia intrafamiliar repetida ya no se mira necesariamente como un solo hecho diluido en el tiempo: cuando cada episodio queda probado de forma autónoma, la Corte Suprema permite que cada uno pese por sí mismo en la condena.</strong></p>
+
+    <p style="font-size:0.82rem; color:var(--tinta-suave); font-style:italic; border-top:1px solid rgba(27,27,20,0.12); padding-top:18px; margin-top:30px;">Fuentes de referencia para este análisis: reportes técnicos sobre la sentencia SP505-2026 (Rad. 61519, 3 de junio de 2026) de la Sala de Casación Penal de la Corte Suprema de Justicia, publicados por El Tiempo y Ámbito Jurídico.</p>
+
+    <div class="compartir">
+      <a href="https://wa.me/?text=Violencia%20intrafamiliar%20repetida%3A%20cada%20agresi%C3%B3n%20puede%20ser%20un%20delito%20distinto%20https://edwinferrerabogado.com/violencia-intrafamiliar-concurso-delitos-sp505-2026.html" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://edwinferrerabogado.com/violencia-intrafamiliar-concurso-delitos-sp505-2026.html" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://edwinferrerabogado.com/violencia-intrafamiliar-concurso-delitos-sp505-2026.html" target="_blank" rel="noopener">LinkedIn</a>
+      <button onclick="navigator.clipboard.writeText('https://edwinferrerabogado.com/violencia-intrafamiliar-concurso-delitos-sp505-2026.html');this.textContent='¡Enlace copiado!';">Copiar enlace</button>
+      <button onclick="window.print()">Descargar PDF</button>
+    </div>
+  </div>
+</section>
+
+<section class="art-cta">
+  <a class="btn btn-solid" href="index.html#contacto">Conversemos sobre su caso</a>
+</section>
+
+<footer>
+  <img src="logomark.png" alt="Edwin Ferrer — Servicios Legales">
+  <div class="fine">© <span id="year"></span> Edwin Iván Ferrer Barreto · Abogado · Tolima y Cundinamarca</div>
+  <div class="fine" style="margin-top:10px;"><a href="privacidad.html" style="color:var(--oro-suave); text-decoration:none; border-bottom:1px solid transparent;">Política de Privacidad</a></div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  window.addEventListener('scroll', function(){
+    var h = document.documentElement;
+    var pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    var bar = document.getElementById('progreso');
+    if(bar) bar.style.width = Math.min(100, Math.max(0, pct)) + '%';
+  });
+</script>
+</body>
+</html>
