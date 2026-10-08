@@ -412,9 +412,12 @@
     padding:30px 0;
     display:grid;
     grid-template-columns: 120px 1fr;
-    gap:28px;
+    gap:6px 28px;
     align-items:start;
   }
+  .item > .item-icon{ grid-column:1; grid-row:1; margin-bottom:0; }
+  .item > .code{ grid-column:1; grid-row:2; }
+  .item > div:last-child{ grid-column:2; grid-row:1 / span 2; }
   .item .code{
     font-family:'Cormorant Garamond', serif;
     font-style:italic;
@@ -430,11 +433,12 @@
   }
   .item p{
     color:rgba(243,238,225,0.68);
-    max-width:560px;
+    max-width:760px;
     font-size:0.98rem;
   }
   @media (max-width:640px){
     .item{ grid-template-columns:1fr; gap:6px; }
+    .item > .item-icon, .item > .code, .item > div:last-child{ grid-column:auto; grid-row:auto; }
   }
 
   /* ---------- OPINION Y LOGROS ---------- */
