@@ -123,6 +123,7 @@ exports.handler = async function (event, context) {
       body: JSON.stringify({
         email: emailInterno,
         password: password,
+        confirm: true,
         email_confirm: true,
         user_metadata: { cedula: cedula, nombre_caso: registro.fields && registro.fields["Caso"] },
       }),
