@@ -222,8 +222,36 @@
     transition:border-color .2s, color .2s;
   }
   .compartir a:hover, .compartir button:hover{ border-color:var(--oro); color:var(--tinta); }
+  /* ---------- COMENTARIOS ---------- */
+  .comentarios{ background:var(--pergamino-alt); padding:70px 0; }
+  .comentarios .wrap{ max-width:720px; margin:0 auto; padding:0 32px; }
+  .comentarios h2{ font-size:1.6rem; margin-bottom:8px; }
+  .comentarios .aviso-coment{ font-size:0.85rem; color:var(--tinta-suave); margin-bottom:30px; }
+  .coment-form{ background:var(--pergamino); padding:26px 24px; margin-bottom:40px; }
+  .coment-form .campo{ margin-bottom:16px; }
+  .coment-form label{ display:block; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--tinta-suave); margin-bottom:6px; }
+  .coment-form input, .coment-form textarea{
+    width:100%; padding:11px 12px; font-size:0.94rem; font-family:'Jost', sans-serif;
+    border:1px solid rgba(27,27,20,0.25); background:var(--pergamino-alt); color:var(--tinta);
+  }
+  .coment-form textarea{ min-height:90px; resize:vertical; }
+  .coment-form input:focus, .coment-form textarea:focus{ outline:none; border-color:var(--oro); }
+  .campo-trampa{ position:absolute; left:-9999px; top:-9999px; }
+  .btn-coment{
+    display:inline-block; padding:11px 24px; font-size:0.72rem; letter-spacing:0.14em;
+    text-transform:uppercase; border:1px solid var(--oro); background:var(--oro); color:var(--verde-noche);
+    cursor:pointer; font-family:'Jost', sans-serif;
+  }
+  .btn-coment[disabled]{ opacity:0.55; cursor:default; }
+  .estado-coment{ margin-top:12px; font-size:0.85rem; }
+  .estado-coment.ok{ color:#123321; background:rgba(185,154,91,0.18); border-left:3px solid #B99A5B; padding:14px 16px; font-size:1rem; line-height:1.5; }
+  .estado-coment.error{ color:#8a2e2e; }
+  .coment-item{ border-top:1px solid rgba(27,27,20,0.14); padding:18px 0; }
+  .coment-item .quien{ font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--oro); margin-bottom:6px; }
+  .coment-item .texto{ color:var(--tinta-suave); font-size:0.95rem; }
+  .coment-vacio{ color:var(--tinta-suave); font-style:italic; }
   @media print{
-    header.nav, .art-cta, footer, .compartir, .progreso-lectura{ display:none !important; }
+    header.nav, .art-cta, footer, .compartir, .progreso-lectura, .comentarios{ display:none !important; }
     body{ background:#fff; animation:none; }
     .art-hero{ background:#fff !important; color:#000 !important; padding:10px 0 30px; }
     .art-hero::before{ display:none; }
@@ -292,6 +320,28 @@
   </div>
 </section>
 
+<section class="comentarios">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--oro);">Participe</div>
+    <h2>Comentarios</h2>
+    <p class="aviso-coment">Su comentario se publicará aquí una vez sea verificado. Por su seguridad, evite incluir datos que lo identifiquen a usted o a terceros.</p>
+    <div class="coment-form">
+      <div class="campo">
+        <label for="c-nombre">Su nombre (opcional)</label>
+        <input type="text" id="c-nombre" placeholder="Nombre o iniciales">
+      </div>
+      <div class="campo">
+        <label for="c-texto">Su comentario</label>
+        <textarea id="c-texto" placeholder="Escriba su comentario"></textarea>
+      </div>
+      <input type="text" id="c-trampa" class="campo-trampa" tabindex="-1" autocomplete="off">
+      <button class="btn-coment" id="btn-comentar">Publicar comentario</button>
+      <div class="estado-coment" id="estado-coment"></div>
+    </div>
+    <div id="lista-comentarios"><div class="coment-vacio">Cargando comentarios…</div></div>
+  </div>
+</section>
+
 <section class="art-cta">
   <a class="btn btn-solid" href="index.html#contacto">Conversemos sobre su caso</a>
 </section>
@@ -310,6 +360,73 @@
     var bar = document.getElementById('progreso');
     if(bar) bar.style.width = Math.min(100, Math.max(0, pct)) + '%';
   });
+  (function(){
+    var ARTICULO = 'SLUG-DEL-ARTICULO';
+
+    function escapar(t){
+      return String(t || '').replace(/[&<>"']/g, function(c){
+        return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+      });
+    }
+
+    function cargar(){
+      var cont = document.getElementById('lista-comentarios');
+      fetch('/.netlify/functions/comentarios-listar?articulo=' + encodeURIComponent(ARTICULO))
+        .then(function(r){ return r.json(); })
+        .then(function(data){
+          var lista = data.comentarios || [];
+          if(lista.length === 0){
+            cont.innerHTML = '<div class="coment-vacio">Sea el primero en comentar.</div>';
+            return;
+          }
+          cont.innerHTML = lista.map(function(c){
+            return '<div class="coment-item"><div class="quien">' + escapar(c.nombre) + '</div><div class="texto">' + escapar(c.comentario) + '</div></div>';
+          }).join('');
+        })
+        .catch(function(){ cont.innerHTML = '<div class="coment-vacio">No fue posible cargar los comentarios.</div>'; });
+    }
+    cargar();
+
+    document.getElementById('btn-comentar').addEventListener('click', function(){
+      var nombre = document.getElementById('c-nombre').value.trim();
+      var texto = document.getElementById('c-texto').value.trim();
+      var trampa = document.getElementById('c-trampa').value;
+      var estado = document.getElementById('estado-coment');
+      var btn = this;
+
+      if(texto.length < 3){
+        estado.className = 'estado-coment error';
+        estado.textContent = 'Escriba un comentario un poco más completo.';
+        return;
+      }
+      btn.disabled = true;
+      estado.className = 'estado-coment';
+      estado.textContent = 'Enviando…';
+
+      fetch('/.netlify/functions/comentario-nuevo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ articulo: ARTICULO, nombre: nombre, comentario: texto, trampa: trampa })
+      }).then(function(r){ return r.json().then(function(d){ return {ok:r.ok, data:d}; }); })
+        .then(function(res){
+          if(!res.ok){
+            estado.className = 'estado-coment error';
+            estado.textContent = (res.data && res.data.error) || 'No fue posible enviar su comentario.';
+            return;
+          }
+          estado.className = 'estado-coment ok';
+          estado.textContent = '✔ Gracias. Su comentario fue recibido y está pendiente de revisión; se publicará una vez sea aprobado.';
+          try{ estado.scrollIntoView({behavior:'smooth', block:'center'}); }catch(e){}
+          document.getElementById('c-nombre').value = '';
+          document.getElementById('c-texto').value = '';
+        })
+        .catch(function(){
+          estado.className = 'estado-coment error';
+          estado.textContent = 'No fue posible enviar su comentario. Intente de nuevo.';
+        })
+        .finally(function(){ btn.disabled = false; });
+    });
+  })();
 </script>
 </body>
 </html>
