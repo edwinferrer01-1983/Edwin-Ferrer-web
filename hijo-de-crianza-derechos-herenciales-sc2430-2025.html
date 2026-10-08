@@ -257,7 +257,7 @@
   }
   .btn-coment[disabled]{ opacity:0.55; cursor:default; }
   .estado-coment{ margin-top:12px; font-size:0.85rem; }
-  .estado-coment.ok{ color:#2e6b3e; }
+  .estado-coment.ok{ color:#123321; background:rgba(185,154,91,0.18); border-left:3px solid #B99A5B; padding:14px 16px; font-size:1rem; line-height:1.5; }
   .estado-coment.error{ color:#8a2e2e; }
   .coment-item{ border-top:1px solid rgba(27,27,20,0.14); padding:18px 0; }
   .coment-item .quien{ font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--oro); margin-bottom:6px; }
@@ -435,7 +435,8 @@
             return;
           }
           estado.className = 'estado-coment ok';
-          estado.textContent = res.data.mensaje || 'Comentario enviado.';
+          estado.textContent = '✔ Gracias. Su comentario fue recibido y está pendiente de revisión; se publicará una vez sea aprobado.';
+          try{ estado.scrollIntoView({behavior:'smooth', block:'center'}); }catch(e){}
           document.getElementById('c-nombre').value = '';
           document.getElementById('c-texto').value = '';
         })
