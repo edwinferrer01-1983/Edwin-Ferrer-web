@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cirugías estéticas sin habilitación médica: la Corte Suprema confirma que el "consentimiento" no protege a quien las practica — Edwin Ferrer</title>
+<link rel="icon" href="logomark.png">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cirugías estéticas sin habilitación médica: el consentimiento no protege a quien las practica">
+<meta property="og:description" content="Análisis técnico de la sentencia SP1172-2026: la Corte Suprema confirma la condena penal de una cosmetóloga por practicar una cirugía invasiva sin ser médica, y descarta que la víctima haya asumido el riesgo por su cuenta.">
+<meta property="og:image" content="https://edwinferrerabogado.com/logoplate.png">
+<meta property="og:url" content="https://edwinferrerabogado.com/cirugia-estetica-sin-habilitacion-lesiones-culposas-sp1172-2026.html">
+<meta property="og:site_name" content="Edwin Ferrer — Servicios Legales">
+<meta property="og:locale" content="es_CO">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cirugías estéticas sin habilitación médica: un consentimiento que no exime de responsabilidad">
+<meta name="twitter:description" content="Análisis de la sentencia SP1172-2026 de la Corte Suprema sobre la responsabilidad penal de quien practica cirugías estéticas sin ser médico.">
+<meta name="twitter:image" content="https://edwinferrerabogado.com/logoplate.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --verde-noche:#001107;
+    --verde-botella:#0E2A1A;
+    --verde-botella-2:#123321;
+    --pergamino:#F3EEE1;
+    --pergamino-alt:#EAE2CE;
+    --oro:#B99A5B;
+    --oro-suave:#D8C08A;
+    --tinta:#1B1B14;
+    --tinta-suave:#4A4A3E;
+    --linea-oro: rgba(185,154,91,0.35);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--pergamino);
+    color:var(--tinta);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+
+  h1,h2,h3,.serif{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    letter-spacing:0.01em;
+  }
+
+  .eyebrow{
+    font-family:'Jost', sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    font-weight:500;
+  }
+
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  @media (max-width:640px){
+    .wrap{padding:0 22px;}
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:50;
+    background:rgba(0,17,7,0.86);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--linea-oro);
+  }
+  .nav-inner{
+    max-width:1080px;
+    margin:0 auto;
+    padding:16px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    color:var(--pergamino);
+  }
+  .nav-brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.15rem;
+    letter-spacing:0.04em;
+  }
+  .nav-brand img{height:26px; width:auto;}
+  .volver{
+    font-size:0.74rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--pergamino-alt);
+    opacity:0.85;
+    transition:opacity .2s, color .2s;
+    border-bottom:1px solid transparent;
+    padding-bottom:3px;
+  }
+  .volver:hover{ opacity:1; color:var(--oro-suave); border-color:var(--oro); }
+
+  /* ---------- ARTICLE HERO ---------- */
+  .art-hero{
+    background:var(--verde-noche);
+    color:var(--pergamino);
+    padding:168px 32px 80px;
+    position:relative;
+    overflow:hidden;
+  }
+  .art-hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      repeating-linear-gradient(0deg, transparent 0 39px, rgba(185,154,91,0.045) 40px),
+      repeating-linear-gradient(90deg, transparent 0 39px, rgba(185,154,91,0.045) 40px);
+    pointer-events:none;
+  }
+  .art-hero-inner{ position:relative; z-index:1; max-width:760px; margin:0 auto; padding:0 32px; }
+  .art-hero .eyebrow{ color:var(--oro-suave); margin-bottom:20px; }
+  .art-hero h1{
+    font-size:clamp(1.6rem, 3.8vw, 2.3rem);
+    line-height:1.2;
+    margin-bottom:22px;
+  }
+  .art-meta{
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+    font-size:0.78rem;
+    letter-spacing:0.06em;
+    color:rgba(243,238,225,0.72);
+    padding-top:18px;
+    border-top:1px solid var(--linea-oro);
+  }
+  .art-meta strong{ color:var(--oro-suave); font-weight:500; }
+
+  /* ---------- ARTICLE BODY ---------- */
+  .art-body{ padding:70px 0 40px; }
+  .art-body h2{
+    font-size:1.5rem;
+    margin:44px 0 14px;
+    color:var(--tinta);
+  }
+  .art-body h2:first-child{ margin-top:0; }
+  .art-body p{
+    color:var(--tinta-suave);
+    font-size:1.02rem;
+    margin-bottom:18px;
+  }
+  .art-body strong{ color:var(--tinta); font-weight:500; }
+  .art-body ol, .art-body ul{ margin:0 0 18px 22px; color:var(--tinta-suave); font-size:1.02rem; }
+  .art-body li{ margin-bottom:8px; }
+  .lead{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.28rem;
+    font-style:italic;
+    color:var(--tinta);
+    padding-left:20px;
+    border-left:2px solid var(--oro);
+    margin-bottom:34px;
+  }
+  .ficha{
+    background:var(--pergamino-alt);
+    border:1px solid rgba(27,27,20,0.12);
+    padding:22px 26px;
+    margin:8px 0 34px;
+  }
+  .ficha .eyebrow{ color:var(--oro); margin-bottom:10px; }
+  .ficha p{ margin-bottom:6px; font-size:0.92rem; }
+  .ficha p:last-child{ margin-bottom:0; }
+  .ficha strong{ color:var(--tinta); }
+
+  .aviso-destacado{
+    background:var(--verde-botella);
+    color:var(--pergamino);
+    padding:26px 26px;
+    margin:8px 0 34px;
+  }
+  .aviso-destacado .eyebrow{ color:var(--oro-suave); margin-bottom:10px; }
+  .aviso-destacado p{ color:rgba(243,238,225,0.85); margin-bottom:0; font-size:0.97rem; }
+
+  .art-cta{
+    text-align:center;
+    padding:50px 32px 90px;
+  }
+  .btn{
+    display:inline-block;
+    padding:14px 30px;
+    font-size:0.75rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    border:1px solid var(--oro);
+    transition:background .25s, color .25s, border-color .25s;
+  }
+  .btn-solid{
+    background:var(--oro);
+    color:var(--verde-noche);
+  }
+  .btn-solid:hover{ background:var(--oro-suave); border-color:var(--oro-suave); }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--verde-noche);
+    color:rgba(243,238,225,0.55);
+    padding:46px 32px 34px;
+    text-align:center;
+  }
+  footer img{ height:30px; margin:0 auto 16px; opacity:0.9; }
+  footer .fine{ font-size:0.72rem; letter-spacing:0.06em; }
+
+  :focus-visible{ outline:2px solid var(--oro); outline-offset:3px; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ transition:none !important; }
+  }
+
+  /* ---------- MEJORAS: progreso, compartir, imprimir, fade-in ---------- */
+  body{ animation:fadeIn .45s ease; }
+  @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
+  .progreso-lectura{
+    position:fixed; top:0; left:0; height:3px; background:var(--oro);
+    z-index:100; width:0%; transition:width .1s linear;
+  }
+  .compartir{
+    display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
+    margin:40px 0 6px; padding-top:30px; border-top:1px solid rgba(27,27,20,0.12);
+  }
+  .compartir a, .compartir button{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:'Jost', sans-serif; font-size:0.7rem; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--tinta-suave);
+    border:1px solid rgba(27,27,20,0.2); padding:9px 16px; background:none; cursor:pointer;
+    transition:border-color .2s, color .2s;
+  }
+  .compartir a:hover, .compartir button:hover{ border-color:var(--oro); color:var(--tinta); }
+
+  /* ---------- COMENTARIOS ---------- */
+  .comentarios{ background:var(--pergamino-alt); padding:70px 0; }
+  .comentarios .wrap{ max-width:720px; margin:0 auto; padding:0 32px; }
+  .comentarios h2{ font-size:1.6rem; margin-bottom:8px; }
+  .comentarios .aviso-coment{ font-size:0.85rem; color:var(--tinta-suave); margin-bottom:30px; }
+  .coment-form{ background:var(--pergamino); padding:26px 24px; margin-bottom:40px; }
+  .coment-form .campo{ margin-bottom:16px; }
+  .coment-form label{ display:block; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--tinta-suave); margin-bottom:6px; }
+  .coment-form input, .coment-form textarea{
+    width:100%; padding:11px 12px; font-size:0.94rem; font-family:'Jost', sans-serif;
+    border:1px solid rgba(27,27,20,0.25); background:var(--pergamino-alt); color:var(--tinta);
+  }
+  .coment-form textarea{ min-height:90px; resize:vertical; }
+  .coment-form input:focus, .coment-form textarea:focus{ outline:none; border-color:var(--oro); }
+  .campo-trampa{ position:absolute; left:-9999px; top:-9999px; }
+  .btn-coment{
+    display:inline-block; padding:11px 24px; font-size:0.72rem; letter-spacing:0.14em;
+    text-transform:uppercase; border:1px solid var(--oro); background:var(--oro); color:var(--verde-noche);
+    cursor:pointer; font-family:'Jost', sans-serif;
+  }
+  .btn-coment[disabled]{ opacity:0.55; cursor:default; }
+  .estado-coment{ margin-top:12px; font-size:0.85rem; }
+  .estado-coment.ok{ color:#2e6b3e; }
+  .estado-coment.error{ color:#8a2e2e; }
+  .coment-item{ border-top:1px solid rgba(27,27,20,0.14); padding:18px 0; }
+  .coment-item .quien{ font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--oro); margin-bottom:6px; }
+  .coment-item .texto{ color:var(--tinta-suave); font-size:0.95rem; }
+  .coment-vacio{ color:var(--tinta-suave); font-style:italic; }
+  @media print{
+    header.nav, .art-cta, footer, .compartir, .progreso-lectura, .comentarios{ display:none !important; }
+    body{ background:#fff; animation:none; }
+    .art-hero{ background:#fff !important; color:#000 !important; padding:10px 0 30px; }
+    .art-hero::before{ display:none; }
+    .art-hero .eyebrow, .art-meta, .art-meta strong{ color:#333 !important; }
+    .art-body p{ color:#111 !important; }
+  }
+</style>
+</head>
+<body>
+<div class="progreso-lectura" id="progreso"></div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <img src="logomark.png" alt="">
+      Dr. Edwin Ferrer
+    </div>
+    <a class="volver" href="index.html#tendencias">← Volver al sitio</a>
+  </div>
+</header>
+
+<section class="art-hero">
+  <div class="art-hero-inner">
+    <div class="eyebrow">Tendencias Jurídicas · Derecho Penal</div>
+    <h1>Cirugías estéticas sin habilitación médica: la Corte Suprema confirma que el "consentimiento" no protege a quien las practica</h1>
+    <div class="art-meta">
+      <span><strong>Por:</strong> Edwin Iván Ferrer Barreto</span>
+      <span><strong>Sentencia:</strong> SP1172-2026</span>
+      <span>5 min de lectura</span>
+    </div>
+  </div>
+</section>
+
+<section class="art-body">
+  <div class="wrap">
+
+    <p class="lead">Una mujer acudió a un spa de belleza buscando una cirugía estética más económica. Quien la atendió no era cirujana, ni siquiera médica. El procedimiento terminó en necrosis abdominal, injertos de piel y una embolia pulmonar. La defensa alegó que la propia víctima había asumido ese riesgo. La Corte Suprema respondió que no: nadie puede "asumir" un riesgo que nunca le fue explicado.</p>
+
+    <div class="ficha">
+      <div class="eyebrow">Ficha técnica</div>
+      <p><strong>Sentencia:</strong> SP1172-2026</p>
+      <p><strong>Radicación:</strong> N° 70464 · CUI 18001600055220225138801</p>
+      <p><strong>Fecha:</strong> 9 de septiembre de 2026</p>
+      <p><strong>Sala:</strong> Casación Penal, Corte Suprema de Justicia</p>
+      <p><strong>Magistrado ponente:</strong> Diego Eugenio Corredor Beltrán</p>
+      <p><strong>Delito:</strong> Lesiones personales culposas (arts. 111, 112, 113 y 117 del Código Penal)</p>
+      <p><strong>Tema central:</strong> Imputación objetiva, autopuesta en peligro y posición de garante en procedimientos estéticos practicados por personal no autorizado</p>
+    </div>
+
+    <h2>Los hechos</h2>
+    <p>En diciembre de 2021, en un establecimiento de estética de Florencia (Caquetá), una mujer sin título de médica ni habilitación alguna practicó a una clienta una dermolipectomía abdominal de 360°, marcación abdominal y transferencia de glúteos, por un valor de $7.000.000. Durante casi un mes, la misma persona manejó de forma directa el posoperatorio, incluyendo cuatro resuturas.</p>
+    <p>La víctima desarrolló necrosis de la pared abdominal, requirió cirugía reconstructiva con injertos de piel en una clínica especializada y, más adelante, sufrió una embolia pulmonar. Quedó con una incapacidad médico-legal de 20 días y una deformidad física de carácter permanente.</p>
+    <p>Un detalle resultó determinante para la Corte: cuando la víctima notó el deterioro de su salud, quien la había intervenido le pidió guardar reserva y no revelar su nombre ante ningún servicio médico, al tiempo que le confesaba, en privado, que no era cirujana ni médica.</p>
+
+    <h2>El recorrido judicial</h2>
+    <p>El Juzgado Cuarto Penal Municipal de Florencia absolvió en primera instancia, al considerar que la propia víctima había asumido el riesgo de forma consciente (autopuesta en peligro), lo que rompía el nexo de causalidad. La Sala Penal del Tribunal Superior de Florencia revocó esa decisión y condenó a la procesada por lesiones personales culposas, a 12 meses de prisión con suspensión condicional de la ejecución de la pena. La defensa llevó el caso a la Corte Suprema mediante impugnación especial, insistiendo en la tesis de la autopuesta en peligro y en que la prueba no alcanzaba el estándar exigido para condenar.</p>
+
+    <h2>Qué decidió la Corte</h2>
+    <p>La Sala de Casación Penal confirmó la condena. Para descartar la autopuesta en peligro como causal de exoneración, recordó que esta figura solo excluye la responsabilidad penal cuando concurren, de manera conjunta, tres presupuestos:</p>
+    <ol>
+      <li><strong>Que la víctima conociera o tuviera la capacidad de conocer el peligro real</strong> al que se exponía.</li>
+      <li><strong>Que la generación del riesgo estuviera bajo el control de la víctima</strong>, no de quien lo ejecuta.</li>
+      <li><strong>Que quien interviene no tenga posición de garante</strong> frente a la persona que voluntariamente se expuso al peligro.</li>
+    </ol>
+    <p>La Corte encontró que ninguno de los tres se cumplía. La víctima no conocía la verdadera dimensión del riesgo, porque nunca se le informó que quien la iba a intervenir carecía de habilitación médica, y esta se presentó ante ella con apariencia de idoneidad profesional. El control del procedimiento, la técnica y el manejo posoperatorio estuvieron siempre en manos exclusivas de la procesada. Y, lejos de no tener posición de garante, la Corte concluyó que la asumió voluntariamente desde el momento en que se ofreció como prestadora del servicio y se hizo cargo del posoperatorio durante casi un mes — deber que incumplió de manera flagrante al ocultar el deterioro de la salud de la víctima y retrasar su acceso a atención médica de urgencias.</p>
+    <p>Con ello, la Corte también fue clara en que un consentimiento para someterse a una cirugía estética no cubre lo que el paciente nunca supo: que quien iba a operarlo no tenía la formación legalmente exigida para hacerlo. La ley colombiana —Resolución 1441 de 2013, Ley 1164 de 2007 y Ley 711 de 2001— reserva los procedimientos invasivos de cirugía plástica a médicos especialistas en esa área, y expresamente prohíbe que cosmetólogos u otro personal no habilitado los practiquen.</p>
+
+    <h2>Por qué le importa esto a quien no es abogado</h2>
+    <p>Esta sentencia habla directamente a una práctica muy extendida: la oferta de cirugías estéticas "económicas" en spas, centros de estética o establecimientos de belleza, muchas veces por fuera de un consultorio o clínica habilitada, y sin que quien las practica sea un médico especialista en cirugía plástica. La Corte deja un mensaje claro en dos direcciones.</p>
+    <p>A quien contrata uno de estos procedimientos: haber firmado un papel o haber aceptado "por su cuenta y riesgo" no exime de nada a quien lo interviene, si no se le informó la verdad sobre quién lo iba a operar. Antes de someterse a cualquier procedimiento invasivo, tiene derecho —y es aconsejable exigirlo— a verificar el título profesional, el registro y la habilitación de quien va a intervenirlo, así como a un consentimiento informado real, no una simple autorización verbal.</p>
+    <p>A quien presta este tipo de servicios sin ser médico especialista: la responsabilidad penal no depende de que el paciente haya "aceptado" el procedimiento, ni de que el resultado haya sido inicialmente satisfactorio. Depende de si existía la habilitación legal para practicarlo. Ejercer procedimientos médicos invasivos sin esa habilitación es, en sí mismo, la creación de un riesgo jurídicamente desaprobado, y si se concreta en un daño, hay responsabilidad penal, con independencia de que además se haya ocultado la gravedad de las complicaciones, como ocurrió en este caso.</p>
+
+    <h2>Por qué la pena resulta tan baja para muchos</h2>
+    <p>Es una reacción comprensible frente a los hechos: 12 meses de prisión, con suspensión condicional de la ejecución de la pena por dos años, para quien practicó sin ninguna habilitación una cirugía invasiva, ocultó a la víctima el deterioro de su salud y le pidió guardar su nombre en reserva. A primera vista, parece una respuesta desproporcionada frente al daño causado.</p>
+    <p>La explicación jurídica no hace menos grave el hecho, pero sí explica por qué la pena es la que es. La condena fue por <strong>lesiones personales culposas</strong>, es decir, un delito cometido por negligencia o imprudencia, no con la intención de causar daño (dolo). El Código Penal sanciona los delitos culposos de forma considerablemente más baja que los dolosos, y para el tipo penal de lesiones con deformidad física permanente (artículo 113), la pena base ya reducida por tratarse de una conducta culposa —y no de una agresión intencional— se ubicó en los 12 meses. Además, por tratarse de una pena inferior a 4 años y no existir antecedentes, la ley concede de manera casi automática el subrogado de la suspensión condicional de la ejecución de la pena, salvo que existan razones específicas para negarlo.</p>
+    <p>Dicho de otra forma: la Corte no tenía margen para imponer una pena distinta a la que permite la ley para <em>este</em> delito. Lo que sí logró esta sentencia —y es, en realidad, su aporte más importante— fue impedir que la responsable quedara <strong>absuelta</strong>, como había ocurrido en primera instancia, y dejar sentado un precedente claro: quien practica procedimientos médicos invasivos sin habilitación no puede escudarse en que la víctima "aceptó" el riesgo. Ese precedente tiene un valor que trasciende la pena concreta de este caso, porque es la base sobre la que se pueden construir en el futuro procesos con calificaciones jurídicas más severas —por ejemplo, si se llegara a probar dolo eventual, o si el hecho se repite y hay elementos para una imputación distinta— frente a quienes ejercen la medicina o la cirugía de forma ilegal.</p>
+
+    <div class="aviso-destacado">
+      <div class="eyebrow">En síntesis</div>
+      <p>Un consentimiento solo protege a quien lo obtiene si fue informado con la verdad. Someterse a una cirugía sin saber que quien la practica no es médico no es "asumir un riesgo": es ser engañado sobre él. Y quien engaña sobre su propia falta de idoneidad no puede después escudarse en la decisión de su paciente.</p>
+    </div>
+
+    <p style="font-size:0.82rem; color:var(--tinta-suave); font-style:italic; border-top:1px solid rgba(27,27,20,0.12); padding-top:18px; margin-top:30px;">Fuente: Sentencia SP1172-2026, Radicación N° 70464, CUI 18001600055220225138801, Sala de Casación Penal de la Corte Suprema de Justicia, M.P. Diego Eugenio Corredor Beltrán, 9 de septiembre de 2026.</p>
+
+    <div class="compartir">
+      <a href="https://wa.me/?text=Cirug%C3%ADas%20est%C3%A9ticas%20sin%20habilitaci%C3%B3n%20m%C3%A9dica%3A%20la%20Corte%20Suprema%20confirma%20que%20el%20consentimiento%20no%20protege%20a%20quien%20las%20practica%20https://edwinferrerabogado.com/cirugia-estetica-sin-habilitacion-lesiones-culposas-sp1172-2026.html" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://edwinferrerabogado.com/cirugia-estetica-sin-habilitacion-lesiones-culposas-sp1172-2026.html" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://edwinferrerabogado.com/cirugia-estetica-sin-habilitacion-lesiones-culposas-sp1172-2026.html" target="_blank" rel="noopener">LinkedIn</a>
+      <button onclick="navigator.clipboard.writeText('https://edwinferrerabogado.com/cirugia-estetica-sin-habilitacion-lesiones-culposas-sp1172-2026.html');this.textContent='¡Enlace copiado!';">Copiar enlace</button>
+      <button onclick="window.print()">Descargar PDF</button>
+    </div>
+  </div>
+</section>
+
+<section class="comentarios">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--oro);">Participe</div>
+    <h2>Comentarios</h2>
+    <p class="aviso-coment">Su comentario se publicará aquí una vez sea verificado. Por su seguridad, evite incluir datos que lo identifiquen a usted o a terceros.</p>
+    <div class="coment-form">
+      <div class="campo">
+        <label for="c-nombre">Su nombre (opcional)</label>
+        <input type="text" id="c-nombre" placeholder="Nombre o iniciales">
+      </div>
+      <div class="campo">
+        <label for="c-texto">Su comentario</label>
+        <textarea id="c-texto" placeholder="Escriba su comentario"></textarea>
+      </div>
+      <input type="text" id="c-trampa" class="campo-trampa" tabindex="-1" autocomplete="off">
+      <button class="btn-coment" id="btn-comentar">Publicar comentario</button>
+      <div class="estado-coment" id="estado-coment"></div>
+    </div>
+    <div id="lista-comentarios"><div class="coment-vacio">Cargando comentarios…</div></div>
+  </div>
+</section>
+
+<section class="art-cta">
+  <a class="btn btn-solid" href="index.html#contacto">Conversemos sobre su caso</a>
+</section>
+
+<footer>
+  <img src="logomark.png" alt="Edwin Ferrer — Servicios Legales">
+  <div class="fine">© <span id="year"></span> Edwin Iván Ferrer Barreto · Abogado · Cobertura Nacional</div>
+  <div class="fine" style="margin-top:10px;"><a href="privacidad.html" style="color:var(--oro-suave); text-decoration:none; border-bottom:1px solid transparent;">Política de Privacidad</a></div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  (function(){
+    var ARTICULO = 'cirugia-estetica-sin-habilitacion-lesiones-culposas-sp1172-2026';
+
+    function escapar(t){
+      return String(t || '').replace(/[&<>"']/g, function(c){
+        return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+      });
+    }
+
+    function cargar(){
+      var cont = document.getElementById('lista-comentarios');
+      fetch('/.netlify/functions/comentarios-listar?articulo=' + encodeURIComponent(ARTICULO))
+        .then(function(r){ return r.json(); })
+        .then(function(data){
+          var lista = data.comentarios || [];
+          if(lista.length === 0){
+            cont.innerHTML = '<div class="coment-vacio">Sea el primero en comentar.</div>';
+            return;
+          }
+          cont.innerHTML = lista.map(function(c){
+            return '<div class="coment-item"><div class="quien">' + escapar(c.nombre) + '</div><div class="texto">' + escapar(c.comentario) + '</div></div>';
+          }).join('');
+        })
+        .catch(function(){ cont.innerHTML = '<div class="coment-vacio">No fue posible cargar los comentarios.</div>'; });
+    }
+    cargar();
+
+    document.getElementById('btn-comentar').addEventListener('click', function(){
+      var nombre = document.getElementById('c-nombre').value.trim();
+      var texto = document.getElementById('c-texto').value.trim();
+      var trampa = document.getElementById('c-trampa').value;
+      var estado = document.getElementById('estado-coment');
+      var btn = this;
+
+      if(texto.length < 3){
+        estado.className = 'estado-coment error';
+        estado.textContent = 'Escriba un comentario un poco más completo.';
+        return;
+      }
+      btn.disabled = true;
+      estado.className = 'estado-coment';
+      estado.textContent = 'Enviando…';
+
+      fetch('/.netlify/functions/comentario-nuevo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ articulo: ARTICULO, nombre: nombre, comentario: texto, trampa: trampa })
+      }).then(function(r){ return r.json().then(function(d){ return {ok:r.ok, data:d}; }); })
+        .then(function(res){
+          if(!res.ok){
+            estado.className = 'estado-coment error';
+            estado.textContent = (res.data && res.data.error) || 'No fue posible enviar su comentario.';
+            return;
+          }
+          estado.className = 'estado-coment ok';
+          estado.textContent = res.data.mensaje || 'Comentario enviado.';
+          document.getElementById('c-nombre').value = '';
+          document.getElementById('c-texto').value = '';
+        })
+        .catch(function(){
+          estado.className = 'estado-coment error';
+          estado.textContent = 'No fue posible enviar su comentario. Intente de nuevo.';
+        })
+        .finally(function(){ btn.disabled = false; });
+    });
+  })();
+  window.addEventListener('scroll', function(){
+    var h = document.documentElement;
+    var pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    var bar = document.getElementById('progreso');
+    if(bar) bar.style.width = Math.min(100, Math.max(0, pct)) + '%';
+  });
+</script>
+</body>
+</html>
