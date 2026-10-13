@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cuando la EPS ignora la tutela: lo que sigue después del fallo — Edwin Ferrer</title>
+<link rel="icon" href="logomark.png">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cuando la EPS ignora la tutela: lo que sigue después del fallo">
+<meta property="og:description" content="Qué hacer cuando una EPS no cumple un fallo de tutela: reclamo escrito, requerimiento al superior (art. 27), incidente de desacato (art. 52) y responsabilidad penal (art. 53 del Decreto 2591 de 1991). Una columna técnica de Edwin Ferrer.">
+<meta property="og:image" content="https://edwinferrerabogado.com/logoplate.png">
+<meta property="og:url" content="https://edwinferrerabogado.com/eps-ignora-tutela-desacato-cumplimiento-fallo.html">
+<meta property="og:site_name" content="Edwin Ferrer — Servicios Legales">
+<meta property="og:locale" content="es_CO">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cuando la EPS ignora la tutela: lo que sigue después del fallo">
+<meta name="twitter:description" content="Qué hacer cuando una EPS no cumple un fallo de tutela: reclamo escrito, requerimiento al superior (art. 27), incidente de desacato (art. 52) y responsabilidad penal (art. 53 del Decreto 2591 de 1991). Una columna técnica de Edwin Ferrer.">
+<meta name="twitter:image" content="https://edwinferrerabogado.com/logoplate.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --verde-noche:#123321;
+    --verde-botella:#123321;
+    --verde-botella-2:#123321;
+    --pergamino:#F3EEE1;
+    --pergamino-alt:#EAE2CE;
+    --oro:#B99A5B;
+    --oro-suave:#D8C08A;
+    --tinta:#1B1B14;
+    --tinta-suave:#4A4A3E;
+    --linea-oro: rgba(185,154,91,0.35);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--pergamino);
+    color:var(--tinta);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+
+  h1,h2,h3,.serif{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    letter-spacing:0.01em;
+  }
+
+  .eyebrow{
+    font-family:'Jost', sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    font-weight:500;
+  }
+
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  @media (max-width:640px){
+    .wrap{padding:0 22px;}
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:50;
+    background:rgba(0,17,7,0.94);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--linea-oro);
+  }
+  .nav-inner{
+    max-width:1080px;
+    margin:0 auto;
+    padding:16px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    color:var(--pergamino);
+  }
+  .nav-brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.15rem;
+    letter-spacing:0.04em;
+  }
+  .nav-brand img{height:26px; width:auto;}
+  .volver{
+    font-size:0.74rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--pergamino-alt);
+    opacity:0.85;
+    transition:opacity .2s, color .2s;
+    border-bottom:1px solid transparent;
+    padding-bottom:3px;
+  }
+  .volver:hover{ opacity:1; color:var(--oro-suave); border-color:var(--oro); }
+
+  /* ---------- ARTICLE HERO ---------- */
+  .art-hero{
+    background:var(--verde-noche);
+    color:var(--pergamino);
+    padding:168px 32px 80px;
+    position:relative;
+    overflow:hidden;
+  }
+  .art-hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      repeating-linear-gradient(0deg, transparent 0 39px, rgba(185,154,91,0.045) 40px),
+      repeating-linear-gradient(90deg, transparent 0 39px, rgba(185,154,91,0.045) 40px);
+    pointer-events:none;
+  }
+  .art-hero-inner{ position:relative; z-index:1; max-width:760px; margin:0 auto; padding:0 32px; }
+  .art-hero .eyebrow{ color:var(--oro-suave); margin-bottom:20px; }
+  .art-hero h1{
+    font-size:clamp(1.6rem, 3.8vw, 2.3rem);
+    line-height:1.2;
+    margin-bottom:22px;
+  }
+  .art-meta{
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+    font-size:0.78rem;
+    letter-spacing:0.06em;
+    color:rgba(243,238,225,0.72);
+    padding-top:18px;
+    border-top:1px solid var(--linea-oro);
+  }
+  .art-meta strong{ color:var(--oro-suave); font-weight:500; }
+
+  /* ---------- ARTICLE BODY ---------- */
+  .art-body{ padding:70px 0 40px; }
+  .art-body h2{
+    font-size:1.5rem;
+    margin:44px 0 14px;
+    color:var(--tinta);
+  }
+  .art-body h2:first-child{ margin-top:0; }
+  .art-body p{
+    color:var(--tinta-suave);
+    font-size:1.02rem;
+    margin-bottom:18px;
+  }
+  .art-body strong{ color:var(--tinta); font-weight:500; }
+  .lead{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.28rem;
+    font-style:italic;
+    color:var(--tinta);
+    padding-left:20px;
+    border-left:2px solid var(--oro);
+    margin-bottom:34px;
+  }
+
+
+  .art-body ul, .art-body ol{ margin:0 0 18px 22px; color:var(--tinta-suave); font-size:1.02rem; }
+  .art-body li{ margin-bottom:8px; }
+  .art-body table.resumen{ width:100%; border-collapse:collapse; margin:10px 0 28px; font-size:0.95rem; }
+  .art-body table.resumen th, .art-body table.resumen td{ text-align:left; padding:11px 12px; border-bottom:1px solid rgba(27,27,20,0.14); color:var(--tinta-suave); vertical-align:top; }
+  .art-body table.resumen th{ font-size:0.7rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--oro); font-weight:500; }
+  .art-body table.resumen td:first-child{ width:60px; font-family:'Cormorant Garamond', serif; font-size:1.2rem; color:var(--tinta); }
+
+  .art-cta{
+    text-align:center;
+    padding:50px 32px 90px;
+  }
+  .btn{
+    display:inline-block;
+    padding:14px 30px;
+    font-size:0.75rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    border:1px solid var(--oro);
+    transition:background .25s, color .25s, border-color .25s;
+  }
+  .btn-solid{
+    background:var(--oro);
+    color:var(--verde-noche);
+  }
+  .btn-solid:hover{ background:var(--oro-suave); border-color:var(--oro-suave); }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--verde-noche);
+    color:rgba(243,238,225,0.55);
+    padding:46px 32px 34px;
+    text-align:center;
+  }
+  footer img{ height:30px; margin:0 auto 16px; opacity:0.9; }
+  footer .fine{ font-size:0.72rem; letter-spacing:0.06em; }
+
+  :focus-visible{ outline:2px solid var(--oro); outline-offset:3px; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ transition:none !important; }
+  }
+
+  /* ---------- MEJORAS: progreso, compartir, imprimir, fade-in ---------- */
+  body{ animation:fadeIn .45s ease; }
+  @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
+  .progreso-lectura{
+    position:fixed; top:0; left:0; height:3px; background:var(--oro);
+    z-index:100; width:0%; transition:width .1s linear;
+  }
+  .compartir{
+    display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
+    margin:40px 0 6px; padding-top:30px; border-top:1px solid rgba(27,27,20,0.12);
+  }
+  .compartir a, .compartir button{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:'Jost', sans-serif; font-size:0.7rem; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--tinta-suave);
+    border:1px solid rgba(27,27,20,0.2); padding:9px 16px; background:none; cursor:pointer;
+    transition:border-color .2s, color .2s;
+  }
+  .compartir a:hover, .compartir button:hover{ border-color:var(--oro); color:var(--tinta); }
+  /* ---------- COMENTARIOS ---------- */
+  .comentarios{ background:var(--pergamino-alt); padding:70px 0; }
+  .comentarios .wrap{ max-width:720px; margin:0 auto; padding:0 32px; }
+  .comentarios h2{ font-size:1.6rem; margin-bottom:8px; }
+  .comentarios .aviso-coment{ font-size:0.85rem; color:var(--tinta-suave); margin-bottom:30px; }
+  .coment-form{ background:var(--pergamino); padding:26px 24px; margin-bottom:40px; }
+  .coment-form .campo{ margin-bottom:16px; }
+  .coment-form label{ display:block; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--tinta-suave); margin-bottom:6px; }
+  .coment-form input, .coment-form textarea{
+    width:100%; padding:11px 12px; font-size:0.94rem; font-family:'Jost', sans-serif;
+    border:1px solid rgba(27,27,20,0.25); background:var(--pergamino-alt); color:var(--tinta);
+  }
+  .coment-form textarea{ min-height:90px; resize:vertical; }
+  .coment-form input:focus, .coment-form textarea:focus{ outline:none; border-color:var(--oro); }
+  .campo-trampa{ position:absolute; left:-9999px; top:-9999px; }
+  .btn-coment{
+    display:inline-block; padding:11px 24px; font-size:0.72rem; letter-spacing:0.14em;
+    text-transform:uppercase; border:1px solid var(--oro); background:var(--oro); color:var(--verde-noche);
+    cursor:pointer; font-family:'Jost', sans-serif;
+  }
+  .btn-coment[disabled]{ opacity:0.55; cursor:default; }
+  .estado-coment{ margin-top:12px; font-size:0.85rem; }
+  .estado-coment.ok{ color:#123321; background:rgba(185,154,91,0.18); border-left:3px solid #B99A5B; padding:14px 16px; font-size:1rem; line-height:1.5; }
+  .estado-coment.error{ color:#8a2e2e; }
+  .coment-item{ border-top:1px solid rgba(27,27,20,0.14); padding:18px 0; }
+  .coment-item .quien{ font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--oro); margin-bottom:6px; }
+  .coment-item .texto{ color:var(--tinta-suave); font-size:0.95rem; }
+  .coment-vacio{ color:var(--tinta-suave); font-style:italic; }
+  @media print{
+    header.nav, .art-cta, footer, .compartir, .progreso-lectura, .comentarios{ display:none !important; }
+    body{ background:#fff; animation:none; }
+    .art-hero{ background:#fff !important; color:#000 !important; padding:10px 0 30px; }
+    .art-hero::before{ display:none; }
+    .art-hero .eyebrow, .art-meta, .art-meta strong{ color:#333 !important; }
+    .art-body p{ color:#111 !important; }
+  }
+</style>
+</head>
+<body>
+<div class="progreso-lectura" id="progreso"></div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <img src="logomark.png" alt="">
+      Dr. Edwin Ferrer
+    </div>
+    <a class="volver" href="index.html#opinion">← Volver al sitio</a>
+  </div>
+</header>
+
+<section class="art-hero">
+  <div class="art-hero-inner">
+    <div class="eyebrow">Columna de opinión · Derecho constitucional y salud</div>
+    <h1>Cuando la EPS ignora la tutela: lo que sigue después del fallo</h1>
+    <div class="art-meta">
+      <span><strong>Por:</strong> Edwin Iván Ferrer Barreto</span>
+      <span><strong>Publicado:</strong> 12 de octubre de 2026</span>
+      <span>5 min de lectura</span>
+    </div>
+  </div>
+</section>
+
+<section class="art-body">
+  <div class="wrap">
+
+        <p class="lead">Ganar la tutela es el primer paso; lograr que se cumpla es el segundo, y la ley también lo prevé.</p>
+
+    <p>Es una escena frecuente: el juez ordena el medicamento, la cirugía o la cita con el especialista, el paciente celebra, pasan los días y la EPS simplemente no cumple. La pregunta que más escucho entonces es: <strong>"¿y ahora qué hago?"</strong>. La respuesta es que el Decreto 2591 de 1991 ya previó este escenario y ofrece herramientas concretas. Esta columna las explica en orden.</p>
+
+    <h2>1. El fallo se cumple "sin demora"</h2>
+    <p>El artículo 27 del Decreto 2591 de 1991 establece que, proferido el fallo que concede la tutela, la autoridad responsable del agravio debe cumplirlo <strong>sin demora</strong>. Cumplir no es "iniciar el trámite": es entregar lo ordenado dentro del plazo que fijó el juez. Por eso, lo primero es leer con atención la parte resolutiva del fallo y verificar qué se ordenó y en cuánto tiempo.</p>
+
+    <h2>2. Primero: reclame por escrito y deje constancia</h2>
+    <p>Antes de acudir al juez, deje evidencia de que la orden se comunicó y no se cumplió:</p>
+    <ul>
+      <li>Radique una solicitud a la EPS citando el número del fallo, el juzgado y lo ordenado, y pida una fecha cierta de cumplimiento.</li>
+      <li>Guarde radicados, correos, números de PQR y la fecha de cada gestión.</li>
+      <li>Anote lo que ocurre con su salud mientras tanto (órdenes médicas, urgencias, empeoramiento). Sirve como prueba.</li>
+    </ul>
+
+    <h2>3. Segundo: acuda al mismo juez que dictó el fallo</h2>
+    <p>Quien ordenó es quien puede hacer cumplir. Según el artículo 27, si la autoridad no cumple dentro de las <strong>cuarenta y ocho horas siguientes</strong>, el juez se dirige al <strong>superior del responsable</strong>, le requiere para que lo haga cumplir y abra el correspondiente procedimiento disciplinario. Pasadas otras cuarenta y ocho horas, ordenará abrir proceso contra el superior que no hubiere procedido conforme a lo ordenado. Además, el juez puede sancionar por desacato al responsable y al superior <strong>hasta que cumplan</strong> la sentencia, y conserva la competencia hasta que el derecho quede restablecido.</p>
+    <p>En la práctica se presenta un escrito dirigido al juzgado solicitando: (a) que se requiera a la EPS y a su superior, y (b) que se abra el <strong>incidente de desacato</strong>.</p>
+
+    <h2>4. El incidente de desacato (artículo 52)</h2>
+    <p>Quien incumple una orden del juez dada con base en el Decreto 2591 incurre en desacato, sancionable con <strong>arresto hasta de seis meses y multa hasta de 20 salarios mínimos mensuales</strong>, sin perjuicio de las sanciones penales a que haya lugar. Puntos clave:</p>
+    <ul>
+      <li>La sanción la impone <strong>el mismo juez</strong> mediante trámite incidental.</li>
+      <li>La sanción debe ser <strong>consultada ante el superior jerárquico</strong>, que decide dentro de los tres días siguientes si debe revocarse.</li>
+      <li>La finalidad del incidente no es castigar por castigar, sino <strong>lograr que el fallo se cumpla</strong>. Por eso suele ser la herramienta más eficaz para destrabar un incumplimiento.</li>
+    </ul>
+
+    <h2>5. La ruta penal (artículo 53)</h2>
+    <p>El desacato es una sanción dentro del propio proceso de tutela, pero no es la única consecuencia. El artículo 53 del Decreto 2591 dispone que quien incumpla el fallo de tutela, o el juez que incumpla las funciones que le son propias de conformidad con ese decreto, incurrirá, según el caso, en <strong>fraude a resolución judicial</strong> (hoy tipificado en el artículo 454 del Código Penal), <strong>prevaricato por omisión</strong> o en las sanciones penales a que hubiere lugar.</p>
+    <p>Esta vía es distinta e independiente del desacato: se activa mediante denuncia penal, la investiga la Fiscalía y exige valorar los hechos caso por caso. Conviene acudir a ella con asesoría de un abogado, con las pruebas del incumplimiento bien organizadas.</p>
+
+    <h2>6. Otras vías complementarias</h2>
+    <p>Puede presentar, en paralelo, una queja ante la <strong>Superintendencia Nacional de Salud</strong> por la negativa o demora en el servicio. Es una vía adicional que no reemplaza al juez que dictó el fallo.</p>
+
+    <h2>7. Errores frecuentes</h2>
+    <ol>
+      <li><strong>Esperar meses sin reclamar.</strong> Entre más pasa el tiempo, más se debilita la urgencia y la prueba.</li>
+      <li><strong>Presentar una nueva tutela por lo mismo.</strong> En principio, si ya existe un fallo, lo que corresponde es exigir su cumplimiento ante el juez que lo dictó.</li>
+      <li><strong>No guardar pruebas</strong> de la comunicación del fallo y del incumplimiento.</li>
+      <li><strong>Dirigirse solo a la EPS</strong> y no al juez que profirió la orden.</li>
+    </ol>
+
+    <h2>En resumen</h2>
+    <table class="resumen">
+      <thead><tr><th>Paso</th><th>Qué hacer</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Reclamar por escrito a la EPS y guardar los soportes</td></tr>
+        <tr><td>2</td><td>Si no cumple dentro de las 48 horas, pedir al juez que requiera al superior (art. 27)</td></tr>
+        <tr><td>3</td><td>Solicitar la apertura del incidente de desacato (art. 52)</td></tr>
+        <tr><td>4</td><td>Valorar la denuncia penal por fraude a resolución judicial (art. 53)</td></tr>
+        <tr><td>5</td><td>Complementar con queja ante la Superintendencia Nacional de Salud</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>Un fallo de tutela no es una sugerencia: es una orden judicial, y existen mecanismos para exigir que se cumpla.</strong></p>
+
+    <p>Si su EPS no ha cumplido un fallo de tutela, en mi oficina revisamos su caso y preparamos el requerimiento, el incidente de desacato o la denuncia que corresponda. Atiendo desde Girardot, Ibagué y El Espinal, y de forma virtual en todo el país. Esta columna es informativa y no reemplaza la asesoría jurídica de su caso particular.</p>
+
+    <div class="compartir">
+      <a href="https://wa.me/?text=Cuando%20la%20EPS%20ignora%20la%20tutela:%20lo%20que%20sigue%20despu%C3%A9s%20del%20fallo%20https://edwinferrerabogado.com/eps-ignora-tutela-desacato-cumplimiento-fallo.html" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://edwinferrerabogado.com/eps-ignora-tutela-desacato-cumplimiento-fallo.html" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://edwinferrerabogado.com/eps-ignora-tutela-desacato-cumplimiento-fallo.html" target="_blank" rel="noopener">LinkedIn</a>
+      <button onclick="navigator.clipboard.writeText('https://edwinferrerabogado.com/eps-ignora-tutela-desacato-cumplimiento-fallo.html');this.textContent='¡Enlace copiado!';">Copiar enlace</button>
+      <button onclick="window.print()">Descargar PDF</button>
+    </div>
+  </div>
+</section>
+
+<section class="comentarios">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--oro);">Participe</div>
+    <h2>Comentarios</h2>
+    <p class="aviso-coment">Su comentario se publicará aquí una vez sea verificado. Por su seguridad, evite incluir datos que lo identifiquen a usted o a terceros.</p>
+    <div class="coment-form">
+      <div class="campo">
+        <label for="c-nombre">Su nombre (opcional)</label>
+        <input type="text" id="c-nombre" placeholder="Nombre o iniciales">
+      </div>
+      <div class="campo">
+        <label for="c-texto">Su comentario</label>
+        <textarea id="c-texto" placeholder="Escriba su comentario"></textarea>
+      </div>
+      <input type="text" id="c-trampa" class="campo-trampa" tabindex="-1" autocomplete="off">
+      <button class="btn-coment" id="btn-comentar">Publicar comentario</button>
+      <div class="estado-coment" id="estado-coment"></div>
+    </div>
+    <div id="lista-comentarios"><div class="coment-vacio">Cargando comentarios…</div></div>
+  </div>
+</section>
+
+<section class="art-cta">
+  <a class="btn btn-solid" href="index.html#contacto">Conversemos sobre su caso</a>
+</section>
+
+<footer>
+  <img src="logomark.png" alt="Edwin Ferrer — Servicios Legales">
+  <div class="fine">© <span id="year"></span> Edwin Iván Ferrer Barreto · Abogado · Cobertura Nacional</div>
+  <div class="fine" style="margin-top:10px;"><a href="privacidad.html" style="color:var(--oro-suave); text-decoration:none; border-bottom:1px solid transparent;">Política de Privacidad</a></div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  window.addEventListener('scroll', function(){
+    var h = document.documentElement;
+    var pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    var bar = document.getElementById('progreso');
+    if(bar) bar.style.width = Math.min(100, Math.max(0, pct)) + '%';
+  });
+  (function(){
+    var ARTICULO = 'eps-ignora-tutela-desacato-cumplimiento-fallo';
+
+    function escapar(t){
+      return String(t || '').replace(/[&<>"']/g, function(c){
+        return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+      });
+    }
+
+    function cargar(){
+      var cont = document.getElementById('lista-comentarios');
+      fetch('/.netlify/functions/comentarios-listar?articulo=' + encodeURIComponent(ARTICULO))
+        .then(function(r){ return r.json(); })
+        .then(function(data){
+          var lista = data.comentarios || [];
+          if(lista.length === 0){
+            cont.innerHTML = '<div class="coment-vacio">Sea el primero en comentar.</div>';
+            return;
+          }
+          cont.innerHTML = lista.map(function(c){
+            return '<div class="coment-item"><div class="quien">' + escapar(c.nombre) + '</div><div class="texto">' + escapar(c.comentario) + '</div></div>';
+          }).join('');
+        })
+        .catch(function(){ cont.innerHTML = '<div class="coment-vacio">No fue posible cargar los comentarios.</div>'; });
+    }
+    cargar();
+
+    document.getElementById('btn-comentar').addEventListener('click', function(){
+      var nombre = document.getElementById('c-nombre').value.trim();
+      var texto = document.getElementById('c-texto').value.trim();
+      var trampa = document.getElementById('c-trampa').value;
+      var estado = document.getElementById('estado-coment');
+      var btn = this;
+
+      if(texto.length < 3){
+        estado.className = 'estado-coment error';
+        estado.textContent = 'Escriba un comentario un poco más completo.';
+        return;
+      }
+      btn.disabled = true;
+      estado.className = 'estado-coment';
+      estado.textContent = 'Enviando…';
+
+      fetch('/.netlify/functions/comentario-nuevo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ articulo: ARTICULO, nombre: nombre, comentario: texto, trampa: trampa })
+      }).then(function(r){ return r.json().then(function(d){ return {ok:r.ok, data:d}; }); })
+        .then(function(res){
+          if(!res.ok){
+            estado.className = 'estado-coment error';
+            estado.textContent = (res.data && res.data.error) || 'No fue posible enviar su comentario.';
+            return;
+          }
+          estado.className = 'estado-coment ok';
+          estado.textContent = '✔ Gracias. Su comentario fue recibido y está pendiente de revisión; se publicará una vez sea aprobado.';
+          try{ estado.scrollIntoView({behavior:'smooth', block:'center'}); }catch(e){}
+          document.getElementById('c-nombre').value = '';
+          document.getElementById('c-texto').value = '';
+        })
+        .catch(function(){
+          estado.className = 'estado-coment error';
+          estado.textContent = 'No fue posible enviar su comentario. Intente de nuevo.';
+        })
+        .finally(function(){ btn.disabled = false; });
+    });
+  })();
+</script>
+</body>
+</html>
