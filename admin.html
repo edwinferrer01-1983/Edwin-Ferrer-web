@@ -107,26 +107,6 @@
   <div id="vista-panel" hidden>
 
     <div class="card">
-      <h2>Buscar cliente por cédula</h2>
-      <div class="campo">
-        <label for="cedula-buscar">Número de cédula</label>
-        <input type="text" id="cedula-buscar" inputmode="numeric" placeholder="Sin puntos ni espacios">
-      </div>
-      <button class="btn" id="btn-buscar">Buscar</button>
-      <div class="resultado" id="resultado-buscar"></div>
-    </div>
-
-    <div class="card" id="card-resetear" hidden>
-      <h2>Restablecer clave de acceso</h2>
-      <div class="campo">
-        <label for="clave-nueva">Nueva clave (6 números)</label>
-        <input type="password" inputmode="numeric" maxlength="6" id="clave-nueva" placeholder="Nueva clave de 6 números">
-      </div>
-      <button class="btn" id="btn-resetear">Restablecer clave</button>
-      <div class="resultado" id="resultado-resetear"></div>
-    </div>
-
-    <div class="card">
       <h2>Comentarios pendientes</h2>
       <div id="lista-pend-comentarios"><div class="pend-vacio">Cargando…</div></div>
     </div>
@@ -146,9 +126,7 @@
 <script>
   var vistaLogin = document.getElementById('vista-login');
   var vistaPanel = document.getElementById('vista-panel');
-  var cedulaActual = '';
 
-  function limpiarCedula(v){ return String(v || '').trim().replace(/[^0-9A-Za-z]/g, ''); }
 
   function mostrarPanel(){ vistaLogin.hidden = true; vistaPanel.hidden = false; }
   function mostrarLogin(){ vistaPanel.hidden = true; vistaLogin.hidden = false; }
@@ -171,77 +149,6 @@
   netlifyIdentity.on('login', function(){ netlifyIdentity.close(); mostrarPanel(); cargarPendientes(); });
   netlifyIdentity.on('logout', function(){ mostrarLogin(); });
   netlifyIdentity.init();
-
-  function llamarAdmin(accion, extra){
-    var user = netlifyIdentity.currentUser();
-    if(!user){ return Promise.reject(new Error('No hay sesión activa')); }
-    return user.jwt().then(function(token){
-      return fetch('/.netlify/functions/admin-clientes', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
-        body: JSON.stringify(Object.assign({ accion: accion }, extra))
-      });
-    }).then(function(res){
-      return res.json().then(function(data){ return { ok: res.ok, data: data }; });
-    });
-  }
-
-  document.getElementById('btn-buscar').addEventListener('click', function(){
-    cedulaActual = limpiarCedula(document.getElementById('cedula-buscar').value);
-    var resultado = document.getElementById('resultado-buscar');
-    var cardResetear = document.getElementById('card-resetear');
-    cardResetear.hidden = true;
-    if(!cedulaActual){
-      resultado.className = 'resultado error';
-      resultado.textContent = 'Ingrese un número de cédula.';
-      return;
-    }
-    resultado.className = 'resultado';
-    resultado.textContent = 'Buscando...';
-
-    llamarAdmin('buscar', { cedula: cedulaActual }).then(function(r){
-      if(!r.ok){
-        resultado.className = 'resultado error';
-        resultado.textContent = (r.data && r.data.error) || 'No se encontró información.';
-        return;
-      }
-      var texto = '';
-      if(r.data.caso){ texto += 'Caso: <span class="caso-nombre">' + r.data.caso.replace(/</g,'&lt;') + '</span><br>'; }
-      texto += r.data.existeCuenta ? 'Esta cédula ya tiene una cuenta activada.' : 'Esta cédula todavía no ha activado ninguna cuenta.';
-      resultado.className = 'resultado ok';
-      resultado.innerHTML = texto;
-      cardResetear.hidden = !r.data.existeCuenta;
-    }).catch(function(){
-      resultado.className = 'resultado error';
-      resultado.textContent = 'No fue posible completar la búsqueda.';
-    });
-  });
-
-  document.getElementById('btn-resetear').addEventListener('click', function(){
-    var clave = document.getElementById('clave-nueva').value;
-    var resultado = document.getElementById('resultado-resetear');
-    if(!/^[0-9]{6}$/.test(clave)){
-      resultado.className = 'resultado error';
-      resultado.textContent = 'La nueva clave debe tener exactamente 6 números.';
-      return;
-    }
-    resultado.className = 'resultado';
-    resultado.textContent = 'Restableciendo...';
-
-    llamarAdmin('resetear', { cedula: cedulaActual, nuevaClave: clave }).then(function(r){
-      if(!r.ok){
-        resultado.className = 'resultado error';
-        resultado.textContent = (r.data && r.data.error) || 'No fue posible restablecer la clave.';
-        return;
-      }
-      resultado.className = 'resultado ok';
-      resultado.textContent = 'Clave restablecida. Ya puede indicarle al cliente su nueva clave.';
-      document.getElementById('clave-nueva').value = '';
-    }).catch(function(){
-      resultado.className = 'resultado error';
-      resultado.textContent = 'No fue posible restablecer la clave.';
-    });
-  });
 
   // ---------- Comentarios pendientes ----------
   function llamarFuncion(nombre, accion, extra){
