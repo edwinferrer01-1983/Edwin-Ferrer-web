@@ -1,2 +1,8 @@
 [build]
   functions = "netlify/functions"
+
+[[redirects]]
+  from = "/columna-que-concejales-necesita-el-espinal.html"
+  to = "/columnas.html"
+  status = 301
+  force = true
