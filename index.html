@@ -347,14 +347,34 @@
     gap:64px;
     align-items:start;
   }
-  .perfil-grid .plate{
-    background:var(--verde-botella);
-    padding:0;
-    overflow:hidden;
-    border:none;
-    box-shadow:0 24px 48px -22px rgba(18,51,33,0.45);
+  .retrato{ position:relative; height:620px; margin-top:24px; }
+  .retrato .ret-panel{
+    position:absolute; left:0; right:0; bottom:0; height:80%;
+    background:radial-gradient(ellipse 80% 70% at 50% 30%, #17402a 0%, var(--verde-botella) 60%, #08190f 100%);
+    border-radius:999px 999px 0 0; overflow:hidden;
   }
-  .perfil-grid .plate img{ width:100%; display:block; }
+  .retrato .ret-panel::before{
+    content:""; position:absolute; inset:0;
+    background:
+      repeating-linear-gradient(0deg, transparent 0 39px, rgba(185,154,91,0.06) 40px),
+      repeating-linear-gradient(90deg, transparent 0 39px, rgba(185,154,91,0.06) 40px);
+  }
+  .retrato .ret-marco{
+    position:absolute; left:-16px; right:16px; bottom:-16px; height:80%;
+    border:1px solid var(--oro); border-radius:999px 999px 0 0;
+  }
+  .retrato .ret-foto{
+    position:absolute; left:50%; bottom:0; transform:translateX(-50%);
+    height:103%; width:auto; max-width:none;
+    filter:drop-shadow(0 18px 30px rgba(0,17,7,0.35));
+  }
+  .retrato .ret-placa{
+    position:absolute; right:-28px; bottom:42px;
+    background:var(--verde-noche); color:var(--pergamino);
+    padding:16px 22px; border-left:2px solid var(--oro);
+  }
+  .retrato .ret-placa .k{ font-size:0.68rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--oro-suave); }
+  .retrato .ret-placa .v{ font-family:'Cormorant Garamond', serif; font-size:1.5rem; font-weight:600; line-height:1.1; margin-top:4px; }
   .perfil-text p{ margin-bottom:20px; color:var(--tinta-suave); font-size:1.02rem; }
   .perfil-text strong{ color:var(--tinta); font-weight:500; }
   .locales{
@@ -397,7 +417,10 @@
   }
   @media (max-width:800px){
     .perfil-grid{ grid-template-columns:1fr; gap:40px; }
-    .perfil-grid .plate{ max-width:280px; margin:0 auto; }
+    .retrato{ width:100%; max-width:330px; height:440px; margin:10px auto 0; }
+    .retrato .ret-marco{ left:-10px; right:10px; bottom:-10px; }
+    .retrato .ret-placa{ right:-6px; bottom:22px; padding:11px 15px; }
+    .retrato .ret-placa .v{ font-size:1.15rem; }
   }
 
   /* ---------- AREAS (memorial) ---------- */
@@ -792,7 +815,12 @@
 
 <section class="section perfil" id="perfil">
   <div class="wrap perfil-grid">
-    <div class="plate"><img src="fotoedwinverde.jpg" alt="Edwin Iván Ferrer Barreto"></div>
+    <div class="retrato">
+      <div class="ret-marco"></div>
+      <div class="ret-panel"></div>
+      <img class="ret-foto" src="foto-edwin-perfil.webp" alt="Edwin Iván Ferrer Barreto, abogado" width="560" height="831">
+      <div class="ret-placa"><div class="k">Abogado litigante</div><div class="v">Penal · Familia · Público</div></div>
+    </div>
     <div class="perfil-text">
       <div class="section-head" style="margin-bottom:26px;">
         <div class="eyebrow">Perfil profesional</div>
