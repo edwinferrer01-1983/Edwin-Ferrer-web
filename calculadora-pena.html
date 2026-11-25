@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calculadora de cumplimiento de pena — Edwin Ferrer</title>
+<link rel="icon" href="logomark.png">
+<meta name="description" content="Calcule el tiempo descontado de una condena con la redención 2x3 y las fechas de mitad, tres quintas partes y pena cumplida.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Calculadora de cumplimiento de pena — Edwin Ferrer">
+<meta property="og:description" content="Calcule el tiempo descontado de una condena con la redención 2x3 y las fechas de mitad, tres quintas partes y pena cumplida.">
+<meta property="og:image" content="https://edwinferrerabogado.com/logoplate.png">
+<meta property="og:url" content="https://edwinferrerabogado.com/calculadora-pena.html">
+<meta property="og:locale" content="es_CO">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: sobrio, preciso, de despacho; habla al condenado y a su familia sin jerga innecesaria.
+   IDEA: la cartilla biográfica del interno convertida en una regla de cumplimiento.
+   PICTURE: una regla horizontal grande con el avance y las marcas de 1/2, 3/5 y pena total.
+   COLOUR and TYPE: verde #123321 de la marca, oro #B99A5B como acento, pergamino de fondo; Cormorant + Jost.
+   LAYOUT: resultado grande arriba, datos en columna a la izquierda y lectura a la derecha; apila en celular. */
+:root{color-scheme:light;--bg:light-dark(#F3EEE1,#0d1a13);--card:light-dark(#fffdf7,#13241b);--ink:light-dark(#14201a,#ece6d6);--mute:light-dark(#5b6660,#a9b3ac);--green:#123321;--gold:#B99A5B;--gold2:#D8C08A;--line:light-dark(#ddd3bd,#2b3d33);--ok:light-dark(#1f6b3f,#7fd3a0);--no:light-dark(#9b2c1f,#f0958a)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Jost,system-ui,sans-serif;overflow-x:clip}
+.band{padding:clamp(24px,4vw,56px) max(5vw,16px);max-width:1240px;margin:auto}
+h1{font:600 clamp(32px,4.4vw,48px)/1.05 Cormorant Garamond,serif;margin:0 0 8px;text-wrap:balance}
+h2{font:600 26px/1.15 Cormorant Garamond,serif;margin:0 0 12px}
+.lead{color:var(--mute);max-width:68ch;margin:0}
+.ruler{background:var(--green);color:#F3EEE1;border-radius:14px;padding:22px clamp(16px,3vw,32px) 26px;margin:22px 0}
+.big{display:flex;flex-wrap:wrap;gap:8px 28px;align-items:baseline}
+.big strong{font:600 clamp(40px,7vw,64px)/1 Cormorant Garamond,serif;color:var(--gold2)}
+.big small{font-size:15px;color:#cfd8d1}
+.track{position:relative;height:30px;margin:46px 0 34px;background:#0b2416;border-radius:6px;box-shadow:inset 0 2px 0 rgba(0,0,0,.25)}
+.fill{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,#8f7640,var(--gold),var(--gold2));border-radius:6px;transition:width .5s}
+@media(prefers-reduced-motion:reduce){.fill{transition:none}}
+.mk{position:absolute;top:-6px;bottom:-6px;width:2px;background:#F3EEE1}
+.mk i{position:absolute;bottom:40px;transform:translateX(-50%);font-style:normal;font-size:13px;white-space:nowrap;color:#F3EEE1}
+.mk em{position:absolute;top:40px;transform:translateX(-50%);font-style:normal;font-size:12px;white-space:nowrap;color:#cfd8d1}
+.mk.end i,.mk.end em{transform:translateX(-100%)}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:22px;align-items:start}
+@media(max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}.mk em{display:none}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
+fieldset{border:0;margin:0 0 18px;padding:0}legend{font-weight:600;margin-bottom:8px}
+.row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.row2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+label{display:block;font-size:14px;color:var(--mute)}
+input[type=number],input[type=date]{width:100%;font:16px Jost,sans-serif;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);min-height:44px}
+input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.chk{display:flex;gap:10px;align-items:flex-start;padding:8px 0;color:var(--ink);font-size:15px}
+.chk input{width:22px;height:22px;margin-top:2px;accent-color:var(--green);flex:none}
+.hint{font-size:13px;color:var(--mute);margin:4px 0 0}
+table{width:100%;border-collapse:collapse;font-size:15px}td{padding:8px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;padding-left:10px}
+.hit{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.hit:last-child{border:0}.hit b{font:600 20px Cormorant Garamond,serif}.hit .d{font-size:15px}
+.tag{display:inline-block;font-size:13px;padding:2px 10px;border-radius:99px;white-space:nowrap}
+.tag.ok{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}.tag.no{background:color-mix(in srgb,var(--no) 16%,transparent);color:var(--no)}.tag.wait{background:color-mix(in srgb,var(--gold) 22%,transparent);color:light-dark(#6e5823,var(--gold2))}
+.warn{border-left:4px solid var(--gold);padding:10px 14px;background:color-mix(in srgb,var(--gold) 10%,transparent);border-radius:0 8px 8px 0;font-size:15px;margin:12px 0}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+button,.cta{font:500 16px Jost,sans-serif;min-height:44px;padding:10px 18px;border-radius:8px;border:1px solid var(--green);background:transparent;color:var(--ink);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.cta{background:var(--green);color:#F3EEE1}
+ul.src{padding-left:18px;font-size:15px}ul.src li{margin:8px 0}
+.foot{font-size:14px;color:var(--mute)}
+header.nav{background:#001107;color:#F3EEE1;padding:16px max(5vw,16px);border-bottom:1px solid rgba(185,154,91,.35);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+header.nav .marca{display:flex;align-items:center;gap:10px;font:500 1.15rem 'Cormorant Garamond',serif;color:#F3EEE1;text-decoration:none}
+header.nav .marca img{height:26px}
+header.nav nav{display:flex;gap:18px;flex-wrap:wrap}
+header.nav nav a{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#D8C08A;text-decoration:none}
+footer.pie{background:#123321;color:rgba(243,238,225,.6);padding:30px 24px;text-align:center;font-size:.78rem}
+</style>
+</head>
+<body>
+<header class="nav"><a class="marca" href="index.html"><img src="logomark.png" alt="">Dr. Edwin Ferrer</a><nav><a href="herramientas.html">← Herramientas jurídicas</a><a href="index.html">Inicio</a></nav></header>
+
+<main class="band">
+<h1>Calculadora de cumplimiento de pena</h1>
+<p class="lead">Calcule cuánto tiempo de la condena lleva descontado, sumando la redención por trabajo, estudio y enseñanza con la fórmula vigente de 2 días por cada 3, y estime en qué fecha se llega a la mitad (prisión domiciliaria del art. 38G), a las tres quintas partes (libertad condicional) y a la pena cumplida.</p>
+
+<section class="ruler" aria-live="polite">
+  <div class="big"><strong id="pct">0 %</strong><small id="sum">de la pena descontada</small></div>
+  <div class="track" id="track"><div class="fill" id="fill" style="width:0"></div></div>
+  <div class="big"><small id="sum2"></small></div>
+</section>
+
+<div class="grid">
+<form class="card" id="f" autocomplete="off">
+  <p class="hint" style="margin:0 0 14px">Datos cargados: caso de ejemplo. Reemplácelos por los suyos.</p>
+  <fieldset><legend>Pena impuesta</legend>
+    <div class="row">
+      <label>Años<input type="number" id="py" min="0" value="8"></label>
+      <label>Meses<input type="number" id="pm" min="0" max="11" value="0"></label>
+      <label>Días<input type="number" id="pd" min="0" max="29" value="0"></label>
+    </div>
+  </fieldset>
+  <fieldset><legend>Privación de la libertad</legend>
+    <div class="row2">
+      <label>Fecha de captura o inicio<input type="date" id="ini" value="2021-03-10"></label>
+      <label>Fecha de corte<input type="date" id="cor"></label>
+    </div>
+    <label style="margin-top:10px">Días que no cuentan (fuga, libertad intermedia, revocatorias)<input type="number" id="int" min="0" value="0"></label>
+    <p class="hint">La detención preventiva se abona a la pena (art. 37 num. 3 del Código Penal).</p>
+  </fieldset>
+  <fieldset><legend>Redención</legend>
+    <div class="row2">
+      <label>Horas de trabajo certificadas<input type="number" id="ht" min="0" value="5200"></label>
+      <label>Horas de estudio certificadas<input type="number" id="he" min="0" value="720"></label>
+      <label>Horas de enseñanza como instructor<input type="number" id="hn" min="0" value="0"></label>
+      <label>Otra redención ya reconocida en días (no incluida arriba)<input type="number" id="rj" min="0" value="0"></label>
+    </div>
+    <p class="hint">Ingrese todas las horas certificadas, también las anteriores a junio de 2025 y las que ya le reconocieron con la fórmula vieja: por favorabilidad se recalculan con la regla de 2 × 3. Cada día equivale a 8 horas de trabajo, 6 de estudio o 4 de enseñanza. Domingos y festivos sin actividad no cuentan.</p>
+  </fieldset>
+  <fieldset><legend>Situaciones que excluyen beneficios</legend>
+    <label class="chk"><input type="checkbox" id="nna"> Homicidio o lesiones dolosas, delito sexual o secuestro cometido contra un niño, niña o adolescente</label>
+    <label class="chk"><input type="checkbox" id="l38"> El delito está en la lista de exclusiones del art. 38G (p. ej. delitos sexuales, extorsión, tráfico de estupefacientes salvo arts. 375 y 376 inc. 2, peculado por apropiación, concusión, cohecho, feminicidio)</label>
+    <label class="chk"><input type="checkbox" id="fam"> El condenado pertenece al grupo familiar de la víctima</label>
+  </fieldset>
+  <div class="btns"><button type="button" id="hoy">Corte a hoy</button><button type="button" id="cp">Copiar resultado</button></div>
+</form>
+
+<div>
+  <div class="card">
+    <h2>Fechas clave</h2>
+    <div id="hits"></div>
+    <div class="warn" id="note">Las fechas proyectadas suponen que desde el corte no habrá más redención. Si sigue trabajando o estudiando, se adelantan. Pueden variar en un día según cómo cuente el juzgado los días sobrantes del mes.</div>
+  </div>
+  <div class="card" style="margin-top:22px">
+    <h2>Detalle del cómputo</h2>
+    <table id="det"></table>
+  </div>
+</div>
+</div>
+
+<section class="card" style="margin-top:22px">
+  <h2>Además del tiempo, el juez revisa</h2>
+  <p class="foot" style="margin-top:0">Cumplir la fracción no basta. Para la libertad condicional (art. 64 del Código Penal) se exige también:</p>
+  <ul class="src">
+    <li>Adecuado desempeño y comportamiento durante el tratamiento penitenciario, que permita suponer que no hace falta seguir ejecutando la pena.</li>
+    <li>Arraigo familiar y social demostrado.</li>
+    <li>Reparación a la víctima o aseguramiento de la indemnización (garantía o acuerdo de pago), salvo insolvencia demostrada.</li>
+    <li>Previa valoración de la conducta punible. Según la Corte Constitucional (C-757 de 2014), esa valoración debe tener en cuenta todo lo dicho por el juez en la sentencia, a favor y en contra.</li>
+  </ul>
+  <p class="foot">Para la prisión domiciliaria del art. 38G se exigen además los presupuestos de los numerales 3 y 4 del art. 38B (arraigo y garantía de las obligaciones).</p>
+</section>
+
+<section class="card" style="margin-top:22px">
+  <h2>Normas en que se basa</h2>
+  <ul class="src">
+    <li><b>Código Penal, art. 64</b> (mod. art. 30 Ley 1709 de 2014): libertad condicional con las tres quintas partes de la pena.</li>
+    <li><b>Código Penal, art. 38G</b> (mod. art. 3 Ley 2356 de 2024): prisión domiciliaria al cumplir la mitad de la condena, con sus exclusiones.</li>
+    <li><b>Código Penal, art. 68A</b> (mod. Ley 2356 de 2024): su parágrafo 1 aclara que las exclusiones generales no se aplican a la libertad condicional ni al art. 38G.</li>
+    <li><b>Código Penal, art. 37 num. 3</b>: el tiempo de detención preventiva se computa como pena cumplida.</li>
+    <li><b>Ley 2466 de 2025, art. 19</b>: redención de dos días de reclusión por tres de trabajo. Declarado exequible en las sentencias C-030 y C-320 de 2026.</li>
+    <li><b>Corte Suprema, Sala de Casación Penal, STP14521-2025</b> (11 sep. 2025, rad. 148378): el art. 19 modificó el art. 82 de la Ley 65 de 1993 y, por favorabilidad, obliga a reexaminar la redención ya reconocida con la fórmula anterior.</li>
+    <li><b>Corte Suprema, STP8152-2026</b> (7 may. 2026, rad. 155021): unifica la postura de la Sala; la fórmula 2 × 3 se aplica también al estudio y la enseñanza, con la intensidad de 8, 6 y 4 horas, e incluso a casos resueltos antes.</li>
+    <li><b>Ley 65 de 1993, arts. 82, 97 y 98</b>: fijan las horas que valen un día (8 de trabajo, 6 de estudio, 4 de enseñanza). <b>Art. 100</b>: domingos y festivos sin actividad no cuentan.</li>
+    <li><b>Ley 4 de 1913, art. 59</b>, y <b>Corte Constitucional T-284 de 2025</b>: los meses de la pena son los del calendario, sin sumar aparte los días 31.</li>
+    <li><b>Ley 1098 de 2006, art. 199</b>: en los delitos dolosos señalados contra niños, niñas y adolescentes no proceden la libertad condicional ni otros beneficios.</li>
+  </ul>
+  <p class="foot">Cómo se cuenta: el tiempo físico se mide en meses del calendario, del día de la captura al día de corte, ambos incluidos. La redención, que se reconoce en días, se suma a los días sobrantes y todo se expresa en meses y días, como en los autos de los juzgados de ejecución. Normas verificadas en la Secretaría del Senado (actualización del 15 de noviembre de 2026); providencias, en las relatorías de la Corte Suprema y de la Corte Constitucional.</p>
+</section>
+
+<section class="band" style="padding-inline:0">
+  <div class="warn"><b>Resultado orientativo.</b> Esta herramienta no reemplaza la revisión del expediente, la cartilla biográfica ni los certificados del INPEC. Cada caso puede tener reglas especiales (régimen de transición, favorabilidad, mujer cabeza de familia según la Ley 2292 de 2023, delitos con exclusiones propias).</div>
+  <div class="btns"><a class="cta" href="https://wa.me/573105732441?text=Hola%20Dr.%20Edwin%2C%20us%C3%A9%20la%20calculadora%20de%20pena%20y%20quisiera%20revisar%20un%20caso." target="_blank" rel="noopener">Revisar mi caso por WhatsApp</a></div>
+  <p class="foot">WhatsApp 310 573 2441 · edwinferrer01@gmail.com · edwinferrerabogado.com</p>
+</section>
+</main>
+<footer class="pie">© Edwin Iván Ferrer Barreto · Abogado · Cobertura Nacional · <a href="privacidad.html" style="color:#D8C08A">Política de Privacidad</a></footer>
+
+<script>
+{
+const $=id=>document.getElementById(id);
+const CAMBIO=new Date(2025,5,25);
+const pad=n=>String(n).padStart(2,'0');
+const iso=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const parse=s=>{if(!s)return null;const[y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)};
+const fmt=d=>d.toLocaleDateString('es-CO',{day:'numeric',month:'long',year:'numeric'});
+const num=id=>Math.max(0,parseFloat($(id).value)||0);
+// diferencia calendario en meses completos y días sobrantes
+function diff(a,b){if(b<a)return{m:0,d:0};let m=(b.getFullYear()-a.getFullYear())*12+(b.getMonth()-a.getMonth());let t=addM(a,m);if(t>b){m--;t=addM(a,m)}return{m,d:Math.round((b-t)/864e5)}}
+function addM(d,m){const r=new Date(d.getFullYear(),d.getMonth()+m,1);const last=new Date(r.getFullYear(),r.getMonth()+1,0).getDate();r.setDate(Math.min(d.getDate(),last));return r}
+// primer día (incluido) en que el cómputo, contado igual que el tiempo físico, alcanza la meta
+function reach(ini,cor,target,red){const x=new Date(cor);const off=num('int');for(let i=0;i<25600;i++){x.setDate(x.getDate()+1);const f=new Date(x);f.setDate(f.getDate()+1);const q=diff(ini,f);if(q.m*30+q.d-off+red>=target-1e-9)return new Date(x)}return null}
+const md=days=>{const t=Math.round(days*10)/10;const m=Math.floor(t/30);const d=Math.round((t-m*30)*10)/10;return m+' meses y '+String(d).replace('.',',')+' días'};
+const d1=x=>String(Math.round(x*10)/10).replace('.',',');
+let last='';
+function calc(){
+  const pena=(num('py')*12+num('pm'))*30+num('pd');
+  const ini=parse($('ini').value),cor=parse($('cor').value);
+  if(!pena||!ini||!cor){$('pct').textContent='—';return}
+  const fin=new Date(cor);fin.setDate(fin.getDate()+1);
+  const df=diff(ini,fin);const fis=Math.max(0,df.m*30+df.d-num('int'));
+  const dt=Math.floor(num('ht')/8),de=Math.floor(num('he')/6),dn=Math.floor(num('hn')/4);
+  const rt=dt*2/3,res=de*2/3,ren=dn*2/3,rj=num('rj');
+  const vieja=dt/2+de/2+dn/2;
+  const red=rt+res+ren+rj,ef=fis+red,p=Math.min(100,ef/pena*100);
+  $('pct').textContent=d1(p)+' %';
+  $('sum').textContent='de la pena descontada al '+fmt(cor);
+  $('sum2').textContent='Lleva '+md(ef)+' de '+md(pena)+' (físico '+md(fis)+' + redención '+md(red)+').';
+  $('fill').style.width=p+'%';
+  const marks=[[50,'1/2','Domiciliaria 38G'],[60,'3/5','Libertad condicional'],[100,'Total','Pena cumplida']];
+  $('track').querySelectorAll('.mk').forEach(e=>e.remove());
+  marks.forEach(([x,a,b])=>{const e=document.createElement('div');e.className='mk'+(x===100?' end':'');e.style.left='calc('+x+'% - 1px)';const i=document.createElement('i');i.textContent=a;const m=document.createElement('em');m.textContent=b;e.append(i,m);$('track').append(e)});
+  const nna=$('nna').checked,ex38=$('l38').checked||$('fam').checked||nna;
+  const goals=[['Mitad de la pena','Prisión domiciliaria (art. 38G)',pena/2,ex38?'Excluida: el delito o la relación con la víctima impide este beneficio.':''],
+               ['Tres quintas partes','Libertad condicional (art. 64). El tiempo que falte de la pena será período de prueba',pena*3/5,nna?'No procede por el art. 199 num. 5 de la Ley 1098 de 2006.':''],
+               ['Pena cumplida','Libertad por pena cumplida',pena,'']];
+  const rows=[];let txt='Cómputo al '+fmt(cor)+': '+md(ef)+' de '+md(pena)+' ('+d1(p)+' %).\n';
+  $('hits').innerHTML='';
+  goals.forEach(([t,b,target,bloq])=>{
+    const falta=target-ef;const h=document.createElement('div');h.className='hit';
+    const left=document.createElement('div');const tg=document.createElement('span');
+    let linea;
+    if(bloq){tg.className='tag no';tg.textContent='No procede';linea=bloq}
+    else if(falta<=0){tg.className='tag ok';tg.textContent='Cumplido';linea='Requisito de tiempo cumplido desde antes del corte ('+md(target)+').'}
+    else{tg.className='tag wait';const fe=reach(ini,cor,target,red);tg.textContent=fe?fmt(fe):'Más de 70 años';linea='Faltan '+md(falta)+' para llegar a '+md(target)+'.'}
+    left.append(tg);const r=document.createElement('div');const bb=document.createElement('b');bb.textContent=t;const dd=document.createElement('div');dd.className='d';dd.textContent=b+'. '+linea;r.append(bb,dd);h.append(left,r);$('hits').append(h);
+    txt+='- '+t+' ('+b+'): '+tg.textContent+'. '+linea+'\n';
+  });
+  const det=[['Pena impuesta',md(pena)],['Tiempo físico (del '+fmt(ini)+' al '+fmt(cor)+', ambos incluidos)',md(df.m*30+df.d)],['Menos días que no cuentan','− '+d1(num('int'))+' días'],
+    ['Trabajo: '+dt+' días de 8 h × 2/3',d1(rt)+' días'],['Estudio: '+de+' días de 6 h × 2/3',d1(res)+' días'],['Enseñanza: '+dn+' días de 4 h × 2/3',d1(ren)+' días'],['Otra redención reconocida',d1(rj)+' días'],['Total redención',md(red)],['Tiempo efectivo descontado',md(ef)],
+    ['Con la fórmula anterior (1 × 2) la redención por actividades habría sido',d1(vieja)+' días'],['Diferencia a favor por la fórmula 2 × 3',d1(rt+res+ren-vieja)+' días']];
+  const tb=$('det');tb.innerHTML='';det.forEach(([a,b])=>{const tr=tb.insertRow();const c1=tr.insertCell();c1.textContent=a;const c2=tr.insertCell();c2.className='n';c2.textContent=b});
+  last=txt+'Resultado orientativo. Calculadora de Edwin Ferrer — Servicios Legales (edwinferrerabogado.com).';
+  try{localStorage.setItem('calcPena',JSON.stringify([...document.querySelectorAll('#f input')].map(i=>i.type==='checkbox'?i.checked:i.value)))}catch(e){}
+}
+const ins=[...document.querySelectorAll('#f input')];
+try{const s=JSON.parse(localStorage.getItem('calcPena')||'null');if(s&&s.length===ins.length)ins.forEach((i,k)=>i.type==='checkbox'?i.checked=s[k]:i.value=s[k])}catch(e){}
+if(!$('cor').value)$('cor').value=iso(new Date());
+ins.forEach(i=>i.addEventListener('input',calc));
+$('hoy').addEventListener('click',()=>{$('cor').value=iso(new Date());calc()});
+$('cp').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(last);$('cp').textContent='Copiado'}catch(e){$('cp').textContent='No se pudo copiar'}setTimeout(()=>$('cp').textContent='Copiar resultado',1800)});
+calc();
+}
+</script>
+</body>
+</html>

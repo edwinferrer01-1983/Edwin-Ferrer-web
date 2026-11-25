@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calculadora de términos de tutela — Edwin Ferrer</title>
+<link rel="icon" href="logomark.png">
+<meta name="description" content="Plazos para fallar, impugnar, cumplir y resolver el desacato en la acción de tutela, en días hábiles.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Calculadora de términos de tutela — Edwin Ferrer">
+<meta property="og:description" content="Plazos para fallar, impugnar, cumplir y resolver el desacato en la acción de tutela, en días hábiles.">
+<meta property="og:image" content="https://edwinferrerabogado.com/logoplate.png">
+<meta property="og:url" content="https://edwinferrerabogado.com/calculadora-tutela.html">
+<meta property="og:locale" content="es_CO">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: sobrio y práctico; habla al ciudadano que espera su fallo y al abogado que cuida un término.
+   IDEA: el calendario del despacho judicial, con cada término marcado como en una agenda de secretaría.
+   PICTURE: una línea de tiempo vertical grande con cada etapa, su fecha límite y la norma que la fija.
+   COLOUR and TYPE: verde #123321 de la marca, oro #B99A5B de acento, pergamino de fondo; Cormorant + Jost.
+   LAYOUT: datos a la izquierda, línea de tiempo a la derecha; apila en celular. */
+:root{color-scheme:light;--bg:light-dark(#F3EEE1,#0d1a13);--card:light-dark(#fffdf7,#13241b);--ink:light-dark(#14201a,#ece6d6);--mute:light-dark(#5b6660,#a9b3ac);--green:#123321;--gold:#B99A5B;--gold2:#D8C08A;--line:light-dark(#ddd3bd,#2b3d33);--ok:light-dark(#1f6b3f,#7fd3a0);--no:light-dark(#9b2c1f,#f0958a)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Jost,system-ui,sans-serif;overflow-x:clip}
+main{padding:clamp(24px,4vw,56px) max(5vw,16px);max-width:1240px;margin:auto}
+h1{font:600 clamp(32px,4.4vw,48px)/1.05 Cormorant Garamond,serif;margin:0 0 8px;text-wrap:balance}
+h2{font:600 26px/1.15 Cormorant Garamond,serif;margin:0 0 12px}
+.lead{color:var(--mute);max-width:70ch;margin:0 0 22px}
+.grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr);gap:22px;align-items:start}
+@media(max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}.time{order:-1}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
+fieldset{border:0;margin:0 0 18px;padding:0}legend{font-weight:600;margin-bottom:8px}
+label{display:block;font-size:14px;color:var(--mute);margin-bottom:10px}
+input[type=date],select{width:100%;font:16px Jost,sans-serif;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);min-height:44px}
+input:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.chk{display:flex;gap:10px;align-items:flex-start;color:var(--ink);font-size:15px}
+.chk input{width:22px;height:22px;margin-top:2px;accent-color:var(--green);flex:none}
+.hint{font-size:13px;color:var(--mute);margin:2px 0 10px}
+.time{background:var(--green);color:#F3EEE1;border-radius:14px;padding:22px clamp(16px,3vw,30px)}
+.time h2{color:var(--gold2)}
+.step{display:grid;grid-template-columns:minmax(0,9.5em) 18px minmax(0,1fr);gap:0 14px;position:relative;padding-bottom:20px}
+.step:last-child{padding-bottom:0}
+.step .dt{font:600 21px/1.15 Cormorant Garamond,serif;color:var(--gold2);text-align:right}
+.step .dt small{display:block;font:400 13px Jost,sans-serif;color:#cfd8d1}
+.step .dot{width:14px;height:14px;border-radius:50%;background:var(--gold);margin-top:5px;box-shadow:0 0 0 4px rgba(185,154,91,.25)}
+.step::before{content:"";position:absolute;left:calc(9.5em + 14px + 6px);top:22px;bottom:0;width:2px;background:rgba(243,238,225,.25)}
+.step:last-child::before{display:none}
+.step.off .dot{background:transparent;border:2px solid rgba(243,238,225,.5)}
+.step.off .dt{color:#cfd8d1}
+.step b{display:block;font-weight:600}.step p{margin:2px 0 0;font-size:14.5px;color:#dfe6e0}
+.step .norm{font-size:13px;color:var(--gold2)}
+@media(max-width:520px){.step{grid-template-columns:18px minmax(0,1fr)}.step .dt{grid-column:2;text-align:left;order:-1}.step .dot{grid-row:1/3;grid-column:1}.step::before{left:6px}}
+.warn{border-left:4px solid var(--gold);padding:10px 14px;background:color-mix(in srgb,var(--gold) 10%,transparent);border-radius:0 8px 8px 0;font-size:15px;margin:14px 0}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+button,.cta{font:500 16px Jost,sans-serif;min-height:44px;padding:10px 18px;border-radius:8px;border:1px solid var(--green);background:transparent;color:var(--ink);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.cta{background:var(--green);color:#F3EEE1}
+ul.src{padding-left:18px;font-size:15px}ul.src li{margin:8px 0}
+details{margin-top:12px}summary{cursor:pointer;font-weight:500;min-height:44px;display:flex;align-items:center}
+.fest{columns:2 14em;font-size:14px;padding-left:18px}
+.foot{font-size:14px;color:var(--mute)}
+header.nav{background:#001107;color:#F3EEE1;padding:16px max(5vw,16px);border-bottom:1px solid rgba(185,154,91,.35);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+header.nav .marca{display:flex;align-items:center;gap:10px;font:500 1.15rem 'Cormorant Garamond',serif;color:#F3EEE1;text-decoration:none}
+header.nav .marca img{height:26px}
+header.nav nav{display:flex;gap:18px;flex-wrap:wrap}
+header.nav nav a{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#D8C08A;text-decoration:none}
+footer.pie{background:#123321;color:rgba(243,238,225,.6);padding:30px 24px;text-align:center;font-size:.78rem}
+</style>
+</head>
+<body>
+<header class="nav"><a class="marca" href="index.html"><img src="logomark.png" alt="">Dr. Edwin Ferrer</a><nav><a href="herramientas.html">← Herramientas jurídicas</a><a href="index.html">Inicio</a></nav></header>
+<main>
+<h1>Calculadora de términos de la acción de tutela</h1>
+<p class="lead">Ingrese las fechas que conozca y vea hasta cuándo tiene el juez para fallar, hasta cuándo puede impugnar, cuándo debe cumplirse la orden y cuánto puede durar un desacato. Cuenta días hábiles, sin sábados, domingos ni festivos de Colombia.</p>
+
+<div class="grid">
+<form class="card" id="f" autocomplete="off">
+  <p class="hint" style="margin-top:0">Datos cargados: caso de ejemplo. Reemplácelos por los suyos; deje en blanco lo que aún no ha ocurrido.</p>
+  <fieldset><legend>Primera instancia</legend>
+    <label>Fecha en que presentó la tutela<input type="date" id="pres" value="2026-11-20"></label>
+    <label>Fecha del fallo (si ya salió)<input type="date" id="fallo" value=""></label>
+  </fieldset>
+  <fieldset><legend>Notificación del fallo</legend>
+    <label>¿Cómo le notificaron?
+      <select id="modo"><option value="mail">Por correo electrónico</option><option value="pers">Personalmente, por oficio u otro medio</option></select></label>
+    <label id="lnot">Fecha en que recibió el correo<input type="date" id="noti" value=""></label>
+    <p class="hint" id="hmail">Si fue por correo, la notificación se entiende hecha dos días hábiles después de recibirlo, y desde ahí corren los tres días para impugnar.</p>
+  </fieldset>
+  <fieldset><legend>Segunda instancia y desacato</legend>
+    <label>Fecha en que el superior recibió el expediente (si impugnaron)<input type="date" id="sup" value=""></label>
+    <label>Fecha en que se abrió el incidente de desacato<input type="date" id="desa" value=""></label>
+  </fieldset>
+  <label class="chk"><input type="checkbox" id="vac"> El juzgado está en vacancia judicial (lunes a miércoles de Semana Santa y del 20 de diciembre al 10 de enero)</label>
+  <p class="hint">Márquelo solo si el despacho cierra en esas fechas. Los juzgados penales municipales, de ejecución de penas y promiscuos de familia suelen seguir atendiendo. Sin marcar, la calculadora da la fecha más temprana.</p>
+  <div class="btns"><button type="button" id="cp">Copiar fechas</button><button type="button" id="clr">Limpiar</button></div>
+</form>
+
+<section class="time" aria-live="polite">
+  <h2>Su calendario de términos</h2>
+  <div id="tl"></div>
+</section>
+</div>
+
+<div class="warn"><b>Ojo con el cumplimiento.</b> La entidad debe cumplir sin demora y en el plazo que fije el fallo, que no puede pasar de 48 horas. Si no cumple, usted puede pedir al mismo juez que haga cumplir la orden y abra incidente de desacato.</div>
+
+<section class="card" style="margin-top:22px">
+  <h2>Normas en que se basa</h2>
+  <ul class="src">
+    <li><b>Constitución, art. 86</b>: no pueden pasar más de diez días entre la solicitud de tutela y su resolución.</li>
+    <li><b>Decreto 2591 de 1991, art. 29</b>: el juez falla dentro de los diez días siguientes a la presentación; el plazo para cumplir no puede exceder de 48 horas. <b>Art. 30</b>: el fallo se notifica a más tardar al día siguiente. <b>Art. 31</b>: se impugna dentro de los tres días siguientes a la notificación; si nadie impugna, se envía al día siguiente a la Corte Constitucional. <b>Art. 32</b>: el expediente sube en dos días, el superior falla dentro de 20 días y, en firme, lo remite a la Corte en diez días. <b>Art. 27</b>: si no se cumple en 48 horas, el juez requiere al superior de la entidad y, pasadas otras 48, abre proceso contra él. <b>Art. 19</b>: los informes se piden con plazo de uno a tres días. <b>Art. 52</b>: la sanción por desacato se consulta al superior, que decide en tres días.</li>
+    <li><b>Corte Constitucional, C-367 de 2014</b>: el incidente de desacato debe resolverse en no más de diez días desde su apertura, salvo casos excepcionales justificados por la práctica de pruebas.</li>
+    <li><b>Corte Constitucional, C-122 de 2018</b>: los 20 días de la segunda instancia no desconocen el art. 86.</li>
+    <li><b>Ley 4 de 1913, art. 62</b>: en los plazos de días se excluyen los feriados y de vacancia, salvo que la ley diga otra cosa.</li>
+    <li><b>Ley 2213 de 2022, art. 8</b>, y <b>Corte Constitucional, T-298 de 2023</b>: la notificación por correo se entiende hecha dos días hábiles después del envío, contados desde el acuse o la constancia de acceso; la regla aplica a los fallos de tutela y los tres días para impugnar corren desde el día siguiente.</li>
+    <li><b>Ley 51 de 1983</b> (festivos y traslado al lunes) y <b>Ley 2578 de 2026, art. 6</b> (9 de julio, Nuestra Señora del Rosario de Chiquinquirá, festivo desde 2026, con traslado al lunes).</li>
+  </ul>
+  <details><summary>Ver los festivos que usa la calculadora</summary><ul class="fest" id="fest"></ul></details>
+  <p class="foot">Normas verificadas en la Secretaría del Senado y en Función Pública; sentencias, en la relatoría de la Corte Constitucional (noviembre de 2026).</p>
+</section>
+
+<section style="margin-top:22px">
+  <div class="warn"><b>Resultado orientativo.</b> Revise siempre la constancia de notificación del juzgado y los avisos del Consejo Superior de la Judicatura sobre cierres o suspensiones de términos en su sede.</div>
+  <div class="btns"><a class="cta" href="https://wa.me/573105732441?text=Hola%20Dr.%20Edwin%2C%20us%C3%A9%20la%20calculadora%20de%20tutela%20y%20quisiera%20revisar%20mi%20caso." target="_blank" rel="noopener">Revisar mi tutela por WhatsApp</a></div>
+  <p class="foot">WhatsApp 310 573 2441 · edwinferrer01@gmail.com · edwinferrerabogado.com</p>
+</section>
+</main>
+<footer class="pie">© Edwin Iván Ferrer Barreto · Abogado · Cobertura Nacional · <a href="privacidad.html" style="color:#D8C08A">Política de Privacidad</a></footer>
+
+<script>
+{
+const $=id=>document.getElementById(id);
+const pad=n=>String(n).padStart(2,'0');
+const key=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const parse=s=>{if(!s)return null;const[y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)};
+const fmt=d=>d.toLocaleDateString('es-CO',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+const add=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+function easter(y){const a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),mo=Math.floor((h+l-7*m+114)/31),da=(h+l-7*m+114)%31+1;return new Date(y,mo-1,da)}
+const monday=d=>{const w=d.getDay();return w===1?d:add(d,(8-w)%7)};
+const cache={};
+function holidays(y){if(cache[y])return cache[y];const H=new Map();const put=(d,n)=>H.set(key(d),n);
+  [[0,1,'Año Nuevo'],[4,1,'Día del Trabajo'],[6,20,'Independencia'],[7,7,'Batalla de Boyacá'],[11,8,'Inmaculada Concepción'],[11,25,'Navidad']].forEach(([m,d,n])=>put(new Date(y,m,d),n));
+  [[0,6,'Reyes Magos'],[2,19,'San José'],[5,29,'San Pedro y San Pablo'],[7,15,'Asunción'],[9,12,'Día de la Raza'],[10,1,'Todos los Santos'],[10,11,'Independencia de Cartagena']].forEach(([m,d,n])=>put(monday(new Date(y,m,d)),n));
+  if(y>=2026)put(monday(new Date(y,6,9)),'Virgen de Chiquinquirá');
+  const E=easter(y);put(add(E,-3),'Jueves Santo');put(add(E,-2),'Viernes Santo');put(add(E,43),'Ascensión del Señor');put(add(E,64),'Corpus Christi');put(add(E,71),'Sagrado Corazón');
+  return cache[y]=H}
+function vacancia(d){const y=d.getFullYear(),m=d.getMonth(),dd=d.getDate();if((m===11&&dd>=20)||(m===0&&dd<=10))return true;const E=easter(y);const t=d.getTime();return t>=add(E,-6).getTime()&&t<=add(E,-4).getTime()}
+const biz=d=>{const w=d.getDay();if(w===0||w===6)return false;if(holidays(d.getFullYear()).has(key(d)))return false;if($('vac').checked&&vacancia(d))return false;return true};
+function addBiz(d,n){let x=new Date(d),c=0;while(c<n){x=add(x,1);if(biz(x))c++}return x}
+function nextBiz(d){let x=add(d,1);while(!biz(x))x=add(x,1);return x}
+let txt='';
+function calc(){
+  const pres=parse($('pres').value),fallo=parse($('fallo').value),noti=parse($('noti').value),sup=parse($('sup').value),desa=parse($('desa').value),mail=$('modo').value==='mail';
+  $('lnot').firstChild.textContent=mail?'Fecha en que recibió el correo':'Fecha en que quedó notificado';
+  $('hmail').style.display=mail?'':'none';
+  const S=[];
+  if(pres){S.push([addBiz(pres,10),'Plazo para que el juez falle','Diez días hábiles siguientes a la presentación ('+fmt(pres)+').','C.P. art. 86; D. 2591 art. 29',!!fallo])}
+  else S.push([null,'Plazo para que el juez falle','Ingrese la fecha de presentación.','C.P. art. 86; D. 2591 art. 29',false]);
+  if(fallo){S.push([nextBiz(fallo),'Notificación del fallo','A más tardar al día siguiente de proferido.','D. 2591 art. 30',!!noti])}
+  let notif=null;
+  if(noti){notif=mail?addBiz(noti,2):noti;
+    if(mail)S.push([notif,'Se entiende notificado','Dos días hábiles después de recibir el correo ('+fmt(noti)+').','Ley 2213 art. 8; T-298-23',true]);
+    S.push([addBiz(notif,3),'Último día para impugnar','Tres días hábiles siguientes a la notificación. Si nadie impugna, el fallo se envía al día siguiente a la Corte Constitucional para su eventual revisión.','D. 2591 art. 31',!!sup]);
+    S.push([null,'Cumplimiento de la orden','Dentro del plazo que fije el fallo, nunca mayor de 48 horas desde la notificación a la entidad. Si incumple, el juez requiere a su superior; pasadas otras 48 horas, abre proceso contra este.','D. 2591 arts. 27 y 29 num. 5',false]);
+  } else if(fallo) S.push([null,'Último día para impugnar','Ingrese la fecha de notificación para calcularlo.','D. 2591 art. 31',false]);
+  if(sup){S.push([addBiz(sup,20),'Plazo para el fallo de segunda instancia','Veinte días hábiles desde que el superior recibió el expediente ('+fmt(sup)+'). En firme, se remite a la Corte en los diez días siguientes.','D. 2591 art. 32; C-122-18',false])}
+  if(desa){S.push([addBiz(desa,10),'Plazo para decidir el desacato','Diez días hábiles desde la apertura del incidente ('+fmt(desa)+'). Si hay sanción, el superior la decide en consulta en tres días.','C-367-14; D. 2591 art. 52',false])}
+  const tl=$('tl');tl.innerHTML='';txt='Términos de tutela (calculados en días hábiles'+($('vac').checked?', con vacancia judicial':'')+'):\n';
+  S.forEach(([d,t,p,n,done])=>{const s=document.createElement('div');s.className='step'+(d?'':' off');
+    const dt=document.createElement('div');dt.className='dt';dt.textContent=d?fmt(d):'—';
+    if(d){const sm=document.createElement('small');const hoy=new Date();hoy.setHours(0,0,0,0);const diff=Math.round((d-hoy)/864e5);sm.textContent=done?'etapa cumplida':diff>0?'faltan '+diff+' días calendario':diff===0?'vence hoy':'venció hace '+(-diff)+' días';dt.append(sm)}
+    const dot=document.createElement('div');dot.className='dot';
+    const tx=document.createElement('div');const b=document.createElement('b');b.textContent=t;const pp=document.createElement('p');pp.textContent=p;const nn=document.createElement('p');nn.className='norm';nn.textContent=n;tx.append(b,pp,nn);
+    s.append(dt,dot,tx);tl.append(s);txt+='- '+t+': '+(d?fmt(d):'—')+'. '+p+' ('+n+')\n'});
+  txt+='Resultado orientativo. Calculadora de Edwin Ferrer — Servicios Legales (edwinferrerabogado.com).';
+  const y0=pres?pres.getFullYear():new Date().getFullYear();const fl=$('fest');fl.innerHTML='';
+  [y0,y0+1].forEach(y=>[...holidays(y)].sort().forEach(([k,n])=>{const li=document.createElement('li');li.textContent=fmt(parse(k))+' · '+n;fl.append(li)}));
+  try{localStorage.setItem('calcTutela',JSON.stringify([...document.querySelectorAll('#f input,#f select')].map(i=>i.type==='checkbox'?i.checked:i.value)))}catch(e){}
+}
+const ins=[...document.querySelectorAll('#f input,#f select')];
+try{const s=JSON.parse(localStorage.getItem('calcTutela')||'null');if(s&&s.length===ins.length)ins.forEach((i,k)=>i.type==='checkbox'?i.checked=s[k]:i.value=s[k])}catch(e){}
+ins.forEach(i=>{i.addEventListener('input',calc);i.addEventListener('change',calc)});
+$('clr').addEventListener('click',()=>{ins.forEach(i=>i.type==='checkbox'?i.checked=false:i.tagName==='SELECT'?i.value='mail':i.value='');calc()});
+$('cp').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(txt);$('cp').textContent='Copiado'}catch(e){$('cp').textContent='No se pudo copiar'}setTimeout(()=>$('cp').textContent='Copiar fechas',1800)});
+calc();
+}
+</script>
+</body>
+</html>

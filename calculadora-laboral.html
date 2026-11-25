@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calculadora de liquidación laboral — Edwin Ferrer</title>
+<link rel="icon" href="logomark.png">
+<meta name="description" content="Cesantías, intereses, prima, vacaciones e indemnización con el salario mínimo y el auxilio de transporte de cada año.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Calculadora de liquidación laboral — Edwin Ferrer">
+<meta property="og:description" content="Cesantías, intereses, prima, vacaciones e indemnización con el salario mínimo y el auxilio de transporte de cada año.">
+<meta property="og:image" content="https://edwinferrerabogado.com/logoplate.png">
+<meta property="og:url" content="https://edwinferrerabogado.com/calculadora-laboral.html">
+<meta property="og:locale" content="es_CO">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: claro y sereno; habla al trabajador que acaba de salir de su empleo y al empleador que quiere pagar bien.
+   IDEA: la liquidación de prestaciones sociales como el comprobante que se firma al salir, renglón por renglón.
+   PICTURE: el total grande arriba y debajo un comprobante con cada concepto, su fórmula y su norma.
+   COLOUR and TYPE: verde #123321 de la marca, oro #B99A5B de acento, pergamino de fondo; Cormorant + Jost.
+   LAYOUT: datos a la izquierda, comprobante a la derecha; tabla anual de mínimos al final; apila en celular. */
+:root{color-scheme:light;--bg:light-dark(#F3EEE1,#0d1a13);--card:light-dark(#fffdf7,#13241b);--ink:light-dark(#14201a,#ece6d6);--mute:light-dark(#5b6660,#a9b3ac);--green:#123321;--gold:#B99A5B;--gold2:#D8C08A;--line:light-dark(#ddd3bd,#2b3d33)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Jost,system-ui,sans-serif;overflow-x:clip}
+main{padding:clamp(24px,4vw,56px) max(5vw,16px);max-width:1240px;margin:auto}
+h1{font:600 clamp(32px,4.4vw,48px)/1.05 Cormorant Garamond,serif;margin:0 0 8px;text-wrap:balance}
+h2{font:600 26px/1.15 Cormorant Garamond,serif;margin:0 0 12px}
+.lead{color:var(--mute);max-width:70ch;margin:0 0 22px}
+.grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.25fr);gap:22px;align-items:start}
+@media(max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}.rec{order:-1}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
+fieldset{border:0;margin:0 0 16px;padding:0}legend{font-weight:600;margin-bottom:8px}
+.row2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+label{display:block;font-size:14px;color:var(--mute);margin-bottom:10px}
+input[type=date],input[type=number],input[type=text],select{width:100%;font:16px Jost,sans-serif;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);min-height:44px}
+input:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.chk{display:flex;gap:10px;align-items:flex-start;color:var(--ink);font-size:15px}
+.chk input{width:22px;height:22px;margin-top:2px;accent-color:var(--green);flex:none}
+.hint{font-size:13px;color:var(--mute);margin:2px 0 10px}
+.rec{background:var(--green);color:#F3EEE1;border-radius:14px;padding:22px clamp(16px,3vw,30px)}
+.tot{font:600 clamp(38px,6vw,58px)/1 Cormorant Garamond,serif;color:var(--gold2);margin:4px 0 6px}
+.rec small{color:#cfd8d1}
+.line{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 14px;padding:12px 0;border-bottom:1px dashed rgba(243,238,225,.3)}
+.line:last-child{border:0}
+.line b{font-weight:600}.line .v{font:600 20px Cormorant Garamond,serif;color:var(--gold2);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.line p{grid-column:1/-1;margin:0;font-size:14px;color:#dfe6e0}
+.line .n{color:var(--gold2);font-size:13px}
+table{width:100%;border-collapse:collapse;font-size:15px}th,td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td input{min-height:40px;padding:6px 8px}
+.warn{border-left:4px solid var(--gold);padding:10px 14px;background:color-mix(in srgb,var(--gold) 10%,transparent);border-radius:0 8px 8px 0;font-size:15px;margin:14px 0}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+button,.cta{font:500 16px Jost,sans-serif;min-height:44px;padding:10px 18px;border-radius:8px;border:1px solid var(--green);background:transparent;color:var(--ink);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.cta{background:var(--green);color:#F3EEE1}
+ul.src{padding-left:18px;font-size:15px}ul.src li{margin:8px 0}
+.foot{font-size:14px;color:var(--mute)}
+.scroll{overflow-x:auto}
+header.nav{background:#001107;color:#F3EEE1;padding:16px max(5vw,16px);border-bottom:1px solid rgba(185,154,91,.35);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+header.nav .marca{display:flex;align-items:center;gap:10px;font:500 1.15rem 'Cormorant Garamond',serif;color:#F3EEE1;text-decoration:none}
+header.nav .marca img{height:26px}
+header.nav nav{display:flex;gap:18px;flex-wrap:wrap}
+header.nav nav a{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#D8C08A;text-decoration:none}
+footer.pie{background:#123321;color:rgba(243,238,225,.6);padding:30px 24px;text-align:center;font-size:.78rem}
+</style>
+</head>
+<body>
+<header class="nav"><a class="marca" href="index.html"><img src="logomark.png" alt="">Dr. Edwin Ferrer</a><nav><a href="herramientas.html">← Herramientas jurídicas</a><a href="index.html">Inicio</a></nav></header>
+<main>
+<h1>Calculadora de liquidación laboral</h1>
+<p class="lead">Calcule cesantías, intereses, prima, vacaciones e indemnización al terminar un contrato de trabajo. Usa el salario mínimo y el auxilio de transporte de cada año, de modo que si lo que se debe abarca varios años, cada año se liquida con sus propios valores.</p>
+
+<div class="grid">
+<form class="card" id="f" autocomplete="off">
+  <p class="hint" style="margin-top:0">Datos cargados: caso de ejemplo. Reemplácelos por los suyos.</p>
+  <fieldset><legend>Contrato</legend>
+    <div class="row2">
+      <label>Fecha de ingreso<input type="date" id="ini" value="2023-03-01"></label>
+      <label>Fecha de retiro<input type="date" id="fin" value="2026-11-15"></label>
+    </div>
+    <label>Tipo de contrato
+      <select id="tipo"><option value="ind">Término indefinido</option><option value="fijo">Término fijo</option><option value="obra">Obra o labor</option></select></label>
+    <label id="lfp" hidden>Fecha en que terminaba el plazo pactado<input type="date" id="finp"></label>
+    <label>¿Cómo terminó?
+      <select id="causa"><option value="sjc">Despido sin justa causa (o renuncia por culpa del empleador)</option><option value="otra">Renuncia, justa causa o vencimiento del plazo</option></select></label>
+  </fieldset>
+  <fieldset><legend>Salario</legend>
+    <label class="chk"><input type="checkbox" id="min"> Ganaba el salario mínimo (se ajusta solo cada año)</label>
+    <label>Último salario básico mensual<input type="number" id="sal" min="0" step="1000" value="2400000"></label>
+    <p class="hint">Si el salario cambió de un año a otro, ajústelo en la tabla de años de abajo. El auxilio de transporte se suma solo en los años en que el salario no pasa de dos mínimos.</p>
+  </fieldset>
+  <fieldset><legend>Lo que falta por pagar</legend>
+    <label>Cesantías e intereses pendientes desde<input type="date" id="dces"></label>
+    <label>Prima pendiente desde<input type="date" id="dpri"></label>
+    <label>Días de vacaciones ya disfrutados o pagados<input type="number" id="vdis" min="0" value="45"></label>
+    <p class="hint">Si se dejan en blanco, la calculadora asume que las cesantías de años anteriores ya se consignaron y toma desde el 1 de enero del año de retiro, y la prima desde el inicio del semestre.</p>
+  </fieldset>
+  <div class="btns"><button type="button" id="cp">Copiar liquidación</button></div>
+</form>
+
+<section class="rec" aria-live="polite">
+  <small>Total estimado a pagar</small>
+  <div class="tot" id="tot">$ 0</div>
+  <small id="meta"></small>
+  <div id="lines" style="margin-top:10px"></div>
+</section>
+</div>
+
+<section class="card" style="margin-top:22px">
+  <h2>Salario mínimo y auxilio de transporte por año</h2>
+  <p class="foot" style="margin-top:0">Valores de los decretos anuales. Cada diciembre se fija el del año siguiente: cuando salga, escríbalo en la fila correspondiente. La columna de salario es la que usa la calculadora para cada año; puede cambiarla si su salario fue distinto.</p>
+  <div class="scroll"><table id="yt"><thead><tr><th>Año</th><th class="r">Salario mínimo</th><th class="r">Auxilio de transporte</th><th>Decretos</th><th class="r">Su salario ese año</th></tr></thead><tbody></tbody></table></div>
+</section>
+
+<section class="card" style="margin-top:22px">
+  <h2>Normas en que se basa</h2>
+  <ul class="src">
+    <li><b>Código Sustantivo del Trabajo, art. 249</b>: cesantía de un mes de salario por cada año de servicios y proporcional por fracción.</li>
+    <li><b>Ley 52 de 1975</b> y <b>Decreto 116 de 1976, art. 1</b>: intereses del 12 % anual sobre las cesantías a 31 de diciembre o a la fecha de retiro, proporcionales al tiempo.</li>
+    <li><b>CST, art. 306</b> (mod. Ley 1788 de 2016): prima de servicios de 30 días de salario por año, en dos pagos semestrales, proporcional al tiempo trabajado.</li>
+    <li><b>Ley 1 de 1963, art. 7</b>: el auxilio de transporte se considera incorporado al salario para liquidar prestaciones sociales (cesantías, intereses y prima; no vacaciones).</li>
+    <li><b>CST, art. 186</b>: 15 días hábiles de vacaciones por año. <b>Ley 995 de 2005, art. 1</b>: al terminar el contrato se compensan en dinero en proporción al tiempo trabajado. <b>CST, art. 189 num. 3</b>: la base es el último salario.</li>
+    <li><b>CST, art. 64</b> (mod. art. 28 Ley 789 de 2002): indemnización por despido sin justa causa. Indefinido con salario menor de 10 mínimos: 30 días el primer año y 20 por cada año siguiente, proporcional; con 10 mínimos o más: 20 y 15. Término fijo: los salarios del tiempo que faltaba. Obra o labor: el tiempo que faltaba, mínimo 15 días.</li>
+    <li><b>Decretos de salario mínimo y auxilio de transporte</b>: 1724 y 1725 de 2021 (2022); 2613 y 2614 de 2022 (2023); 2292 y 2293 de 2023 (2024); 1572 y 1573 de 2024 (2025); 1469 y 1470 de 2025 y 0159 de 2026 (2026).</li>
+  </ul>
+  <p class="foot">Cómo se cuenta: año de 360 días y meses de 30, como en la práctica laboral. Normas verificadas en la Secretaría del Senado y en Función Pública (noviembre de 2026).</p>
+</section>
+
+<section style="margin-top:22px">
+  <div class="warn"><b>Resultado orientativo.</b> No incluye horas extras, recargos, comisiones ni salario variable (en esos casos la base es el promedio), salario integral, ni sanciones por no pago o no consignación de cesantías (CST art. 65; Ley 50 de 1990 art. 99), que pueden ser muy superiores. Para 2026, el decreto del salario mínimo está demandado ante el Consejo de Estado; el valor vigente es el mismo en el decreto original y en el transitorio.</div>
+  <div class="btns"><a class="cta" href="https://wa.me/573105732441?text=Hola%20Dr.%20Edwin%2C%20us%C3%A9%20la%20calculadora%20laboral%20y%20quisiera%20revisar%20mi%20liquidaci%C3%B3n." target="_blank" rel="noopener">Revisar mi liquidación por WhatsApp</a></div>
+  <p class="foot">WhatsApp 310 573 2441 · edwinferrer01@gmail.com · edwinferrerabogado.com</p>
+</section>
+</main>
+<footer class="pie">© Edwin Iván Ferrer Barreto · Abogado · Cobertura Nacional · <a href="privacidad.html" style="color:#D8C08A">Política de Privacidad</a></footer>
+
+<script>
+{
+const $=id=>document.getElementById(id);
+const Y={2022:[1000000,117172,'1724 y 1725 de 2021'],2023:[1160000,140606,'2613 y 2614 de 2022'],2024:[1300000,162000,'2292 y 2293 de 2023'],2025:[1423500,200000,'1572 y 1573 de 2024'],2026:[1750905,249095,'1469 y 1470 de 2025; 0159 de 2026'],2027:[0,0,'Pendiente (diciembre de 2026)']};
+const sal={};
+const parse=s=>{if(!s)return null;const[y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)};
+const fmt=d=>d.toLocaleDateString('es-CO',{day:'numeric',month:'short',year:'numeric'});
+const cop=v=>'$ '+Math.round(v).toLocaleString('es-CO');
+const last=d=>new Date(d.getFullYear(),d.getMonth()+1,0).getDate()===d.getDate();
+function d360(a,b){if(!a||!b||b<a)return 0;const da=Math.min(a.getDate(),30),db=last(b)?30:Math.min(b.getDate(),30);return (b.getFullYear()-a.getFullYear())*360+(b.getMonth()-a.getMonth())*30+(db-da)+1}
+const mx=(a,b)=>a>b?a:b,mn=(a,b)=>a<b?a:b;
+function segs(a,b){const r=[];if(!a||!b||b<a)return r;for(let y=a.getFullYear();y<=b.getFullYear();y++){const s=mx(a,new Date(y,0,1)),e=mn(b,new Date(y,11,31));r.push([y,s,e,d360(s,e)])}return r}
+function base(y){const v=Y[y]||[0,0];const s=sal[y]!=null?sal[y]:num('sal');const aux=(v[0]&&s<=2*v[0])?v[1]:0;return {s,aux,smm:v[0]}}
+const num=id=>Math.max(0,parseFloat($(id).value)||0);
+function renderYears(){const tb=$('yt').tBodies[0];tb.innerHTML='';const ini=parse($('ini').value),fin=parse($('fin').value);
+  Object.keys(Y).map(Number).forEach(y=>{const tr=tb.insertRow();const v=Y[y];
+    const c0=tr.insertCell();c0.textContent=y;
+    const c1=tr.insertCell();c1.className='r';const c2=tr.insertCell();c2.className='r';
+    if(v[0]){c1.textContent=cop(v[0]);c2.textContent=cop(v[1])}else{[c1,c2].forEach((c,k)=>{const i=document.createElement('input');i.type='number';i.placeholder='por fijar';i.setAttribute('aria-label',(k?'Auxilio ':'Salario mínimo ')+y);i.addEventListener('input',()=>{Y[y][k]=parseFloat(i.value)||0;calc()});c.append(i)})}
+    const c3=tr.insertCell();c3.textContent=v[2];c3.className='foot';
+    const c4=tr.insertCell();c4.className='r';
+    const inRange=ini&&fin&&y>=ini.getFullYear()&&y<=fin.getFullYear();
+    if(inRange){const i=document.createElement('input');i.type='number';i.step='1000';i.setAttribute('aria-label','Su salario '+y);i.value=$('min').checked?(v[0]||''):(sal[y]!=null?sal[y]:num('sal'));i.disabled=$('min').checked;i.addEventListener('input',()=>{sal[y]=parseFloat(i.value)||0;calc(false)});c4.append(i)}else c4.textContent='—'});
+}
+let txt='';
+function calc(redraw=true){
+  const ini=parse($('ini').value),fin=parse($('fin').value);if(!ini||!fin||fin<ini){$('tot').textContent='—';return}
+  if($('min').checked)Object.keys(Y).forEach(y=>{sal[y]=Y[y][0]});
+  if(redraw)renderYears();
+  $('lfp').hidden=$('tipo').value==='ind';$('sal').disabled=$('min').checked;
+  const L=[];const warns=[];
+  const fy=fin.getFullYear();
+  segs(ini,fin).forEach(([y])=>{if(!Y[y]||!Y[y][0])warns.push('Falta el salario mínimo de '+y+': escríbalo en la tabla de años.')});
+  // cesantías e intereses
+  let dces=parse($('dces').value)||mx(ini,new Date(fy,0,1));dces=mx(dces,ini);
+  let ces=0,int=0;const cd=[];
+  segs(dces,fin).forEach(([y,s,e,d])=>{const b=base(y);const c=(b.s+b.aux)*d/360;const i=c*d*0.12/360;ces+=c;int+=i;cd.push(y+': '+d+' días × '+cop(b.s+b.aux)+(b.aux?' (con auxilio)':''))});
+  L.push(['Cesantías',ces,'Desde '+fmt(dces)+'. '+cd.join('; ')+'. Salario (más auxilio si aplica) × días ÷ 360.','CST art. 249; Ley 1 de 1963 art. 7']);
+  L.push(['Intereses sobre cesantías',int,'12 % anual proporcional: cesantías × días × 0,12 ÷ 360, por cada año.','Ley 52 de 1975; D. 116 de 1976 art. 1']);
+  // prima
+  const sem=new Date(fy,fin.getMonth()<6?0:6,1);let dpri=parse($('dpri').value)||mx(ini,sem);dpri=mx(dpri,ini);
+  let pri=0;let pd=0;segs(dpri,fin).forEach(([y,s,e,d])=>{const b=base(y);pri+=(b.s+b.aux)*d/360;pd+=d});
+  L.push(['Prima de servicios',pri,'Desde '+fmt(dpri)+': '+pd+' días × (salario más auxilio si aplica) ÷ 360.','CST art. 306']);
+  // vacaciones
+  const tot=d360(ini,fin);const caus=tot*15/360;const pend=Math.max(0,caus-num('vdis'));const bf=base(fy);
+  const vac=pend*bf.s/30;
+  L.push(['Vacaciones compensadas',vac,(Math.round(caus*100)/100).toString().replace('.',',')+' días causados en '+tot+' días de servicio, menos '+num('vdis')+' disfrutados = '+(Math.round(pend*100)/100).toString().replace('.',',')+' días × último salario ÷ 30 (sin auxilio).','CST arts. 186 y 189; Ley 995 de 2005']);
+  // indemnización
+  let ind=0,idet='No aplica: el contrato terminó por renuncia, justa causa o vencimiento.';
+  if($('causa').value==='sjc'){const dia=bf.s/30;
+    if($('tipo').value==='ind'){const alto=bf.smm&&bf.s>=10*bf.smm;const b1=alto?20:30,ba=alto?15:20;const extra=Math.max(0,tot-360)/360;const dias=b1+ba*extra;ind=dias*dia;idet=(alto?'Salario de 10 mínimos o más: 20 días':'Salario menor de 10 mínimos: 30 días')+' por el primer año + '+ba+' por cada año siguiente ('+(Math.round(extra*100)/100).toString().replace('.',',')+' años) = '+(Math.round(dias*100)/100).toString().replace('.',',')+' días de salario.'}
+    else{const fp=parse($('finp').value);const falta=fp&&fp>fin?d360(new Date(fin.getFullYear(),fin.getMonth(),fin.getDate()+1),fp):0;let dias=falta;if($('tipo').value==='obra')dias=Math.max(15,falta);ind=dias*dia;idet=fp?dias+' días que faltaban hasta '+fmt(fp)+($('tipo').value==='obra'?' (mínimo 15)':'')+' × salario diario.':'Ingrese la fecha en que terminaba el plazo pactado.'}}
+  L.push(['Indemnización por despido',ind,idet,'CST art. 64']);
+  const T=L.reduce((a,x)=>a+x[1],0);
+  $('tot').textContent=cop(T);
+  $('meta').textContent='Del '+fmt(ini)+' al '+fmt(fin)+' · '+tot+' días de servicio · último salario '+cop(bf.s)+(bf.aux?' + auxilio '+cop(bf.aux):'');
+  const box=$('lines');box.innerHTML='';txt='Liquidación estimada ('+fmt(ini)+' a '+fmt(fin)+'):\n';
+  warns.forEach(w=>{const p=document.createElement('p');p.className='warn';p.style.color='#F3EEE1';p.textContent=w;box.append(p)});
+  L.forEach(([t,v,p,n])=>{const d=document.createElement('div');d.className='line';const b=document.createElement('b');b.textContent=t;const s=document.createElement('span');s.className='v';s.textContent=cop(v);const pp=document.createElement('p');pp.textContent=p;const nn=document.createElement('p');nn.className='n';nn.textContent=n;d.append(b,s,pp,nn);box.append(d);txt+='- '+t+': '+cop(v)+' ('+n+')\n'});
+  txt+='Total: '+cop(T)+'\nResultado orientativo. Calculadora de Edwin Ferrer — Servicios Legales (edwinferrerabogado.com).';
+}
+['ini','fin','tipo','causa','min','sal','dces','dpri','vdis','finp'].forEach(id=>{const e=$(id);e.addEventListener('input',()=>{if(id==='sal')Object.keys(sal).forEach(k=>delete sal[k]);if(id==='min'&&!e.checked)Object.keys(sal).forEach(k=>delete sal[k]);calc()});e.addEventListener('change',()=>calc())});
+$('cp').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(txt);$('cp').textContent='Copiado'}catch(e){$('cp').textContent='No se pudo copiar'}setTimeout(()=>$('cp').textContent='Copiar liquidación',1800)});
+calc();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calculadora de cuota alimentaria — Edwin Ferrer</title>
+<link rel="icon" href="logomark.png">
+<meta name="description" content="Reajuste anual de la cuota alimentaria por IPC y cálculo de cuotas atrasadas con intereses.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Calculadora de cuota alimentaria — Edwin Ferrer">
+<meta property="og:description" content="Reajuste anual de la cuota alimentaria por IPC y cálculo de cuotas atrasadas con intereses.">
+<meta property="og:image" content="https://edwinferrerabogado.com/logoplate.png">
+<meta property="og:url" content="https://edwinferrerabogado.com/calculadora-cuota-alimentaria.html">
+<meta property="og:locale" content="es_CO">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: cálido pero preciso; habla a la madre o el padre que cuida y al que paga, sin tomar partido.
+   IDEA: la libreta de cuotas que se lleva en casa, año por año, con lo pagado y lo que falta.
+   PICTURE: la cuota de hoy grande, una escalera de reajustes por año y la cuenta de lo adeudado.
+   COLOUR and TYPE: verde #123321 de la marca, oro #B99A5B de acento, pergamino de fondo; Cormorant + Jost.
+   LAYOUT: datos a la izquierda, resultado a la derecha; tablas de años y meses debajo; apila en celular. */
+:root{color-scheme:light;--bg:light-dark(#F3EEE1,#0d1a13);--card:light-dark(#fffdf7,#13241b);--ink:light-dark(#14201a,#ece6d6);--mute:light-dark(#5b6660,#a9b3ac);--green:#123321;--gold:#B99A5B;--gold2:#D8C08A;--line:light-dark(#ddd3bd,#2b3d33)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Jost,system-ui,sans-serif;overflow-x:clip}
+main{padding:clamp(24px,4vw,56px) max(5vw,16px);max-width:1240px;margin:auto}
+h1{font:600 clamp(32px,4.4vw,48px)/1.05 Cormorant Garamond,serif;margin:0 0 8px;text-wrap:balance}
+h2{font:600 26px/1.15 Cormorant Garamond,serif;margin:0 0 12px}
+.lead{color:var(--mute);max-width:70ch;margin:0 0 22px}
+.grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.2fr);gap:22px;align-items:start}
+@media(max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}.res{order:-1}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
+fieldset{border:0;margin:0 0 16px;padding:0}legend{font-weight:600;margin-bottom:8px}
+.row2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+label{display:block;font-size:14px;color:var(--mute);margin-bottom:10px}
+input[type=date],input[type=number],input[type=month],select{width:100%;font:16px Jost,sans-serif;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);min-height:44px}
+input:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.chk{display:flex;gap:10px;align-items:flex-start;color:var(--ink);font-size:15px}
+.chk input{width:22px;height:22px;margin-top:2px;accent-color:var(--green);flex:none}
+.hint{font-size:13px;color:var(--mute);margin:2px 0 10px}
+.res{background:var(--green);color:#F3EEE1;border-radius:14px;padding:22px clamp(16px,3vw,30px)}
+.big{font:600 clamp(38px,6vw,58px)/1 Cormorant Garamond,serif;color:var(--gold2);margin:4px 0 6px}
+.res small{color:#cfd8d1}
+.stair{display:flex;align-items:flex-end;gap:6px;height:150px;margin:18px 0 8px}
+.stair div{flex:1;background:linear-gradient(180deg,var(--gold2),var(--gold));border-radius:6px 6px 0 0;position:relative;min-height:6px}
+.stair span{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);font-size:12px;color:#F3EEE1;white-space:nowrap;padding-bottom:3px}
+.yrs{display:flex;gap:6px}.yrs span{flex:1;text-align:center;font-size:12px;color:#cfd8d1}
+@media(max-width:520px){.stair span{display:none}}
+.debt{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 14px;margin-top:16px;padding-top:14px;border-top:1px dashed rgba(243,238,225,.35)}
+.debt b{font-weight:500}.debt .v{font:600 20px Cormorant Garamond,serif;color:var(--gold2);text-align:right;white-space:nowrap}
+.debt .t{font-size:24px}
+table{width:100%;border-collapse:collapse;font-size:15px}th,td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td input{min-height:40px;padding:6px 8px;max-width:9em}
+.scroll{overflow-x:auto}
+.warn{border-left:4px solid var(--gold);padding:10px 14px;background:color-mix(in srgb,var(--gold) 10%,transparent);border-radius:0 8px 8px 0;font-size:15px;margin:14px 0}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+button,.cta{font:500 16px Jost,sans-serif;min-height:44px;padding:10px 18px;border-radius:8px;border:1px solid var(--green);background:transparent;color:var(--ink);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.cta{background:var(--green);color:#F3EEE1}
+ul.src{padding-left:18px;font-size:15px}ul.src li{margin:8px 0}
+.foot{font-size:14px;color:var(--mute)}
+details summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:500}
+header.nav{background:#001107;color:#F3EEE1;padding:16px max(5vw,16px);border-bottom:1px solid rgba(185,154,91,.35);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+header.nav .marca{display:flex;align-items:center;gap:10px;font:500 1.15rem 'Cormorant Garamond',serif;color:#F3EEE1;text-decoration:none}
+header.nav .marca img{height:26px}
+header.nav nav{display:flex;gap:18px;flex-wrap:wrap}
+header.nav nav a{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#D8C08A;text-decoration:none}
+footer.pie{background:#123321;color:rgba(243,238,225,.6);padding:30px 24px;text-align:center;font-size:.78rem}
+</style>
+</head>
+<body>
+<header class="nav"><a class="marca" href="index.html"><img src="logomark.png" alt="">Dr. Edwin Ferrer</a><nav><a href="herramientas.html">← Herramientas jurídicas</a><a href="index.html">Inicio</a></nav></header>
+<main>
+<h1>Calculadora de cuota alimentaria</h1>
+<p class="lead">Calcule cuánto vale hoy una cuota de alimentos con el reajuste de cada año y cuánto se debe por cuotas atrasadas, con sus intereses. Sirve para la cuota fijada por un juez, en una conciliación o en un acuerdo privado.</p>
+
+<div class="grid">
+<form class="card" id="f" autocomplete="off">
+  <p class="hint" style="margin-top:0">Datos cargados: caso de ejemplo. Reemplácelos por los suyos.</p>
+  <fieldset><legend>La cuota</legend>
+    <div class="row2">
+      <label>Valor mensual fijado<input type="number" id="cuota" min="0" step="1000" value="500000"></label>
+      <label>Fecha en que se fijó<input type="date" id="ffij" value="2023-05-10"></label>
+    </div>
+    <label>Cuota adicional en junio y diciembre (vestuario u otra), si se pactó<input type="number" id="extra" min="0" step="1000" value="0"></label>
+    <label>¿Cómo se reajusta cada año?
+      <select id="modo"><option value="ipc">Con el IPC del año anterior (regla legal)</option><option value="smm">Con el incremento del salario mínimo (si así se pactó)</option><option value="no">Sin reajuste</option></select></label>
+    <p class="hint">Si en la sentencia o el acta se pactó otro porcentaje, escríbalo año por año en la tabla de reajustes.</p>
+  </fieldset>
+  <fieldset><legend>Cuotas atrasadas</legend>
+    <div class="row2">
+      <label>Primer mes sin pagar<input type="month" id="d1" value="2025-08"></label>
+      <label>Último mes sin pagar<input type="month" id="d2" value="2026-11"></label>
+    </div>
+    <div class="row2">
+      <label>Día del mes en que debía pagarse<input type="number" id="dia" min="1" max="28" value="5"></label>
+      <label>Abonos hechos en ese período<input type="number" id="abono" min="0" step="1000" value="300000"></label>
+    </div>
+    <label>Fecha de corte<input type="date" id="cor"></label>
+    <label class="chk"><input type="checkbox" id="int" checked> Sumar intereses legales del 6 % anual sobre cada cuota vencida</label>
+  </fieldset>
+  <div class="btns"><button type="button" id="cp">Copiar resumen</button></div>
+</form>
+
+<section class="res" aria-live="polite">
+  <small>Cuota mensual vigente</small>
+  <div class="big" id="hoy">$ 0</div>
+  <small id="hoyd"></small>
+  <div class="stair" id="stair"></div><div class="yrs" id="yrs"></div>
+  <div class="debt" id="debt"></div>
+</section>
+</div>
+
+<section class="card" style="margin-top:22px">
+  <h2>Reajuste por año</h2>
+  <p class="foot" style="margin-top:0">La cuota sube el 1 de enero de cada año. El IPC es la variación anual a diciembre del año anterior certificada por el DANE; el del año en curso se publica en enero. Puede cambiar el porcentaje aplicado si se pactó otra fórmula.</p>
+  <div class="scroll"><table id="yt"><thead><tr><th>Año</th><th class="r">IPC año anterior</th><th class="r">Incremento salario mínimo</th><th class="r">% aplicado</th><th class="r">Cuota mensual</th></tr></thead><tbody></tbody></table></div>
+</section>
+
+<section class="card" style="margin-top:22px">
+  <details><summary>Ver el detalle mes por mes de lo adeudado</summary>
+  <div class="scroll"><table id="mt"><thead><tr><th>Mes</th><th class="r">Cuota</th><th class="r">Días de mora</th><th class="r">Intereses</th></tr></thead><tbody></tbody></table></div></details>
+</section>
+
+<section class="card" style="margin-top:22px">
+  <h2>Normas en que se basa</h2>
+  <ul class="src">
+    <li><b>Código de la Infancia y la Adolescencia (Ley 1098 de 2006), art. 129</b>: la cuota fijada en providencia, conciliación o acuerdo privado se entiende reajustada desde el 1 de enero siguiente y cada año en la misma fecha, en el porcentaje del IPC, salvo que el juez o las partes fijen otra fórmula. Con el acta o el acuerdo se puede iniciar proceso ejecutivo por las cuotas vencidas, y la mora de más de un mes permite pedir el impedimento de salida del país y el reporte a centrales de riesgo.</li>
+    <li><b>Código Civil, art. 1617</b>: en obligaciones de dinero, por la mora se deben los intereses legales del 6 % anual, sin necesidad de probar perjuicios; los intereses atrasados no producen interés (por eso se calculan simples).</li>
+    <li><b>DANE, variación anual del IPC a diciembre</b>: 2018: 3,18 %; 2019: 3,80 %; 2020: 1,61 %; 2021: 5,62 %; 2022: 13,12 %; 2023: 9,28 %; 2024: 5,20 %; 2025: 5,10 %.</li>
+    <li><b>Salario mínimo</b> (para la opción pactada): $1.000.000 (2022), $1.160.000 (2023), $1.300.000 (2024), $1.423.500 (2025) y $1.750.905 (2026), según los decretos anuales.</li>
+  </ul>
+  <p class="foot">Normas verificadas en la Secretaría del Senado; IPC en los boletines oficiales del DANE (noviembre de 2026).</p>
+</section>
+
+<section style="margin-top:22px">
+  <div class="warn"><b>Resultado orientativo.</b> El valor exacto depende de lo que diga la sentencia, el acta o el acuerdo (fórmula de reajuste, fecha de pago, cuotas extra). Si la cuota se fijó a mitad de año, la ley ordena aplicar el reajuste completo el 1 de enero siguiente; algunos despachos lo interpretan distinto. Los intereses se cuentan en días calendario sobre años de 365 días.</div>
+  <div class="btns"><a class="cta" href="https://wa.me/573105732441?text=Hola%20Dr.%20Edwin%2C%20us%C3%A9%20la%20calculadora%20de%20cuota%20alimentaria%20y%20quisiera%20revisar%20mi%20caso." target="_blank" rel="noopener">Revisar mi caso por WhatsApp</a></div>
+  <p class="foot">WhatsApp 310 573 2441 · edwinferrer01@gmail.com · edwinferrerabogado.com</p>
+</section>
+</main>
+<footer class="pie">© Edwin Iván Ferrer Barreto · Abogado · Cobertura Nacional · <a href="privacidad.html" style="color:#D8C08A">Política de Privacidad</a></footer>
+
+<script>
+{
+const $=id=>document.getElementById(id);
+const IPC={2018:3.18,2019:3.80,2020:1.61,2021:5.62,2022:13.12,2023:9.28,2024:5.20,2025:5.10};
+const SMM={2022:1000000,2023:1160000,2024:1300000,2025:1423500,2026:1750905};
+const custom={};
+const cop=v=>'$ '+Math.round(v).toLocaleString('es-CO');
+const pct=v=>v==null?'—':String(Math.round(v*100)/100).replace('.',',')+' %';
+const parse=s=>{if(!s)return null;const[y,m,d]=s.split('-').map(Number);return new Date(y,(m||1)-1,d||1)};
+const fmt=d=>d.toLocaleDateString('es-CO',{day:'numeric',month:'long',year:'numeric'});
+const mname=(y,m)=>new Date(y,m,1).toLocaleDateString('es-CO',{month:'short',year:'numeric'});
+const num=id=>Math.max(0,parseFloat($(id).value)||0);
+function inc(y){if(custom[y]!=null)return custom[y];const m=$('modo').value;if(m==='no')return 0;if(m==='ipc')return IPC[y-1]!=null?IPC[y-1]:null;return SMM[y]&&SMM[y-1]?(SMM[y]/SMM[y-1]-1)*100:null}
+let txt='';
+function calc(){
+  const c0=num('cuota'),ff=parse($('ffij').value),cor=parse($('cor').value);if(!c0||!ff||!cor){$('hoy').textContent='—';return}
+  const y0=ff.getFullYear(),yN=Math.max(cor.getFullYear(),y0);
+  const val={};val[y0]=c0;const miss=[];
+  for(let y=y0+1;y<=yN;y++){const p=inc(y);if(p==null){miss.push(y);val[y]=val[y-1]}else val[y]=val[y-1]*(1+p/100)}
+  const fac=y=>val[y]/c0;
+  // tabla de años
+  const tb=$('yt').tBodies[0];tb.innerHTML='';
+  for(let y=y0;y<=yN;y++){const tr=tb.insertRow();const a=tr.insertCell();a.textContent=y+(y===y0?' (se fijó)':'');
+    const b=tr.insertCell();b.className='r';b.textContent=y===y0?'—':(IPC[y-1]!=null?pct(IPC[y-1]):'por publicar');
+    const s=tr.insertCell();s.className='r';s.textContent=y===y0?'—':(SMM[y]&&SMM[y-1]?pct((SMM[y]/SMM[y-1]-1)*100):'—');
+    const p=tr.insertCell();p.className='r';
+    if(y===y0)p.textContent='—';else{const i=document.createElement('input');i.type='number';i.step='0.01';i.setAttribute('aria-label','Porcentaje aplicado '+y);const v=inc(y);i.value=v==null?'':Math.round(v*100)/100;i.placeholder='escriba';i.addEventListener('change',()=>{if(i.value==='')delete custom[y];else custom[y]=parseFloat(i.value);calc()});p.append(i)}
+    const v=tr.insertCell();v.className='r';v.textContent=cop(val[y])}
+  const vig=val[cor.getFullYear()]||val[yN];
+  $('hoy').textContent=cop(vig);
+  $('hoyd').textContent='Al '+fmt(cor)+' · fijada en '+cop(c0)+' el '+fmt(ff)+(miss.length?' · falta el porcentaje de '+miss.join(', ')+' (escríbalo en la tabla)':'');
+  // escalera
+  const ys=[];for(let y=Math.max(y0,yN-7);y<=yN;y++)ys.push(y);const mxv=Math.max(...ys.map(y=>val[y]));
+  $('stair').innerHTML='';$('yrs').innerHTML='';
+  ys.forEach(y=>{const d=document.createElement('div');d.style.height=(val[y]/mxv*100)+'%';const s=document.createElement('span');s.textContent=cop(val[y]).replace('$ ','');d.append(s);$('stair').append(d);const l=document.createElement('span');l.textContent=y;$('yrs').append(l)});
+  // deuda
+  const a=parse($('d1').value),b=parse($('d2').value),dia=Math.min(28,Math.max(1,num('dia')||1));
+  const mt=$('mt').tBodies[0];mt.innerHTML='';let cap=0,ints=0,n=0;
+  txt='Cuota alimentaria: fijada en '+cop(c0)+' ('+fmt(ff)+'); vigente al '+fmt(cor)+': '+cop(vig)+'.\n';
+  if(a&&b&&b>=a){for(let y=a.getFullYear(),m=a.getMonth();y<b.getFullYear()||(y===b.getFullYear()&&m<=b.getMonth());m++,(m>11&&(m=0,y++))){
+      if(y<y0||(y===y0&&m<ff.getMonth()))continue;
+      const due=new Date(y,m,dia);if(due>cor)continue;
+      let q=val[y]!=null?val[y]:vig;if((m===5||m===11)&&num('extra'))q+=num('extra')*fac(y);
+      const dias=Math.round((cor-due)/864e5);const it=$('int').checked?q*0.06*dias/365:0;
+      cap+=q;ints+=it;n++;
+      const tr=mt.insertRow();[mname(y,m),cop(q),dias,cop(it)].forEach((x,k)=>{const c=tr.insertCell();c.textContent=x;if(k)c.className='r'})}}
+  const ab=num('abono');const tot=Math.max(0,cap+ints-ab);
+  const D=$('debt');D.innerHTML='';
+  const rows=[['Cuotas vencidas sin pagar ('+n+')',cap],['Intereses legales (6 % anual)',ints],['Menos abonos',-ab],['Total adeudado al corte',tot]];
+  rows.forEach(([t,v],k)=>{const bb=document.createElement('b');bb.textContent=t;const vv=document.createElement('span');vv.className='v'+(k===3?' t':'');vv.textContent=(v<0?'− ':'')+cop(Math.abs(v));D.append(bb,vv);txt+='- '+t+': '+(v<0?'− ':'')+cop(Math.abs(v))+'\n'});
+  txt+='Resultado orientativo. Calculadora de Edwin Ferrer — Servicios Legales (edwinferrerabogado.com).';
+}
+const pad=n=>String(n).padStart(2,'0');const t=new Date();$('cor').value=t.getFullYear()+'-'+pad(t.getMonth()+1)+'-'+pad(t.getDate());
+['cuota','ffij','extra','modo','d1','d2','dia','abono','cor','int'].forEach(id=>{$(id).addEventListener('input',()=>{if(id==='modo')Object.keys(custom).forEach(k=>delete custom[k]);calc()});$(id).addEventListener('change',()=>calc())});
+$('cp').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(txt);$('cp').textContent='Copiado'}catch(e){$('cp').textContent='No se pudo copiar'}setTimeout(()=>$('cp').textContent='Copiar resumen',1800)});
+calc();
+}
+</script>
+</body>
+</html>

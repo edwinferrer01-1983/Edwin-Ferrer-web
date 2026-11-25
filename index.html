@@ -729,6 +729,29 @@
   }
   body{ animation:fadeIn .45s ease; }
   @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
+
+  /* ---------- PORTADA (nov. 2026): balanza dorada sobre mármol ---------- */
+  .hero-portada{
+    text-align:left;
+    min-height:min(100vh, 860px);
+    display:flex; align-items:center;
+    padding:170px max(7vw,24px) 90px;
+    background:#0b2416 url('portada-balanza-marmol.jpg') right center / cover no-repeat;
+  }
+  .hero-portada::before{
+    background:linear-gradient(90deg, rgba(9,28,18,.95) 0%, rgba(9,28,18,.78) 36%, rgba(9,28,18,0) 66%);
+  }
+  .hero-portada .hero-content{ max-width:560px; }
+  .hero-portada h1{ margin-bottom:4px; }
+  .hero-portada .sub{ margin-bottom:28px; }
+  .hero-portada p.tag{ margin:0 0 34px; max-width:520px; }
+  .hero-portada .hero-cta{ justify-content:flex-start; }
+  .hero-nuevo{ display:inline-block; margin-top:30px; font-size:0.85rem; color:var(--oro-suave); border-left:2px solid var(--oro); padding-left:12px; max-width:440px; }
+  .hero-nuevo:hover{ color:var(--pergamino); }
+  @media (max-width:760px){
+    .hero-portada{ background-position:72% center; padding:150px 24px 70px; align-items:flex-end; min-height:640px; }
+    .hero-portada::before{ background:linear-gradient(180deg, rgba(9,28,18,.35) 0%, rgba(9,28,18,.85) 52%, rgba(9,28,18,.97) 100%); }
+  }
 </style>
 </head>
 <body>
@@ -756,8 +779,13 @@
       <a href="#cobertura">Cobertura</a>
       <a href="#contacto">Contacto</a>
       <div class="nav-dropdown" id="nav-recursos">
-        <button class="nav-dropdown-btn" type="button" aria-expanded="false">Recursos ▾</button>
+        <button class="nav-dropdown-btn" type="button" aria-expanded="false">Herramientas Jurídicas ▾</button>
         <div class="nav-dropdown-menu">
+          <a href="herramientas.html">Ver todas</a>
+          <a href="calculadora-pena.html">Calculadora de pena</a>
+          <a href="calculadora-tutela.html">Términos de tutela</a>
+          <a href="calculadora-laboral.html">Liquidación laboral</a>
+          <a href="calculadora-cuota-alimentaria.html">Cuota alimentaria</a>
           <a href="derecho-de-peticion.html">Derecho de Petición</a>
           <a href="consultas.html">Consultas</a>
           <a href="honorarios.html">Honorarios</a>
@@ -775,6 +803,7 @@
       <a href="#tendencias">Tendencias</a>
       <a href="#cobertura">Cobertura</a>
       <a href="#contacto">Contacto</a>
+      <a href="herramientas.html">Herramientas Jurídicas</a>
       <a href="derecho-de-peticion.html">Derecho de Petición</a>
       <a href="consultas.html">Consultas</a>
       <a href="honorarios.html">Honorarios</a>
@@ -782,15 +811,17 @@
   </div>
 </header>
 
-<section class="hero">
+<section class="hero hero-portada">
   <div class="hero-content">
     <div class="eyebrow">Abogado · Cobertura Nacional</div>
-    <img class="hero-mark" src="balanza-icono.png" alt="Balanza de la justicia — Edwin Ferrer">
+    <h1>Edwin Ferrer</h1>
+    <div class="sub">Servicios Legales</div>
     <p class="tag">Derecho penal, familia, público y acciones constitucionales. Su defensa, del lado correcto de la ley.</p>
     <div class="hero-cta">
       <a class="btn btn-solid" href="#contacto">Agendar una consulta</a>
       <a class="btn btn-outline" href="#areas">Ver áreas de práctica</a>
     </div>
+    <a class="hero-nuevo" href="herramientas.html">Nuevo · Herramientas jurídicas gratuitas: pena, tutela, laboral y cuota alimentaria →</a>
   </div>
 </section>
 
@@ -803,10 +834,10 @@
     </div>
     <div class="comunicado-grid single">
       <div class="comunicado-card">
-        <img src="violencia-intrafamiliar-buen-trato-agosto-2026.png" alt="Violencia intrafamiliar: el buen trato empieza en casa">
+        <img src="dia-eliminacion-violencia-contra-la-mujer-noviembre-2026.png" alt="25 de noviembre: Día Internacional de la Eliminación de la Violencia contra la Mujer">
         <div class="comunicado-text">
-          <div class="fecha">18 de agosto de 2026</div>
-          <p>El buen trato empieza en casa. La violencia intrafamiliar no es un asunto privado, es un delito. Si usted o alguien cercano lo padece, en Edwin Ferrer — Servicios Legales acompañamos estos procesos con un equipo interdisciplinario: asesoría jurídica y acompañamiento psicológico profesional, en cada etapa del caso.</p>
+          <div class="fecha">25 de noviembre de 2026</div>
+          <p>Día Internacional de la Eliminación de la Violencia contra la Mujer. Ninguna forma de violencia contra la mujer es un asunto privado. La Ley 1257 de 2008 garantiza a todas las mujeres el derecho a una vida libre de violencia, en el hogar y fuera de él. Si usted o alguien cercano la está viviendo, la Línea 155 orienta de forma gratuita las 24 horas del día. En Edwin Ferrer — Servicios Legales la acompañamos con asesoría jurídica y apoyo psicológico profesional, en cada etapa.</p>
         </div>
       </div>
     </div>
