@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Calculadora de cuota alimentaria — Edwin Ferrer</title>
+<title>Calculadora de cuota alimentaria — Edwin Ferrer &amp; Asociados</title>
 <link rel="icon" href="logomark.png">
 <meta name="description" content="Reajuste anual de la cuota alimentaria por IPC y cálculo de cuotas atrasadas con intereses.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Calculadora de cuota alimentaria — Edwin Ferrer">
+<meta property="og:title" content="Calculadora de cuota alimentaria — Edwin Ferrer &amp; Asociados">
 <meta property="og:description" content="Reajuste anual de la cuota alimentaria por IPC y cálculo de cuotas atrasadas con intereses.">
 <meta property="og:image" content="https://edwinferrerabogado.com/logoplate.png">
 <meta property="og:url" content="https://edwinferrerabogado.com/calculadora-cuota-alimentaria.html">
@@ -70,7 +70,7 @@ footer.pie{background:#123321;color:rgba(243,238,225,.6);padding:30px 24px;text-
 </style>
 </head>
 <body>
-<header class="nav"><a class="marca" href="index.html"><img src="logomark.png" alt="">Dr. Edwin Ferrer</a><nav><a href="herramientas.html">← Herramientas jurídicas</a><a href="index.html">Inicio</a></nav></header>
+<header class="nav"><a class="marca" href="index.html"><img src="logomark.png" alt="">Edwin Ferrer &amp; Asociados</a><nav><a href="herramientas.html">← Herramientas jurídicas</a><a href="index.html">Inicio</a></nav></header>
 <main>
 <h1>Calculadora de cuota alimentaria</h1>
 <p class="lead">Calcule cuánto vale hoy una cuota de alimentos con el reajuste de cada año y cuánto se debe por cuotas atrasadas, con sus intereses. Sirve para la cuota fijada por un juez, en una conciliación o en un acuerdo privado.</p>
@@ -192,7 +192,7 @@ function calc(){
   const D=$('debt');D.innerHTML='';
   const rows=[['Cuotas vencidas sin pagar ('+n+')',cap],['Intereses legales (6 % anual)',ints],['Menos abonos',-ab],['Total adeudado al corte',tot]];
   rows.forEach(([t,v],k)=>{const bb=document.createElement('b');bb.textContent=t;const vv=document.createElement('span');vv.className='v'+(k===3?' t':'');vv.textContent=(v<0?'− ':'')+cop(Math.abs(v));D.append(bb,vv);txt+='- '+t+': '+(v<0?'− ':'')+cop(Math.abs(v))+'\n'});
-  txt+='Resultado orientativo. Calculadora de Edwin Ferrer — Servicios Legales (edwinferrerabogado.com).';
+  txt+='Resultado orientativo. Calculadora de Edwin Ferrer & Asociados — Servicios Legales (edwinferrerabogado.com).';
 }
 const pad=n=>String(n).padStart(2,'0');const t=new Date();$('cor').value=t.getFullYear()+'-'+pad(t.getMonth()+1)+'-'+pad(t.getDate());
 ['cuota','ffij','extra','modo','d1','d2','dia','abono','cor','int'].forEach(id=>{$(id).addEventListener('input',()=>{if(id==='modo')Object.keys(custom).forEach(k=>delete custom[k]);calc()});$(id).addEventListener('change',()=>calc())});

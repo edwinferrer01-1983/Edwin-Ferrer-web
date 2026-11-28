@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Calculadora de términos de tutela — Edwin Ferrer</title>
+<title>Calculadora de términos de tutela — Edwin Ferrer &amp; Asociados</title>
 <link rel="icon" href="logomark.png">
 <meta name="description" content="Plazos para fallar, impugnar, cumplir y resolver el desacato en la acción de tutela, en días hábiles.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Calculadora de términos de tutela — Edwin Ferrer">
+<meta property="og:title" content="Calculadora de términos de tutela — Edwin Ferrer &amp; Asociados">
 <meta property="og:description" content="Plazos para fallar, impugnar, cumplir y resolver el desacato en la acción de tutela, en días hábiles.">
 <meta property="og:image" content="https://edwinferrerabogado.com/logoplate.png">
 <meta property="og:url" content="https://edwinferrerabogado.com/calculadora-tutela.html">
@@ -69,7 +69,7 @@ footer.pie{background:#123321;color:rgba(243,238,225,.6);padding:30px 24px;text-
 </style>
 </head>
 <body>
-<header class="nav"><a class="marca" href="index.html"><img src="logomark.png" alt="">Dr. Edwin Ferrer</a><nav><a href="herramientas.html">← Herramientas jurídicas</a><a href="index.html">Inicio</a></nav></header>
+<header class="nav"><a class="marca" href="index.html"><img src="logomark.png" alt="">Edwin Ferrer &amp; Asociados</a><nav><a href="herramientas.html">← Herramientas jurídicas</a><a href="index.html">Inicio</a></nav></header>
 <main>
 <h1>Calculadora de términos de la acción de tutela</h1>
 <p class="lead">Ingrese las fechas que conozca y vea hasta cuándo tiene el juez para fallar, hasta cuándo puede impugnar, cuándo debe cumplirse la orden y cuánto puede durar un desacato. Cuenta días hábiles, sin sábados, domingos ni festivos de Colombia.</p>
@@ -172,7 +172,7 @@ function calc(){
     const dot=document.createElement('div');dot.className='dot';
     const tx=document.createElement('div');const b=document.createElement('b');b.textContent=t;const pp=document.createElement('p');pp.textContent=p;const nn=document.createElement('p');nn.className='norm';nn.textContent=n;tx.append(b,pp,nn);
     s.append(dt,dot,tx);tl.append(s);txt+='- '+t+': '+(d?fmt(d):'—')+'. '+p+' ('+n+')\n'});
-  txt+='Resultado orientativo. Calculadora de Edwin Ferrer — Servicios Legales (edwinferrerabogado.com).';
+  txt+='Resultado orientativo. Calculadora de Edwin Ferrer & Asociados — Servicios Legales (edwinferrerabogado.com).';
   const y0=pres?pres.getFullYear():new Date().getFullYear();const fl=$('fest');fl.innerHTML='';
   [y0,y0+1].forEach(y=>[...holidays(y)].sort().forEach(([k,n])=>{const li=document.createElement('li');li.textContent=fmt(parse(k))+' · '+n;fl.append(li)}));
   try{localStorage.setItem('calcTutela',JSON.stringify([...document.querySelectorAll('#f input,#f select')].map(i=>i.type==='checkbox'?i.checked:i.value)))}catch(e){}

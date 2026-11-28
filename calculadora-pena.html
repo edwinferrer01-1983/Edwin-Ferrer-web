@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Calculadora de cumplimiento de pena — Edwin Ferrer</title>
+<title>Calculadora de cumplimiento de pena — Edwin Ferrer &amp; Asociados</title>
 <link rel="icon" href="logomark.png">
 <meta name="description" content="Calcule el tiempo descontado de una condena con la redención 2x3 y las fechas de mitad, tres quintas partes y pena cumplida.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Calculadora de cumplimiento de pena — Edwin Ferrer">
+<meta property="og:title" content="Calculadora de cumplimiento de pena — Edwin Ferrer &amp; Asociados">
 <meta property="og:description" content="Calcule el tiempo descontado de una condena con la redención 2x3 y las fechas de mitad, tres quintas partes y pena cumplida.">
 <meta property="og:image" content="https://edwinferrerabogado.com/logoplate.png">
 <meta property="og:url" content="https://edwinferrerabogado.com/calculadora-pena.html">
@@ -72,7 +72,7 @@ footer.pie{background:#123321;color:rgba(243,238,225,.6);padding:30px 24px;text-
 </style>
 </head>
 <body>
-<header class="nav"><a class="marca" href="index.html"><img src="logomark.png" alt="">Dr. Edwin Ferrer</a><nav><a href="herramientas.html">← Herramientas jurídicas</a><a href="index.html">Inicio</a></nav></header>
+<header class="nav"><a class="marca" href="index.html"><img src="logomark.png" alt="">Edwin Ferrer &amp; Asociados</a><nav><a href="herramientas.html">← Herramientas jurídicas</a><a href="index.html">Inicio</a></nav></header>
 
 <main class="band">
 <h1>Calculadora de cumplimiento de pena</h1>
@@ -223,7 +223,7 @@ function calc(){
     ['Trabajo: '+dt+' días de 8 h × 2/3',d1(rt)+' días'],['Estudio: '+de+' días de 6 h × 2/3',d1(res)+' días'],['Enseñanza: '+dn+' días de 4 h × 2/3',d1(ren)+' días'],['Otra redención reconocida',d1(rj)+' días'],['Total redención',md(red)],['Tiempo efectivo descontado',md(ef)],
     ['Con la fórmula anterior (1 × 2) la redención por actividades habría sido',d1(vieja)+' días'],['Diferencia a favor por la fórmula 2 × 3',d1(rt+res+ren-vieja)+' días']];
   const tb=$('det');tb.innerHTML='';det.forEach(([a,b])=>{const tr=tb.insertRow();const c1=tr.insertCell();c1.textContent=a;const c2=tr.insertCell();c2.className='n';c2.textContent=b});
-  last=txt+'Resultado orientativo. Calculadora de Edwin Ferrer — Servicios Legales (edwinferrerabogado.com).';
+  last=txt+'Resultado orientativo. Calculadora de Edwin Ferrer & Asociados — Servicios Legales (edwinferrerabogado.com).';
   try{localStorage.setItem('calcPena',JSON.stringify([...document.querySelectorAll('#f input')].map(i=>i.type==='checkbox'?i.checked:i.value)))}catch(e){}
 }
 const ins=[...document.querySelectorAll('#f input')];

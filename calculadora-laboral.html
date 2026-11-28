@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Calculadora de liquidación laboral — Edwin Ferrer</title>
+<title>Calculadora de liquidación laboral — Edwin Ferrer &amp; Asociados</title>
 <link rel="icon" href="logomark.png">
 <meta name="description" content="Cesantías, intereses, prima, vacaciones e indemnización con el salario mínimo y el auxilio de transporte de cada año.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Calculadora de liquidación laboral — Edwin Ferrer">
+<meta property="og:title" content="Calculadora de liquidación laboral — Edwin Ferrer &amp; Asociados">
 <meta property="og:description" content="Cesantías, intereses, prima, vacaciones e indemnización con el salario mínimo y el auxilio de transporte de cada año.">
 <meta property="og:image" content="https://edwinferrerabogado.com/logoplate.png">
 <meta property="og:url" content="https://edwinferrerabogado.com/calculadora-laboral.html">
@@ -66,7 +66,7 @@ footer.pie{background:#123321;color:rgba(243,238,225,.6);padding:30px 24px;text-
 </style>
 </head>
 <body>
-<header class="nav"><a class="marca" href="index.html"><img src="logomark.png" alt="">Dr. Edwin Ferrer</a><nav><a href="herramientas.html">← Herramientas jurídicas</a><a href="index.html">Inicio</a></nav></header>
+<header class="nav"><a class="marca" href="index.html"><img src="logomark.png" alt="">Edwin Ferrer &amp; Asociados</a><nav><a href="herramientas.html">← Herramientas jurídicas</a><a href="index.html">Inicio</a></nav></header>
 <main>
 <h1>Calculadora de liquidación laboral</h1>
 <p class="lead">Calcule cesantías, intereses, prima, vacaciones e indemnización al terminar un contrato de trabajo. Usa el salario mínimo y el auxilio de transporte de cada año, de modo que si lo que se debe abarca varios años, cada año se liquida con sus propios valores.</p>
@@ -194,7 +194,7 @@ function calc(redraw=true){
   const box=$('lines');box.innerHTML='';txt='Liquidación estimada ('+fmt(ini)+' a '+fmt(fin)+'):\n';
   warns.forEach(w=>{const p=document.createElement('p');p.className='warn';p.style.color='#F3EEE1';p.textContent=w;box.append(p)});
   L.forEach(([t,v,p,n])=>{const d=document.createElement('div');d.className='line';const b=document.createElement('b');b.textContent=t;const s=document.createElement('span');s.className='v';s.textContent=cop(v);const pp=document.createElement('p');pp.textContent=p;const nn=document.createElement('p');nn.className='n';nn.textContent=n;d.append(b,s,pp,nn);box.append(d);txt+='- '+t+': '+cop(v)+' ('+n+')\n'});
-  txt+='Total: '+cop(T)+'\nResultado orientativo. Calculadora de Edwin Ferrer — Servicios Legales (edwinferrerabogado.com).';
+  txt+='Total: '+cop(T)+'\nResultado orientativo. Calculadora de Edwin Ferrer & Asociados — Servicios Legales (edwinferrerabogado.com).';
 }
 ['ini','fin','tipo','causa','min','sal','dces','dpri','vdis','finp'].forEach(id=>{const e=$(id);e.addEventListener('input',()=>{if(id==='sal')Object.keys(sal).forEach(k=>delete sal[k]);if(id==='min'&&!e.checked)Object.keys(sal).forEach(k=>delete sal[k]);calc()});e.addEventListener('change',()=>calc())});
 $('cp').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(txt);$('cp').textContent='Copiado'}catch(e){$('cp').textContent='No se pudo copiar'}setTimeout(()=>$('cp').textContent='Copiar liquidación',1800)});
